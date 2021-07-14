@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { RecoilRoot } from 'recoil';
+import MetaContainer from './global/MetaContainer';
 import Layout from './layout/Layout';
 
 const queryClient = new QueryClient();
@@ -12,6 +13,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <ChakraProvider>
+          <MetaContainer />
           <Layout>
             <Component {...pageProps} />
           </Layout>
