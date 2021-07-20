@@ -34,7 +34,7 @@ const styleProps = {
   },
   tags: {
     marginTop: 1,
-  }
+  },
 };
 
 const imageProps = {
@@ -60,7 +60,11 @@ const Product = (props: ProductProps) => {
               <Box marginLeft="1">{`멤버수: ${props.memberCount}`}</Box>
             </Box>
             <Box className="tags" {...styleProps.tags}>
-              {props.tags.map((tag) => <Tag marginLeft="1">{tag}</Tag>)}
+              {props.tags.map((tag, index) => (
+                <Tag marginLeft="1" key={index}>
+                  {tag}
+                </Tag>
+              ))}
             </Box>
           </Box>
         </Box>
