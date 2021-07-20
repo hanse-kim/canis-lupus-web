@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query-devtools';
 import { RecoilRoot } from 'recoil';
 import MetaContainer from './global/MetaContainer';
 import Layout from './layout/Layout';
+import "../public/global.css"
 
 const queryClient = new QueryClient();
 
