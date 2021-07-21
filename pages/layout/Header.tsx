@@ -15,6 +15,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
+import SearchPanel from "./SearchPanel";
 
 let LOGO_WIDTH = 74;
 
@@ -28,7 +29,17 @@ const Header = () => {
 
   const handleReset = () => {
     setKeyword("");
-  }
+  };
+
+  const onOpenSearchPanel = () => {
+    onOpen();
+    document.documentElement.style.overflow = "hidden";
+  };
+
+  const onCloseSearchPanel = () => {
+    onClose();
+    document.documentElement.style.overflow = "";
+  };
 
   return (
     <header>
@@ -57,20 +68,20 @@ const Header = () => {
               children={<Search2Icon color="gray.500" />}
             />
             <Input
-              onClick={onOpen}
+              onClick={onOpenSearchPanel}
               onChange={handleChange}
               variant="filled"
-              borderRadius="9999"
+              borderRadius="full"
               placeholder="찾으시는 모임이 있으신가요?"
               value={keyword}
             />
             <InputRightElement
-              {...keyword === "" && {display: "none"}}
+              {...(keyword === "" && { display: "none" })}
               children={
                 <Button
                   opacity="1"
                   onClick={handleReset}
-                  borderRadius="9999"
+                  borderRadius="full"
                   colorScheme="blackAlpha"
                   variant="solid"
                   size="xs"
@@ -84,6 +95,11 @@ const Header = () => {
         <Center className="navContainer" justifyContent="end"></Center>
       </Container>
       <Divider />
+      <SearchPanel
+        isOpen={isOpen}
+        onOpen={onOpenSearchPanel}
+        onClose={onCloseSearchPanel}
+      />
     </header>
   );
 };
