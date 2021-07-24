@@ -1,6 +1,7 @@
 import React from "react";
 import { CloseIcon, Search2Icon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
   FormControl,
   Input,
@@ -21,39 +22,41 @@ const SearchProductForm = (props: { onOpen: () => void }) => {
   };
 
   return (
-    <FormControl id="searchProductForm">
-      <InputGroup className="searchInput" maxWidth="container.sm">
-        <InputLeftElement
-          pointerEvents="none"
-          color="gray.300"
-          fontSize="1.2em"
-          children={<Search2Icon color="gray.500" />}
-        />
-        <Input
-          onClick={props.onOpen}
-          onChange={handleChange}
-          variant="filled"
-          borderRadius="full"
-          placeholder="찾으시는 모임이 있으신가요?"
-          value={keyword}
-        />
-        <InputRightElement
-          {...(keyword === "" && { display: "none" })}
-          children={
-            <Button
-              opacity="1"
-              onClick={handleReset}
-              borderRadius="full"
-              colorScheme="blackAlpha"
-              variant="solid"
-              size="xs"
-            >
-              <CloseIcon boxSize="2" />
-            </Button>
-          }
-        />
-      </InputGroup>
-    </FormControl>
+    <Box className="searchFormWrapper" width="540px">
+      <FormControl id="searchProductForm">
+        <InputGroup className="searchInput" maxWidth="container.sm">
+          <InputLeftElement
+            pointerEvents="none"
+            color="gray.300"
+            fontSize="1.2em"
+            children={<Search2Icon color="gray.500" />}
+          />
+          <Input
+            onClick={props.onOpen}
+            onChange={handleChange}
+            variant="filled"
+            borderRadius="full"
+            placeholder="찾으시는 모임이 있으신가요?"
+            value={keyword}
+          />
+          <InputRightElement
+            {...(keyword === "" && { display: "none" })}
+            children={
+              <Button
+                opacity="1"
+                onClick={handleReset}
+                borderRadius="full"
+                colorScheme="blackAlpha"
+                variant="solid"
+                size="xs"
+              >
+                <CloseIcon boxSize="2" />
+              </Button>
+            }
+          />
+        </InputGroup>
+      </FormControl>
+    </Box>
   );
 };
 
