@@ -20,6 +20,7 @@
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-grid-layout": "^1.2.5",
     "react-query": "^3.19.0",
     "react-query-devtools": "^2.6.3",
     "react-slick": "^0.28.1",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@types/react": "17.0.14",
+    "@types/react-grid-layout": "^1.1.2",
     "@types/react-slick": "^0.23.5",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1",
