@@ -1,3 +1,3 @@
 export const logout = () => {
-  localStorage.removeItem("user-token");
-}
+  localStorage.removeItem('user-token');
+};

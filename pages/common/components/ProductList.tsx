@@ -1,18 +1,21 @@
-import { Grid, GridItem } from "@chakra-ui/react";
-import React from "react";
-import { ProductProps } from "../interfaces";
-import Product from "./Product";
+import {Grid, GridItem} from '@chakra-ui/react';
+import React from 'react';
+import {ProductProps} from '../interfaces';
+import Product from './Product';
 
 const styleProps = {
   productListWrapper: {
-    templateColumns: "repeat(3, 1fr)",
-    gap: 4
-  }
-}
+    templateColumns: 'repeat(3, 1fr)',
+    gap: 4,
+  },
+};
 
-const ProductList = (props: { children?: React.ReactNode; products: ProductProps[]; }) => {
+const ProductList = (props: {
+  children?: React.ReactNode;
+  products: ProductProps[];
+}) => {
   return (
-    <Grid className="ProductListWrapper" {...styleProps.productListWrapper}>
+    <Grid className='ProductListWrapper' {...styleProps.productListWrapper}>
       {props.products.map((productProps) => {
         return (
           <GridItem key={productProps.id}>

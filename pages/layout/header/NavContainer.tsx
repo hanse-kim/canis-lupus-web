@@ -1,7 +1,7 @@
-import { Box, Button, Center, Divider, Flex, Link } from "@chakra-ui/react";
-import { checkLoggedIn, login } from "pages/api/login";
-import { logout } from "pages/api/logout";
-import React, { useEffect, useState } from "react";
+import {Center, Divider, Link} from '@chakra-ui/react';
+import {checkLoggedIn, login} from 'pages/api/login';
+import {logout} from 'pages/api/logout';
+import React, {useEffect, useState} from 'react';
 
 const refresh = () => {
   window.location.reload();
@@ -13,7 +13,7 @@ const TextButton = (props: {
   href?: string;
 }) => {
   return (
-    <Link onClick={props.onClick} href={props.href} fontSize="sm" marginX="1.5">
+    <Link onClick={props.onClick} href={props.href} fontSize='sm' marginX='1.5'>
       {props.children}
     </Link>
   );
@@ -35,25 +35,25 @@ const MemberNav = () => {
   };
 
   return (
-    <Center height="21px">
-      <TextButton href="/mygroups">내 모임</TextButton>
-      <Divider orientation="vertical" />
-      <TextButton href="/mypage">마이페이지</TextButton>
-      <Divider orientation="vertical" />
+    <Center height='21px'>
+      <TextButton href='/mygroups'>내 모임</TextButton>
+      <Divider orientation='vertical' />
+      <TextButton href='/mypage'>마이페이지</TextButton>
+      <Divider orientation='vertical' />
       <TextButton onClick={logoutAndRefresh}>로그아웃</TextButton>
     </Center>
   );
 };
 
 const NavContainer = () => {
-  let [isLogin, setLogin] = useState(false);
+  const [isLogin, setLogin] = useState(false);
 
   useEffect(() => {
     setLogin(checkLoggedIn());
   }, []);
 
   return (
-    <Center className="navContainer" marginLeft="auto">
+    <Center className='navContainer' marginLeft='auto'>
       {isLogin ? <MemberNav /> : <GuestNav />}
     </Center>
   );

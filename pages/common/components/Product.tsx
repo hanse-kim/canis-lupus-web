@@ -1,14 +1,14 @@
-import { Box, Image, Link, StylesProvider, Tag, Text } from "@chakra-ui/react";
-import { ProductProps } from "../interfaces";
+import {Box, Image, Link, Tag} from '@chakra-ui/react';
+import {ProductProps} from '../interfaces';
 
 const IMAGE_MAX_WIDTH = 150;
 const INFO_MAX_WIDTH = 150;
 
 const styleProps = {
   productWrapper: {
-    fontWeight: "bold",
-    letterSpacing: "wide",
-    fontSize: "sm",
+    fontWeight: 'bold',
+    letterSpacing: 'wide',
+    fontSize: 'sm',
   },
   imageWrapper: {
     maxW: `${IMAGE_MAX_WIDTH}px`,
@@ -17,20 +17,20 @@ const styleProps = {
     maxW: `${INFO_MAX_WIDTH}px`,
   },
   desc: {
-    fontWeight: "semibold",
+    fontWeight: 'semibold',
     marginTop: 1,
     isTruncated: true,
   },
   title: {
     marginTop: 1,
     isTruncated: false,
-    fontSize: "md",
+    fontSize: 'md',
   },
   memberCount: {
     marginTop: 1,
-    fontSize: "sm",
-    fontWeight: "light",
-    color: "gray.400",
+    fontSize: 'sm',
+    fontWeight: 'light',
+    color: 'gray.400',
   },
   tags: {
     marginTop: 1,
@@ -38,7 +38,7 @@ const styleProps = {
 };
 
 const imageProps = {
-  fallbackSrc: "https://via.placeholder.com/180",
+  fallbackSrc: 'https://via.placeholder.com/180',
 };
 
 const Product = (props: ProductProps) => {
@@ -47,12 +47,12 @@ const Product = (props: ProductProps) => {
       <Link href={props.url}>
         <Box display="flex">
           <Box className="ImageWrapper" {...styleProps.imageWrapper}>
-            <Image src={props.imageUrl} {...imageProps} />
+            <Image src={props.imageUrl} alt="product image" {...imageProps} />
           </Box>
           <Box className="InfoWrapper" {...styleProps.infoWrapper}>
             <Box className="title" {...styleProps.title}>
               {props.title}
-            </Box>{" "}
+            </Box>{' '}
             <Box className="desc" {...styleProps.desc}>
               {props.desc}
             </Box>

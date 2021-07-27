@@ -1,4 +1,4 @@
-import { Box, Heading, Link } from "@chakra-ui/react";
+import {Box, Heading, Link} from '@chakra-ui/react';
 
 const LabeledContainer = (props: {
   children?: React.ReactNode;

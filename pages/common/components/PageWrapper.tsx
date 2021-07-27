@@ -1,8 +1,8 @@
-import React from "react";
-import { Container } from "@chakra-ui/layout";
+import React from 'react';
+import {Container} from '@chakra-ui/layout';
 
 const styles = {
-  maxWidth: "container.lg",
+  maxWidth: 'container.lg',
 };
 
 const PageWrapper = (props: { children?: React.ReactNode }) => {
