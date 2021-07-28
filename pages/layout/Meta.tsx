@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const MetaContainer = () => {
+const Meta = () => {
   return <Head>
     <title>이건모임</title>
     <link rel="icon" href="/favicon.ico" />
@@ -8,4 +8,4 @@ const MetaContainer = () => {
   </Head>;
 };
 
-export default MetaContainer;
+export default Meta;
