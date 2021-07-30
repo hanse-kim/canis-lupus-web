@@ -3,9 +3,9 @@ import type {AppProps} from 'next/app';
 import {QueryClient, QueryClientProvider} from 'react-query';
 // import {ReactQueryDevtools} from 'react-query-devtools';
 import {RecoilRoot} from 'recoil';
-import Meta from './layout/Meta';
-import Layout from './layout/Layout';
-import '../public/global.css';
+import Meta from 'components/layout/Meta';
+import Layout from 'components/layout/Layout';
+import 'public/global.css';
 
 const queryClient = new QueryClient();
 

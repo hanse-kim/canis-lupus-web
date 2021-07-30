@@ -1,6 +1,6 @@
 import {Grid, GridItem} from '@chakra-ui/react';
 import React from 'react';
-import {ProductProps} from '../interfaces';
+import {ProductProps} from 'types';
 import Product from './Product';
 
 const styleProps = {

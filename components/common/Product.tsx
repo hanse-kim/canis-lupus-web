@@ -1,5 +1,5 @@
 import {Box, Image, Link, Tag} from '@chakra-ui/react';
-import {ProductProps} from '../interfaces';
+import {ProductProps} from 'types';
 
 const IMAGE_MAX_WIDTH = 150;
 const INFO_MAX_WIDTH = 150;
