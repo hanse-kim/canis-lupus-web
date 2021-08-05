@@ -1,5 +1,6 @@
-import {Box, Center, Image, Link, Spinner} from '@chakra-ui/react';
+import {Box, Image, Link} from '@chakra-ui/react';
 import Banner from 'components/common/Banner';
+import LoadingSpinner from 'components/common/LoadingSpinner';
 import useMainBannerList from 'hooks/main/useMainBannerList';
 import {BannerInfo} from 'types';
 
@@ -17,15 +18,13 @@ const MainBanner = () => {
   const {isLoading, bannerList} = useMainBannerList();
 
   if (isLoading) {
-    return (
-      <Center>
-        <Spinner />
-      </Center>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
-    <Banner bannerItemComponent={BannerItem} bannerItemProps={bannerList} />
+    <Banner
+      bannerItemComponent={BannerItem}
+      bannerItemProps={bannerList} />
   );
 };
 
