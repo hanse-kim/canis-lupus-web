@@ -1,6 +1,5 @@
 import {Center, Divider, Link} from '@chakra-ui/react';
-import {checkLoggedIn, login} from 'pages/api/login';
-import {logout} from 'pages/api/logout';
+import useLogin from 'hooks/useLogin';
 import React, {useEffect, useState} from 'react';
 
 const refresh = () => {
@@ -20,8 +19,10 @@ const TextButton = (props: {
 };
 
 const GuestNav = () => {
+  const {login} = useLogin();
+
   const loginAndRefresh = () => {
-    login();
+    login({});
     refresh();
   };
 
@@ -29,8 +30,10 @@ const GuestNav = () => {
 };
 
 const MemberNav = () => {
+  const {logout} = useLogin();
+
   const logoutAndRefresh = () => {
-    logout();
+    logout({});
     refresh();
   };
 
@@ -47,10 +50,11 @@ const MemberNav = () => {
 
 const NavContainer = () => {
   const [isLogin, setLogin] = useState(false);
+  const {isLoggedIn} = useLogin();
 
   useEffect(() => {
-    setLogin(checkLoggedIn());
-  }, []);
+    setLogin(isLoggedIn);
+  }, [isLoggedIn]);
 
   return (
     <Center className='navContainer' marginLeft='auto'>

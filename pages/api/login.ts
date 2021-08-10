@@ -1,10 +1,7 @@
-export const login = () => {
-  localStorage.setItem('user-token', 'this is token');
+import {NextApiRequest, NextApiResponse} from 'next';
+
+const login = async (req: NextApiRequest, res: NextApiResponse) => {
+  res.status(200).json({success: true, token: 'this_is_test_token'});
 };
 
-export const checkLoggedIn = () => {
-  console.log(
-      'isLoggedIn: ' + String(localStorage.getItem('user-token') !== null)
-  );
-  return localStorage.getItem('user-token') !== null;
-};
+export default login;
