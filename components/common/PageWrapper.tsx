@@ -3,11 +3,12 @@ import {Container} from '@chakra-ui/layout';
 
 const styles = {
   maxWidth: 'container.lg',
+  minHeight: '',
 };
 
 const PageWrapper = (props: { children?: React.ReactNode }) => {
   return (
-    <Container {...styles} className="pageWrapper">
+    <Container {...styles} minHeight='container.sm' className="pageWrapper">
       {props.children}
     </Container>
   );
