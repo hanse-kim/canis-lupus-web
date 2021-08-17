@@ -1,5 +1,6 @@
 import {Center, Divider, Link} from '@chakra-ui/react';
 import useLogin from 'hooks/useLogin';
+import usePageMove from 'hooks/usePageMove';
 import React, {useEffect, useState} from 'react';
 
 const refresh = () => {
@@ -19,14 +20,17 @@ const TextButton = (props: {
 };
 
 const GuestNav = () => {
-  const {login} = useLogin();
+  const {pageMoveWithRedirect} = usePageMove();
 
-  const loginAndRefresh = () => {
-    login({});
-    refresh();
-  };
-
-  return <TextButton onClick={loginAndRefresh}>로그인</TextButton>;
+  return (
+    <TextButton
+      onClick={() => {
+        pageMoveWithRedirect('/login');
+      }}
+    >
+      로그인
+    </TextButton>
+  );
 };
 
 const MemberNav = () => {
