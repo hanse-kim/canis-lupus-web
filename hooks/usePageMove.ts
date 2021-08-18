@@ -14,6 +14,11 @@ const usePageMove = () => {
     });
   };
 
+  const getRedirect = () => {
+    const {redirect} = router.query;
+    return redirect as string | undefined;
+  };
+
   const pageRedirect = (url: string) => {
     router.replace(url);
   };
@@ -22,6 +27,7 @@ const usePageMove = () => {
     pageMove,
     pageRedirect,
     pageMoveWithRedirect,
+    getRedirect,
   };
 };
 
