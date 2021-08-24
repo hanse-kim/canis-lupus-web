@@ -18,7 +18,7 @@ const LoginForm = () => {
     formState: {errors, isSubmitting},
   } = useForm();
   const {login} = useLogin();
-  const {pageMove, getRedirect} = usePageMove();
+  const {pageMove, getRedirect, pageMoveWithRedirect} = usePageMove();
 
   const onSubmit = (values: {email: string; password: string}) => {
     return new Promise(() => {
@@ -56,7 +56,9 @@ const LoginForm = () => {
           />
         </FormControl>
         <Flex justifyContent='space-between'>
-          <Link fontSize='sm'>회원가입</Link>
+          <Link fontSize='sm' onClick={() => pageMoveWithRedirect('/register')}>
+            회원가입
+          </Link>
           <Link fontSize='sm'>아이디/비밀번호 찾기</Link>
         </Flex>
         <Button
