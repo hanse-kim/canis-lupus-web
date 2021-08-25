@@ -1,5 +1,5 @@
 import {Box, Heading} from '@chakra-ui/react';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import AccountInfoForm from './formContent/AccountInfoForm';
 import FormContentWrapper from './FormContentWrapper';
 import MobileVerificationForm from './formContent/MobileVerificationForm';
@@ -33,10 +33,6 @@ const RegisterForm = () => {
   const updateData = (key: string, newData: any) => {
     setData({...data, [key]: newData});
   };
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <Box className='registerBox' maxWidth='320px' marginX='auto'>

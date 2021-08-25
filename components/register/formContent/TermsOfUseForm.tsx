@@ -118,7 +118,6 @@ const TermsOfUseForm = (props: FormContentProps) => {
       </Stack>
       <SubmitButton
         onClick={() => {
-          console.log(props);
           update('tos', checkedItems);
           onSubmit();
         }}
