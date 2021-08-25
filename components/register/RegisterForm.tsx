@@ -39,15 +39,6 @@ const RegisterForm = () => {
         <FormContentWrapper isEnabled={step === '전화번호인증'}>
           <MobileVerificationForm />
         </FormContentWrapper>
-
-        <Button
-          width='full'
-          height='12'
-          marginTop='8'
-          onClick={step === lastStep ? submit : toNext}
-        >
-          {step === lastStep ? '회원가입' : '다음'}
-        </Button>
       </form>
     </Box>
   );
