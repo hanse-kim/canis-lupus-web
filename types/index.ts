@@ -18,3 +18,32 @@ export interface ProductProps {
   imageUrl: string;
   tags: string[]
 }
+
+export interface TosRecord {
+  id: string;
+  fields: TosInfo;
+  createdTime: string;
+}
+
+export interface TosInfo {
+  'name': string;
+  'content': string;
+  'is_required': boolean;
+}
+
+
+export interface RegisterData {
+  [key: string]: any;
+  tos: boolean[];
+  email: string;
+  password: string;
+  mobile: string;
+  nickname: string;
+  description: string;
+  category: string[];
+}
+
+export interface FormContentProps {
+  update: (key: string, newData: any) => void;
+  onSubmit: () => void;
+}
