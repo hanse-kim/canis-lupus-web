@@ -118,7 +118,7 @@ const TermsOfUseForm = (props: FormContentProps) => {
       </Stack>
       <SubmitButton
         onClick={() => {
-          update('tos', checkedItems);
+          update({tos: checkedItems});
           onSubmit();
         }}
         disabled={!validation()}

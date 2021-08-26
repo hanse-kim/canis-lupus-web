@@ -44,6 +44,6 @@ export interface RegisterData {
 }
 
 export interface FormContentProps {
-  update: (key: string, newData: any) => void;
+  update: (newData: {[key: string]: any}) => void;
   onSubmit: () => void;
 }

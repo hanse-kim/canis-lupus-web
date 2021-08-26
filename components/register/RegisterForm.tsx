@@ -4,6 +4,7 @@ import AccountInfoForm from './formContent/AccountInfoForm';
 import FormContentWrapper from './FormContentWrapper';
 import MobileVerificationForm from './formContent/MobileVerificationForm';
 import TermsOfUseForm from './formContent/TermsOfUseForm';
+import produce from 'immer';
 
 const registerSteps = [
   '이용약관',
@@ -30,8 +31,14 @@ const RegisterForm = () => {
     });
   };
 
-  const updateData = (key: string, newData: any) => {
-    setData({...data, [key]: newData});
+  const updateData = (newData: {[key: string]: any}) => {
+    setData(
+      produce(data, (draft) => {
+        Object.entries(newData).map(([key, value]) => {
+          draft[key] = value;
+        });
+      })
+    );
   };
 
   return (
