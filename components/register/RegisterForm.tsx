@@ -1,7 +1,6 @@
 import {Box, Heading} from '@chakra-ui/react';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import AccountInfoForm from './formContent/AccountInfoForm';
-import FormContentWrapper from './FormContentWrapper';
 import MobileVerificationForm from './formContent/MobileVerificationForm';
 import TermsOfUseForm from './formContent/TermsOfUseForm';
 import produce from 'immer';
@@ -41,6 +40,10 @@ const RegisterForm = () => {
     );
   };
 
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <Box className='registerBox' maxWidth='320px' marginX='auto'>
       <Heading paddingY='10' size='md' textAlign='center'>
@@ -52,9 +55,9 @@ const RegisterForm = () => {
       {step === '계정정보입력' && (
         <AccountInfoForm update={updateData} onSubmit={toNext} />
       )}
-      <FormContentWrapper isEnabled={step === '전화번호인증'}>
-        <MobileVerificationForm />
-      </FormContentWrapper>
+      {step === '전화번호인증' && (
+        <MobileVerificationForm update={updateData} onSubmit={toNext} />
+      )}
     </Box>
   );
 };
