@@ -1,15 +1,17 @@
 import {
   FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Input,
   Stack,
 } from '@chakra-ui/react';
 import useAccountInfoValidation from 'hooks/register/useAccountInfoValidation';
 import produce from 'immer';
 import React, {useState} from 'react';
-import SubmitButton from './parts/SubmitButton';
+import {
+  RegisterFormErrorMessage,
+  RegisterFormHelperText,
+  RegisterFormInput,
+  RegisterFormLabel,
+} from './sub/RegisterFormItems';
+import SubmitButton from './sub/SubmitButton';
 
 const CustomFormInput = (props: {
   isInvalid: boolean;
@@ -23,28 +25,19 @@ const CustomFormInput = (props: {
 }) => {
   return (
     <FormControl isInvalid={props.isInvalid}>
-      <FormLabel
-        as='legend'
-        fontWeight='bold'
-        color={props.isInvalid ? 'red.500' : undefined}
-      >
+      <RegisterFormLabel isInvalid={props.isInvalid}>
         {props.label}
-      </FormLabel>
-      <Input
+      </RegisterFormLabel>
+      <RegisterFormInput
         type={props.type}
         placeholder={props.placeholder}
         onBlur={props.onFocusOut}
-        borderRadius='0'
         ref={props.ref}
       />
-      <FormHelperText
-        fontSize='xs'
-        color='gray.600'
-        display={props.isInvalid ? 'none' : undefined}
-      >
+      <RegisterFormHelperText isInvalid={props.isInvalid}>
         {props.helperMessage}
-      </FormHelperText>
-      <FormErrorMessage fontSize='xs'>{props.errorMessage}</FormErrorMessage>
+      </RegisterFormHelperText>
+      <RegisterFormErrorMessage>{props.errorMessage}</RegisterFormErrorMessage>
     </FormControl>
   );
 };
@@ -128,7 +121,7 @@ const AccountInfoForm = (props: any) => {
           update(data);
           onSubmit();
         }}
-        disabled={!(Object.entries(passed).every(([k, v]) => v))}
+        disabled={!Object.entries(passed).every(([k, v]) => v)}
       >
         다음
       </SubmitButton>

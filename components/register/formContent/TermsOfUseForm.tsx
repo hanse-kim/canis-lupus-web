@@ -12,8 +12,8 @@ import LoadingSpinner from 'components/common/LoadingSpinner';
 import useTermsOfUseList from 'hooks/register/useTermsOfUseList';
 import React, {useEffect} from 'react';
 import {FormContentProps, TosInfo} from 'types';
-import {CheckboxAll, CheckboxChild} from './parts/CustomCheckbox';
-import SubmitButton from './parts/SubmitButton';
+import {CheckboxAll, CheckboxChild} from './sub/CustomCheckbox';
+import SubmitButton from './sub/SubmitButton';
 
 const TermsOfUseInput = (props: {
   tos: TosInfo;

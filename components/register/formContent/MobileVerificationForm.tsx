@@ -1,13 +1,11 @@
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Input,
-  Stack,
-} from '@chakra-ui/react';
+import {Button, FormControl, Stack} from '@chakra-ui/react';
 import React, {useRef, useState} from 'react';
-import SubmitButton from './parts/SubmitButton';
+import {
+  RegisterFormHelperText,
+  RegisterFormInput,
+  RegisterFormLabel,
+} from './sub/RegisterFormItems';
+import SubmitButton from './sub/SubmitButton';
 
 const MobileVerificationForm = (props: any) => {
   const {update, onSubmit} = props;
@@ -21,19 +19,14 @@ const MobileVerificationForm = (props: any) => {
   return (
     <Stack spacing='6'>
       <FormControl>
-        <FormLabel
-          as='legend'
-          fontWeight='bold'
-          color={props.isInvalid ? 'red.500' : undefined}
-        >
+        <RegisterFormLabel isInvalid={props.isInvalid}>
           휴대폰 번호
-        </FormLabel>
+        </RegisterFormLabel>
         <Stack direction='row' spacing='4'>
-          <Input
+          <RegisterFormInput
             type='number'
             placeholder='휴대폰 번호 (- 없이 입력)'
             onBlur={props.onFocusOut}
-            borderRadius='0'
             ref={phoneNumberInput}
           />
           <Button onClick={sendVerificationCode}>
@@ -44,26 +37,11 @@ const MobileVerificationForm = (props: any) => {
       {isSend && (
         <React.Fragment>
           <FormControl>
-            <FormLabel
-              as='legend'
-              fontWeight='bold'
-              color={props.isInvalid ? 'red.500' : undefined}
-            >
-              인증번호
-            </FormLabel>
-            <Input
-              type='number'
-              onBlur={props.onFocusOut}
-              borderRadius='0'
-              ref={props.ref}
-            />
-            <FormHelperText
-              fontSize='xs'
-              color='red.500'
-              display={props.isInvalid ? 'none' : undefined}
-            >
+            <RegisterFormLabel>인증번호</RegisterFormLabel>
+            <RegisterFormInput type='number' onBlur={props.onFocusOut} />
+            <RegisterFormHelperText color='red.500'>
               남은 시간: {'2분 50초'}
-            </FormHelperText>
+            </RegisterFormHelperText>
           </FormControl>
           <SubmitButton
             onClick={() => {
