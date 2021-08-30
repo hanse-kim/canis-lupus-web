@@ -4,6 +4,7 @@ import AccountInfoForm from './formContent/AccountInfoForm';
 import MobileVerificationForm from './formContent/MobileVerificationForm';
 import TermsOfUseForm from './formContent/TermsOfUseForm';
 import produce from 'immer';
+import useFormData from 'hooks/register/useFormData';
 
 const registerSteps = [
   '이용약관',
@@ -15,7 +16,7 @@ const registerSteps = [
 
 const RegisterForm = () => {
   const [step, setStep] = useState('이용약관');
-  const [data, setData] = useState<{[key: string]: any}>({});
+  const {resetFormData, formData} = useFormData();
 
   const toNext = () => {
     const nextIndex = registerSteps.indexOf(step) + 1;
@@ -25,24 +26,18 @@ const RegisterForm = () => {
   const submit = () => {
     return new Promise(() => {
       setTimeout(() => {
-        JSON.stringify(data, null, 2);
+        JSON.stringify(formData, null, 2);
       }, 1000);
     });
   };
 
-  const updateData = (newData: {[key: string]: any}) => {
-    setData(
-      produce(data, (draft) => {
-        Object.entries(newData).map(([key, value]) => {
-          draft[key] = value;
-        });
-      })
-    );
-  };
+  useEffect(() => {
+    resetFormData();
+  }, []);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    console.log(formData);
+  }, [formData]);
 
   return (
     <Box className='registerBox' maxWidth='320px' marginX='auto'>
@@ -50,13 +45,13 @@ const RegisterForm = () => {
         회원가입
       </Heading>
       {step === '이용약관' && (
-        <TermsOfUseForm update={updateData} onSubmit={toNext} />
+        <TermsOfUseForm onSubmit={toNext} />
       )}
       {step === '계정정보입력' && (
-        <AccountInfoForm update={updateData} onSubmit={toNext} />
+        <AccountInfoForm onSubmit={toNext} />
       )}
       {step === '전화번호인증' && (
-        <MobileVerificationForm update={updateData} onSubmit={toNext} />
+        <MobileVerificationForm onSubmit={toNext} />
       )}
     </Box>
   );

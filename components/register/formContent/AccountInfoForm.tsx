@@ -1,10 +1,9 @@
-import {
-  FormControl,
-  Stack,
-} from '@chakra-ui/react';
+import {FormControl, Stack} from '@chakra-ui/react';
 import useAccountInfoValidation from 'hooks/register/useAccountInfoValidation';
+import useFormData from 'hooks/register/useFormData';
 import produce from 'immer';
 import React, {useState} from 'react';
+import {FormContentProps} from 'types';
 import {
   RegisterFormErrorMessage,
   RegisterFormHelperText,
@@ -42,7 +41,7 @@ const CustomFormInput = (props: {
   );
 };
 
-const AccountInfoForm = (props: any) => {
+const AccountInfoForm = (props: FormContentProps) => {
   const {error, validateEmail, validatePassword, validatePasswordConfirm} =
     useAccountInfoValidation();
   const [data, setData] = useState<{[key: string]: string}>({
@@ -55,7 +54,8 @@ const AccountInfoForm = (props: any) => {
     passwordConfirm: false,
   });
   const [password, setPassword] = useState('');
-  const {update, onSubmit} = props;
+  const {onSubmit} = props;
+  const {updateFormData} = useFormData();
 
   return (
     <Stack spacing={6}>
@@ -118,7 +118,7 @@ const AccountInfoForm = (props: any) => {
       />
       <SubmitButton
         onClick={() => {
-          update(data);
+          updateFormData(data);
           onSubmit();
         }}
         disabled={!Object.entries(passed).every(([k, v]) => v)}

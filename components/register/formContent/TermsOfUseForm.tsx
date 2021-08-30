@@ -9,6 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import LoadingSpinner from 'components/common/LoadingSpinner';
+import useFormData from 'hooks/register/useFormData';
 import useTermsOfUseList from 'hooks/register/useTermsOfUseList';
 import React, {useEffect} from 'react';
 import {FormContentProps, TosInfo} from 'types';
@@ -55,7 +56,8 @@ const TermsOfUseInput = (props: {
 const TermsOfUseForm = (props: FormContentProps) => {
   const {isLoading, termsOfUseList} = useTermsOfUseList();
   const [checkedItems, setCheckedItems] = React.useState<boolean[]>([]);
-  const {update, onSubmit} = props;
+  const {onSubmit} = props;
+  const {updateFormData} = useFormData();
 
   const allChecked = checkedItems.every(Boolean);
   const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
@@ -118,7 +120,7 @@ const TermsOfUseForm = (props: FormContentProps) => {
       </Stack>
       <SubmitButton
         onClick={() => {
-          update({tos: checkedItems});
+          updateFormData({tos: checkedItems});
           onSubmit();
         }}
         disabled={!validation()}
