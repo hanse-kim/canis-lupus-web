@@ -5,6 +5,7 @@ import MobileVerificationForm from './formContent/MobileVerificationForm';
 import TermsOfUseForm from './formContent/TermsOfUseForm';
 import useFormData from 'hooks/register/useFormData';
 import useRegisterStep from 'hooks/register/useRegisterStep';
+import IntroduceForm from './formContent/IntroduceForm';
 
 const RegisterForm = () => {
   const {step, resetStep, toNextStep: toNext} = useRegisterStep();
@@ -35,6 +36,7 @@ const RegisterForm = () => {
       {step === '이용약관' && <TermsOfUseForm onSubmit={toNext} />}
       {step === '계정정보입력' && <AccountInfoForm onSubmit={toNext} />}
       {step === '전화번호인증' && <MobileVerificationForm onSubmit={toNext} />}
+      {step === '자기소개입력' && <IntroduceForm onSubmit={toNext} />}
     </Box>
   );
 };
