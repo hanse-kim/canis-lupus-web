@@ -31,7 +31,6 @@ export interface TosInfo {
   'is_required': boolean;
 }
 
-
 export interface RegisterData {
   [key: string]: any;
   tos: boolean[];
@@ -45,4 +44,14 @@ export interface RegisterData {
 
 export interface FormContentProps {
   onSubmit: () => void;
+}
+
+export interface CategoryRecord {
+  id: string;
+  fields: CategoryInfo;
+  createdTime: string;
+}
+
+export interface CategoryInfo {
+  'name': string;
 }
