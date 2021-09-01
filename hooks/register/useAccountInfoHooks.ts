@@ -1,6 +1,7 @@
 import produce from 'immer';
 import {useState} from 'react';
 import useAccountInfoValidation from './useAccountInfoValidation';
+import useSubmitChecker from './useSubmitChecker';
 
 const useAccountInfoHooks = () => {
   const {error, validateEmail, validatePassword, validatePasswordConfirm} =
@@ -9,20 +10,16 @@ const useAccountInfoHooks = () => {
     email: '',
     password: '',
   });
-  const [passed, setPassed] = useState<{[key: string]: boolean}>({
-    email: false,
-    password: false,
-    passwordConfirm: false,
-  });
+  const {setPassed, isSubmittable} = useSubmitChecker([
+    'email',
+    'password',
+    'passwordConfirm',
+  ]);
   const [password, setPassword] = useState('');
 
   const onEmailChange = (e: React.FocusEvent<HTMLInputElement>) => {
     const email = e.target.value;
-    setPassed(
-      produce(passed, (draft) => {
-        draft.email = validateEmail(email);
-      })
-    );
+    setPassed('email', validateEmail(email));
     setData(
       produce(data, (draft) => {
         draft.email = email;
@@ -33,29 +30,17 @@ const useAccountInfoHooks = () => {
   const onPasswordChange = (e: React.FocusEvent<HTMLInputElement>) => {
     const pw = e.target.value;
     setPassword(pw);
-    setPassed(
-      produce(passed, (draft) => {
-        draft.password = validatePassword(pw);
-      })
-    );
+    setPassed('password', validatePassword(pw));
   };
 
   const onPasswordConfirmChange = (e: React.FocusEvent<HTMLInputElement>) => {
     const pwc = e.target.value;
-    setPassed(
-      produce(passed, (draft) => {
-        draft.passwordConfirm = validatePasswordConfirm(password, pwc);
-      })
-    );
+    setPassed('passwordConfirm', validatePasswordConfirm(password, pwc));
     setData(
       produce(data, (draft) => {
         draft.password = pwc;
       })
     );
-  };
-
-  const isSubmittable = () => {
-    return !Object.entries(passed).every(([k, v]) => v);
   };
 
   return {
