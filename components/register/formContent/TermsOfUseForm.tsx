@@ -1,6 +1,5 @@
 import {ChevronRightIcon} from '@chakra-ui/icons';
 import {
-  Box,
   Center,
   Divider,
   FormControl,
@@ -13,6 +12,7 @@ import useFormData from 'hooks/register/useFormData';
 import useTermsOfUseList from 'hooks/register/useTermsOfUseList';
 import React, {useEffect} from 'react';
 import {FormContentProps, TosInfo} from 'types';
+import FormContentWrapper from '../FormContentWrapper';
 import {CheckboxAll, CheckboxChild} from './sub/CustomCheckbox';
 import SubmitButton from './sub/SubmitButton';
 
@@ -91,7 +91,7 @@ const TermsOfUseForm = (props: FormContentProps) => {
   }
 
   return (
-    <Box>
+    <FormContentWrapper>
       <Text marginBottom='5'>
         아래 약관에 동의하시고 이거모임에서 목표를 이루어보세요
       </Text>
@@ -127,7 +127,7 @@ const TermsOfUseForm = (props: FormContentProps) => {
       >
         다음
       </SubmitButton>
-    </Box>
+    </FormContentWrapper>
   );
 };
 

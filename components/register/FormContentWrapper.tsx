@@ -1,14 +1,11 @@
-import {Box} from '@chakra-ui/react';
+import {Stack} from '@chakra-ui/react';
 import React from 'react';
 
-const FormContentWrapper = (props: {
-  children?: React.ReactNode;
-  isEnabled: boolean;
-}) => {
+const FormContentWrapper = (props: {children?: React.ReactNode}) => {
   return (
-    <Box {...(props.isEnabled ? null : {display: 'none'})}>
+    <Stack className='formContentWrapper' spacing='6'>
       {props.children}
-    </Box>
+    </Stack>
   );
 };
 

@@ -1,9 +1,10 @@
 import {PlusSquareIcon} from '@chakra-ui/icons';
-import {Avatar, Center, FormControl, Stack} from '@chakra-ui/react';
+import {Avatar, Center, FormControl} from '@chakra-ui/react';
 import ImageUploadButton from 'components/common/ImageUploadButton';
 import useFormData from 'hooks/register/useFormData';
 import useIntroduceHooks from 'hooks/register/useIntroduceHooks';
 import {FormContentProps} from 'types';
+import FormContentWrapper from '../FormContentWrapper';
 import {
   RegisterFormErrorMessage,
   RegisterFormHelperText,
@@ -19,7 +20,7 @@ const IntroduceForm = (props: FormContentProps) => {
     useIntroduceHooks();
 
   return (
-    <Stack spacing='6'>
+    <FormContentWrapper>
       <Center>
         <Avatar size='2xl'>
           <ImageUploadButton
@@ -79,7 +80,7 @@ const IntroduceForm = (props: FormContentProps) => {
       >
         다음
       </SubmitButton>
-    </Stack>
+    </FormContentWrapper>
   );
 };
 

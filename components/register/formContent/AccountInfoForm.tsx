@@ -1,8 +1,9 @@
-import {FormControl, Stack} from '@chakra-ui/react';
+import {FormControl} from '@chakra-ui/react';
 import useAccountInfoHooks from 'hooks/register/useAccountInfoHooks';
 import useFormData from 'hooks/register/useFormData';
 import React from 'react';
 import {FormContentProps} from 'types';
+import FormContentWrapper from '../FormContentWrapper';
 import {
   RegisterFormErrorMessage,
   RegisterFormHelperText,
@@ -24,7 +25,7 @@ const AccountInfoForm = (props: FormContentProps) => {
   } = useAccountInfoHooks();
 
   return (
-    <Stack spacing={6}>
+    <FormContentWrapper>
       <FormControl isInvalid={error.email.isInvalid}>
         <RegisterFormLabel isInvalid={error.email.isInvalid}>
           이메일
@@ -79,7 +80,7 @@ const AccountInfoForm = (props: FormContentProps) => {
       >
         다음
       </SubmitButton>
-    </Stack>
+    </FormContentWrapper>
   );
 };
 

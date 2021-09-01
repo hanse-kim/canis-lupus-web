@@ -2,6 +2,7 @@ import {Button, FormControl, Stack} from '@chakra-ui/react';
 import useFormData from 'hooks/register/useFormData';
 import React, {useState} from 'react';
 import {FormContentProps} from 'types';
+import FormContentWrapper from '../FormContentWrapper';
 import {
   RegisterFormHelperText,
   RegisterFormInput,
@@ -19,7 +20,7 @@ const MobileVerificationForm = (props: FormContentProps) => {
   };
 
   return (
-    <Stack spacing='6'>
+    <FormContentWrapper>
       <FormControl>
         <RegisterFormLabel>휴대폰 번호</RegisterFormLabel>
         <Stack direction='row' spacing='4'>
@@ -52,7 +53,7 @@ const MobileVerificationForm = (props: FormContentProps) => {
           </SubmitButton>
         </React.Fragment>
       )}
-    </Stack>
+    </FormContentWrapper>
   );
 };
 
