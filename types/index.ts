@@ -5,7 +5,7 @@ export interface BannerRecord {
 }
 
 export interface BannerInfo {
-  'url': string;
+  url: string;
   'img_url': string;
 }
 
@@ -16,7 +16,7 @@ export interface ProductProps {
   memberCount: number;
   url: string;
   imageUrl: string;
-  tags: string[]
+  tags: string[];
 }
 
 export interface TosRecord {
@@ -53,5 +53,20 @@ export interface CategoryRecord {
 }
 
 export interface CategoryInfo {
-  'name': string;
+  name: string;
+}
+
+export interface GroupRecord {
+  id: string;
+  fields: GroupInfo;
+  createdTime: string;
+}
+
+export interface GroupInfo {
+  category: string;
+  name: string;
+  description: string;
+  'member_count': number;
+  'member_count_max': number;
+  'image_url': string;
 }
