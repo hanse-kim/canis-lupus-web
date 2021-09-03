@@ -4,6 +4,7 @@ import useAccountInfoValidation from './useAccountInfoValidation';
 import useSubmitChecker from './useSubmitChecker';
 
 const useAccountInfoHooks = () => {
+  const keys = ['email', 'password'];
   const {error, validateEmail, validatePassword, validatePasswordConfirm} =
     useAccountInfoValidation();
   const [data, setData] = useState<{[key: string]: string}>({
@@ -50,6 +51,7 @@ const useAccountInfoHooks = () => {
     onPasswordChange,
     onPasswordConfirmChange,
     isSubmittable,
+    keys,
   };
 };
 

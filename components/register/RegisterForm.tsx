@@ -27,7 +27,7 @@ const RegisterForm = () => {
   useEffect(() => {
     resetFormData();
     resetStep();
-  }, []);
+  }, [resetFormData, resetStep]);
 
   return (
     <Box className='registerBox' maxWidth='320px' marginX='auto'>

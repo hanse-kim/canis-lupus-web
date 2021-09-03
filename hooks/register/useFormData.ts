@@ -1,4 +1,5 @@
 import produce from 'immer';
+import {useCallback} from 'react';
 import {atom, useRecoilState} from 'recoil';
 
 const formDataState = atom<{[key: string]: any}>({
@@ -9,9 +10,9 @@ const formDataState = atom<{[key: string]: any}>({
 const useFormData = () => {
   const [formData, setFormData] = useRecoilState(formDataState);
 
-  const resetFormData = () => {
+  const resetFormData = useCallback(() => {
     setFormData({});
-  };
+  }, [setFormData]);
 
   const updateFormData = (data: {[key: string]: any}) => {
     setFormData(
@@ -23,9 +24,25 @@ const useFormData = () => {
     );
   };
 
+  const formDataContainsKey = useCallback(
+    (keys: string[]) => {
+      let result = true;
+      for (const key of keys) {
+        if (!(key in formData)) {
+          result = false;
+          break;
+        }
+      }
+
+      return result;
+    },
+    [formData]
+  );
+
   return {
     resetFormData,
     updateFormData,
+    formDataContainsKey,
     formData,
   };
 };

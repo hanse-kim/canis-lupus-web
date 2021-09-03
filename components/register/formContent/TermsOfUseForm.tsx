@@ -53,11 +53,13 @@ const TermsOfUseInput = (props: {
   );
 };
 
+const keys = ['tos'];
+
 const TermsOfUseForm = (props: FormContentProps) => {
   const {isLoading, termsOfUseList} = useTermsOfUseList();
   const [checkedItems, setCheckedItems] = React.useState<boolean[]>([]);
   const {onSubmit} = props;
-  const {updateFormData} = useFormData();
+  const {updateFormData, formDataContainsKey, formData} = useFormData();
 
   const allChecked = checkedItems.every(Boolean);
   const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
@@ -85,6 +87,12 @@ const TermsOfUseForm = (props: FormContentProps) => {
   useEffect(() => {
     setCheckedItems(new Array(termsOfUseList.length).fill(false));
   }, [termsOfUseList.length]);
+
+  useEffect(() => {
+    if (formDataContainsKey(keys)) {
+      onSubmit();
+    }
+  }, [formData, formDataContainsKey, onSubmit]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -121,7 +129,6 @@ const TermsOfUseForm = (props: FormContentProps) => {
       <SubmitButton
         onClick={() => {
           updateFormData({tos: checkedItems});
-          onSubmit();
         }}
         disabled={!validation()}
       >

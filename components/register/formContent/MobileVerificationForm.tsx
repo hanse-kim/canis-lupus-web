@@ -1,6 +1,6 @@
 import {Button, FormControl, Stack} from '@chakra-ui/react';
 import useFormData from 'hooks/register/useFormData';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FormContentProps} from 'types';
 import FormContentWrapper from '../FormContentWrapper';
 import {
@@ -10,14 +10,22 @@ import {
 } from './sub/RegisterFormItems';
 import SubmitButton from './sub/SubmitButton';
 
+const keys: string[] = [];
+
 const MobileVerificationForm = (props: FormContentProps) => {
   const [isSend, setSend] = useState(false);
   const {onSubmit} = props;
-  const {updateFormData} = useFormData();
+  const {updateFormData, formDataContainsKey, formData} = useFormData();
 
   const sendVerificationCode = () => {
     setSend(true);
   };
+
+  useEffect(() => {
+    if (formDataContainsKey(keys)) {
+      onSubmit();
+    }
+  }, [formData, formDataContainsKey, onSubmit]);
 
   return (
     <FormContentWrapper>

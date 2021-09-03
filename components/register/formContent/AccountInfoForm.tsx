@@ -1,7 +1,7 @@
 import {FormControl} from '@chakra-ui/react';
 import useAccountInfoHooks from 'hooks/register/useAccountInfoHooks';
 import useFormData from 'hooks/register/useFormData';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FormContentProps} from 'types';
 import FormContentWrapper from '../FormContentWrapper';
 import {
@@ -14,7 +14,7 @@ import SubmitButton from './sub/SubmitButton';
 
 const AccountInfoForm = (props: FormContentProps) => {
   const {onSubmit} = props;
-  const {updateFormData} = useFormData();
+  const {updateFormData, formDataContainsKey, formData} = useFormData();
   const {
     data,
     error,
@@ -22,7 +22,14 @@ const AccountInfoForm = (props: FormContentProps) => {
     onPasswordChange,
     onPasswordConfirmChange,
     isSubmittable,
+    keys,
   } = useAccountInfoHooks();
+
+  useEffect(() => {
+    if (formDataContainsKey(keys)) {
+      onSubmit();
+    }
+  }, [formData, formDataContainsKey, keys, onSubmit]);
 
   return (
     <FormContentWrapper>
@@ -74,7 +81,6 @@ const AccountInfoForm = (props: FormContentProps) => {
       <SubmitButton
         onClick={() => {
           updateFormData(data);
-          onSubmit();
         }}
         disabled={isSubmittable()}
       >

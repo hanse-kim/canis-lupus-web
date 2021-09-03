@@ -3,6 +3,7 @@ import {Avatar, Center, FormControl} from '@chakra-ui/react';
 import ImageUploadButton from 'components/common/ImageUploadButton';
 import useFormData from 'hooks/register/useFormData';
 import useIntroduceHooks from 'hooks/register/useIntroduceHooks';
+import {useEffect} from 'react';
 import {FormContentProps} from 'types';
 import FormContentWrapper from '../FormContentWrapper';
 import {
@@ -15,9 +16,21 @@ import SubmitButton from './sub/SubmitButton';
 
 const IntroduceForm = (props: FormContentProps) => {
   const {onSubmit} = props;
-  const {updateFormData} = useFormData();
-  const {error, data, onNicknameChange, onIntroduceChange, isSubmittable} =
-    useIntroduceHooks();
+  const {updateFormData, formDataContainsKey, formData} = useFormData();
+  const {
+    error,
+    data,
+    onNicknameChange,
+    onIntroduceChange,
+    isSubmittable,
+    keys,
+  } = useIntroduceHooks();
+
+  useEffect(() => {
+    if (formDataContainsKey(keys)) {
+      onSubmit();
+    }
+  }, [formData, formDataContainsKey, keys, onSubmit]);
 
   return (
     <FormContentWrapper>
@@ -74,7 +87,6 @@ const IntroduceForm = (props: FormContentProps) => {
       <SubmitButton
         onClick={() => {
           updateFormData(data);
-          onSubmit();
         }}
         disabled={isSubmittable()}
       >

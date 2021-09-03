@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 
 const registerSteps: RegisterStepType[] = [
   '이용약관',
@@ -18,14 +18,14 @@ type RegisterStepType =
 const useRegisterStep = () => {
   const [step, setStep] = useState<RegisterStepType>(registerSteps[0]);
 
-  const resetStep = () => {
+  const resetStep = useCallback(() => {
     setStep(registerSteps[0]);
-  };
+  }, []);
 
-  const toNextStep = () => {
+  const toNextStep = useCallback(() => {
     const nextIndex = registerSteps.indexOf(step) + 1;
     setStep(registerSteps[nextIndex]);
-  };
+  }, [step]);
 
   return {
     step,

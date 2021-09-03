@@ -4,6 +4,7 @@ import useIntroduceValidation from './useIntroduceValidation';
 import useSubmitChecker from './useSubmitChecker';
 
 const useIntroduceHooks = () => {
+  const keys = ['nickname', 'introduce'];
   const {error, validateNickname, validateIntroduce} = useIntroduceValidation();
   const [data, setData] = useState<{[key: string]: string}>({
     nickname: '',
@@ -34,7 +35,14 @@ const useIntroduceHooks = () => {
     );
   };
 
-  return {data, error, onNicknameChange, onIntroduceChange, isSubmittable};
+  return {
+    data,
+    error,
+    onNicknameChange,
+    onIntroduceChange,
+    isSubmittable,
+    keys,
+  };
 };
 
 export default useIntroduceHooks;
