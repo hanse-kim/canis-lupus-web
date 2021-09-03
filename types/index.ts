@@ -70,3 +70,19 @@ export interface GroupInfo {
   'member_count_max': number;
   'image_url': string;
 }
+
+export interface FeedRecord {
+  id: string;
+  fields: FeedInfo;
+  createdTime: string;
+}
+
+export interface FeedInfo {
+  title: string;
+  content: string;
+  type: string;
+  'group_name': string;
+  'user_nickname': string;
+  like: number;
+  comment: number;
+}

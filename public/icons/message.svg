@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>612DA738-E177-429B-80D6-38E8A7895380</title>
+    <g id="메인" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="메인페이지" transform="translate(-72.000000, -1106.000000)">
+            <g id="main/feed2" transform="translate(21.000000, 977.000000)">
+                <g id="message-ico" transform="translate(51.000000, 129.000000)">
+                    <polygon id="Path" points="0 0 16 0 16 16 0 16"></polygon>
+                    <path d="M13.3333333,1.33333333 L2.66666667,1.33333333 C1.93333333,1.33333333 1.33333333,1.93333333 1.33333333,2.66666667 L1.33333333,14.6666667 L4,12 L13.3333333,12 C14.0666667,12 14.6666667,11.4 14.6666667,10.6666667 L14.6666667,2.66666667 C14.6666667,1.93333333 14.0666667,1.33333333 13.3333333,1.33333333 Z M13.3333333,10.6666667 L4,10.6666667 L2.66666667,12 L2.66666667,2.66666667 L13.3333333,2.66666667 L13.3333333,10.6666667 Z" id="Shape" fill="#A8A8A8" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
