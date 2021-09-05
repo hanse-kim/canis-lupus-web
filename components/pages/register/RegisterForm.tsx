@@ -1,13 +1,13 @@
 import {Box, Heading} from '@chakra-ui/react';
 import {useEffect} from 'react';
-import AccountInfoForm from './formContent/AccountInfoForm';
-import MobileVerificationForm from './formContent/MobileVerificationForm';
-import TermsOfUseForm from './formContent/TermsOfUseForm';
+import TermsOfUseForm from '../../form/formContent/TermsOfUseForm';
 import useFormData from 'hooks/register/useFormData';
 import useRegisterStep from 'hooks/register/useRegisterStep';
-import IntroduceForm from './formContent/IntroduceForm';
-import CategoryForm from './formContent/CategoryForm';
+import IntroduceForm from '../../form/formContent/IntroduceForm';
+import CategoryForm from '../../form/formContent/CategoryForm';
 import usePageMove from 'hooks/usePageMove';
+import AccountInfoForm from 'components/form/formContent/AccountInfoForm';
+import MobileVerificationForm from '../../form/formContent/MobileVerificationForm';
 
 const RegisterForm = () => {
   const {step, resetStep, toNextStep: toNext} = useRegisterStep();

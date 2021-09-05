@@ -1,5 +1,5 @@
 import PageWrapper from 'components/common/PageWrapper';
-import LoginForm from 'components/login/LoginForm';
+import LoginForm from 'components/pages/login/LoginForm';
 
 const Login = () => {
   return (

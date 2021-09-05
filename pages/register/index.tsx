@@ -1,5 +1,5 @@
 import PageWrapper from 'components/common/PageWrapper';
-import RegisterForm from 'components/register/RegisterForm';
+import RegisterForm from 'components/pages/register/RegisterForm';
 
 const Register = () => {
   return (
