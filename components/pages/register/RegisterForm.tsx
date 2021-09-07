@@ -1,7 +1,7 @@
 import {Box, Heading} from '@chakra-ui/react';
 import {useEffect} from 'react';
 import TermsOfUseForm from '../../form/formContent/TermsOfUseForm';
-import useFormData from 'hooks/register/useFormData';
+import useFormData from 'hooks/form/useFormData';
 import useRegisterStep from 'hooks/register/useRegisterStep';
 import IntroduceForm from '../../form/formContent/IntroduceForm';
 import CategoryForm from '../../form/formContent/CategoryForm';

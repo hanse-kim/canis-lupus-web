@@ -1,57 +1,58 @@
-import produce from 'immer';
+import useFormData from 'hooks/form/useFormData';
+import useFormError from 'hooks/form/useFormError';
+import usePasswordConfirmValidation from 'hooks/form/validation/usePasswordConfirmValidation';
+import usePasswordValidation from 'hooks/form/validation/usePasswordValidation';
 import {useState} from 'react';
-import useAccountInfoValidation from './useAccountInfoValidation';
-import useSubmitChecker from './useSubmitChecker';
+import useEmailValidation from '../form/validation/useEmailValidation';
 
 const useAccountInfoHooks = () => {
-  const keys = ['email', 'password'];
-  const {error, validateEmail, validatePassword, validatePasswordConfirm} =
-    useAccountInfoValidation();
-  const [data, setData] = useState<{[key: string]: string}>({
-    email: '',
-    password: '',
-  });
-  const {setPassed, isSubmittable} = useSubmitChecker([
+  const {validateEmail} = useEmailValidation();
+  const {validatePassword} = usePasswordValidation();
+  const {validatePasswordConfirm} = usePasswordConfirmValidation();
+  const [pw, setPW] = useState('');
+  const [pwc, setPWC] = useState('');
+  const {error, updateFormError, isError} = useFormError([
     'email',
     'password',
     'passwordConfirm',
   ]);
-  const [password, setPassword] = useState('');
+  const {updateFormData} = useFormData();
 
-  const onEmailChange = (e: React.FocusEvent<HTMLInputElement>) => {
-    const email = e.target.value;
-    setPassed('email', validateEmail(email));
-    setData(
-      produce(data, (draft) => {
-        draft.email = email;
-      })
-    );
+  const onEmailFocusOut = (e: React.FocusEvent<HTMLInputElement>) => {
+    const result = validateEmail(e.target.value);
+    updateFormError({email: result});
+    if (!result.isInvalid) {
+      updateFormData({email: e.target.value});
+    }
   };
 
-  const onPasswordChange = (e: React.FocusEvent<HTMLInputElement>) => {
-    const pw = e.target.value;
-    setPassword(pw);
-    setPassed('password', validatePassword(pw));
+  const onPasswordFocusOut = (e: React.FocusEvent<HTMLInputElement>) => {
+    const result = validatePassword(e.target.value);
+    updateFormError({password: result});
+    if (!result.isInvalid) {
+      updateFormData({password: e.target.value});
+    }
   };
 
-  const onPasswordConfirmChange = (e: React.FocusEvent<HTMLInputElement>) => {
-    const pwc = e.target.value;
-    setPassed('passwordConfirm', validatePasswordConfirm(password, pwc));
-    setData(
-      produce(data, (draft) => {
-        draft.password = pwc;
-      })
-    );
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPW(e.target.value);
+    const result = validatePasswordConfirm(e.target.value, pwc);
+    updateFormError({passwordConfirm: result});
+  };
+
+  const onPasswordConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPWC(e.target.value);
+    const result = validatePasswordConfirm(pw, e.target.value);
+    updateFormError({passwordConfirm: result});
   };
 
   return {
-    data,
     error,
-    onEmailChange,
+    isError,
+    onEmailFocusOut,
+    onPasswordFocusOut,
     onPasswordChange,
     onPasswordConfirmChange,
-    isSubmittable,
-    keys,
   };
 };
 

@@ -1,3 +1,6 @@
+/* eslint-disable camelcase */
+import {ChangeEventHandler, FocusEventHandler, MouseEventHandler} from 'react';
+
 export interface BannerRecord {
   id: string;
   fields: BannerInfo;
@@ -6,7 +9,7 @@ export interface BannerRecord {
 
 export interface BannerInfo {
   url: string;
-  'img_url': string;
+  img_url: string;
 }
 
 export interface ProductProps {
@@ -26,9 +29,9 @@ export interface TosRecord {
 }
 
 export interface TosInfo {
-  'name': string;
-  'content': string;
-  'is_required': boolean;
+  name: string;
+  content: string;
+  is_required: boolean;
 }
 
 export interface RegisterData {
@@ -44,6 +47,23 @@ export interface RegisterData {
 
 export interface FormContentProps {
   onSubmit: () => void;
+}
+
+export interface FormProps {
+  error: FormError;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onClick?: MouseEventHandler<HTMLInputElement>;
+  onFocusOut?: FocusEventHandler<HTMLInputElement>;
+  inputRef?: any;
+}
+
+export interface FormError {
+  [key: string]: {isInvalid: boolean; message: string | null};
+}
+
+export interface ValidationResult {
+  isInvalid: boolean;
+  message: string | null;
 }
 
 export interface CategoryRecord {
@@ -66,9 +86,9 @@ export interface GroupInfo {
   category: string;
   name: string;
   description: string;
-  'member_count': number;
-  'member_count_max': number;
-  'image_url': string;
+  member_count: number;
+  member_count_max: number;
+  image_url: string;
 }
 
 export interface FeedRecord {
@@ -81,8 +101,8 @@ export interface FeedInfo {
   title: string;
   content: string;
   type: string;
-  'group_name': string;
-  'user_nickname': string;
+  group_name: string;
+  user_nickname: string;
   like: number;
   comment: number;
 }
