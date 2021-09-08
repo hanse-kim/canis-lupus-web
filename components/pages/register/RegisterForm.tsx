@@ -1,13 +1,13 @@
 import {Box, Heading} from '@chakra-ui/react';
 import {useEffect} from 'react';
-import TermsOfUseForm from '../../form/formContent/TermsOfUseForm';
+import TermsOfUseStep from './steps/TermsOfUseStep';
 import useFormData from 'hooks/form/useFormData';
 import useRegisterStep from 'hooks/register/useRegisterStep';
-import IntroduceForm from '../../form/formContent/IntroduceForm';
-import CategoryForm from '../../form/formContent/CategoryForm';
+import ProfileStep from './steps/ProfileStep';
+import CategoryStep from './steps/CategoryStep';
 import usePageMove from 'hooks/usePageMove';
-import AccountInfoForm from 'components/form/formContent/AccountInfoForm';
-import MobileVerificationForm from '../../form/formContent/MobileVerificationForm';
+import AccountInfoStep from 'components/pages/register/steps/AccountInfoStep';
+import MobileVerificationStep from './steps/MobileVerificationStep';
 
 const RegisterForm = () => {
   const {step, resetStep, toNextStep: toNext} = useRegisterStep();
@@ -34,11 +34,11 @@ const RegisterForm = () => {
       <Heading paddingY='10' size='md' textAlign='center'>
         회원가입
       </Heading>
-      {step === '이용약관' && <TermsOfUseForm onSubmit={toNext} />}
-      {step === '계정정보입력' && <AccountInfoForm onSubmit={toNext} />}
-      {step === '전화번호인증' && <MobileVerificationForm onSubmit={toNext} />}
-      {step === '자기소개입력' && <IntroduceForm onSubmit={toNext} />}
-      {step === '카테고리선택' && <CategoryForm onSubmit={submit} />}
+      {step === '이용약관' && <TermsOfUseStep onSubmit={toNext} />}
+      {step === '계정정보입력' && <AccountInfoStep onSubmit={toNext} />}
+      {step === '전화번호인증' && <MobileVerificationStep onSubmit={toNext} />}
+      {step === '자기소개입력' && <ProfileStep onSubmit={toNext} />}
+      {step === '카테고리선택' && <CategoryStep onSubmit={submit} />}
     </Box>
   );
 };

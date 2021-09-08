@@ -8,13 +8,16 @@ import {
   Text,
 } from '@chakra-ui/react';
 import LoadingSpinner from 'components/common/LoadingSpinner';
-import useFormData from 'hooks/register/useFormData';
+import useFormData from 'hooks/form/useFormData';
 import useTermsOfUseList from 'hooks/register/useTermsOfUseList';
 import React, {useEffect} from 'react';
 import {FormContentProps, TosInfo} from 'types';
-import FormContentWrapper from '../FormContentWrapper';
-import {CheckboxAll, CheckboxChild} from './sub/CustomCheckbox';
-import SubmitButton from './sub/SubmitButton';
+import FormContentWrapper from 'components/form/FormContentWrapper';
+import {
+  CheckboxAll,
+  CheckboxChild,
+} from 'components/form/formContent/sub/CustomCheckbox';
+import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 
 const TermsOfUseInput = (props: {
   tos: TosInfo;
@@ -55,7 +58,7 @@ const TermsOfUseInput = (props: {
 
 const keys = ['tos'];
 
-const TermsOfUseForm = (props: FormContentProps) => {
+const TermsOfUseStep = (props: FormContentProps) => {
   const {isLoading, termsOfUseList} = useTermsOfUseList();
   const [checkedItems, setCheckedItems] = React.useState<boolean[]>([]);
   const {onSubmit} = props;
@@ -138,4 +141,4 @@ const TermsOfUseForm = (props: FormContentProps) => {
   );
 };
 
-export default TermsOfUseForm;
+export default TermsOfUseStep;

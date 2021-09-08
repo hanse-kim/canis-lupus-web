@@ -1,17 +1,17 @@
 import {FormControl} from '@chakra-ui/react';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import useCategoryList from 'hooks/register/useCategoryList';
-import useFormData from 'hooks/register/useFormData';
+import useFormData from 'hooks/form/useFormData';
 import React, {useEffect, useState} from 'react';
 import {FormContentProps} from 'types';
-import FormContentWrapper from '../FormContentWrapper';
-import CategoryCheckbox from './sub/CategoryCheckbox';
-import {RegisterFormLabel} from './sub/RegisterFormItems';
-import SubmitButton from './sub/SubmitButton';
+import FormContentWrapper from 'components/form/FormContentWrapper';
+import CategoryCheckbox from 'components/form/formContent/sub/CategoryCheckbox';
+import {RegisterFormLabel} from 'components/form/formContent/sub/RegisterFormItems';
+import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 
 const keys = ['interests'];
 
-const CategoryForm = (props: FormContentProps) => {
+const CategoryStep = (props: FormContentProps) => {
   const {onSubmit} = props;
   const {categoryList, isLoading} = useCategoryList();
   const {updateFormData, formDataContainsKey, formData} = useFormData();
@@ -58,4 +58,4 @@ const CategoryForm = (props: FormContentProps) => {
   );
 };
 
-export default CategoryForm;
+export default CategoryStep;

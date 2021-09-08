@@ -1,20 +1,20 @@
 import {PlusSquareIcon} from '@chakra-ui/icons';
 import {Avatar, Center, FormControl} from '@chakra-ui/react';
 import ImageUploadButton from 'components/common/ImageUploadButton';
-import useFormData from 'hooks/register/useFormData';
+import useFormData from 'hooks/form/useFormData';
 import useIntroduceHooks from 'hooks/register/useIntroduceHooks';
 import {useEffect} from 'react';
 import {FormContentProps} from 'types';
-import FormContentWrapper from '../FormContentWrapper';
+import FormContentWrapper from 'components/form/FormContentWrapper';
 import {
   RegisterFormErrorMessage,
   RegisterFormHelperText,
   RegisterFormInput,
   RegisterFormLabel,
-} from './sub/RegisterFormItems';
-import SubmitButton from './sub/SubmitButton';
+} from 'components/form/formContent/sub/RegisterFormItems';
+import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 
-const IntroduceForm = (props: FormContentProps) => {
+const ProfileStep = (props: FormContentProps) => {
   const {onSubmit} = props;
   const {updateFormData, formDataContainsKey, formData} = useFormData();
   const {
@@ -96,4 +96,4 @@ const IntroduceForm = (props: FormContentProps) => {
   );
 };
 
-export default IntroduceForm;
+export default ProfileStep;

@@ -1,16 +1,16 @@
 import useFormData from 'hooks/form/useFormData';
 import React, {useEffect, useState} from 'react';
 import {FormContentProps} from 'types';
-import FormContentWrapper from '../FormContentWrapper';
-import EmailForm from './EmailForm';
-import PasswordForm from './PasswordForm';
-import PasswordConfirmForm from './PasswordConfirmForm';
-import SubmitButton from './sub/SubmitButton';
+import FormContentWrapper from 'components/form/FormContentWrapper';
+import EmailForm from 'components/form/formContent/EmailForm';
+import PasswordForm from 'components/form/formContent/PasswordForm';
+import PasswordConfirmForm from 'components/form/formContent/PasswordConfirmForm';
+import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import useAccountInfoHooks from 'hooks/register/useAccountInfoHooks';
 
 const keys = ['email', 'password'];
 
-const AccountInfoForm = (props: FormContentProps) => {
+const AccountInfoStep = (props: FormContentProps) => {
   const {onSubmit} = props;
   const {formDataContainsKey} = useFormData();
   const [isSubmittable, setSubmittable] = useState(false);
@@ -43,4 +43,4 @@ const AccountInfoForm = (props: FormContentProps) => {
   );
 };
 
-export default AccountInfoForm;
+export default AccountInfoStep;
