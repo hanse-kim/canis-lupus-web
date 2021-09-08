@@ -1,66 +1,64 @@
-import {Button, FormControl, Stack} from '@chakra-ui/react';
-import useFormData from 'hooks/form/useFormData';
 import React, {useEffect, useState} from 'react';
 import {FormContentProps} from 'types';
 import FormContentWrapper from 'components/form/FormContentWrapper';
-import {
-  RegisterFormHelperText,
-  RegisterFormInput,
-  RegisterFormLabel,
-} from 'components/form/formContent/sub/RegisterFormItems';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
+import MobileForm from 'components/form/formContent/MobileForm';
+import MobileVerificationForm from 'components/form/formContent/MobileVerificationForm';
+import useMobileVerificationHooks from 'hooks/register/useMobileVerificationHooks';
 
-const keys: string[] = [];
+const verificationTime = 180;
 
 const MobileVerificationStep = (props: FormContentProps) => {
-  const [isSend, setSend] = useState(false);
   const {onSubmit} = props;
-  const {updateFormData, formDataContainsKey, formData} = useFormData();
-
-  const sendVerificationCode = () => {
-    setSend(true);
-  };
+  const [seconds, setSeconds] = useState(verificationTime);
+  const {
+    isSend,
+    error,
+    onMobileChange,
+    sendVerification,
+    onMobileVerificationChange,
+    onSubmitClick,
+  } = useMobileVerificationHooks();
 
   useEffect(() => {
-    if (formDataContainsKey(keys)) {
-      onSubmit();
+    if (isSend) {
+      if (seconds == 0) {
+        // TODO: 인증시간이 만료되었을 때의 처리
+        return;
+      } else {
+        setTimeout(() => {
+          setSeconds(seconds - 1);
+        }, 1000);
+      }
     }
-  }, [formData, formDataContainsKey, onSubmit]);
+  }, [isSend, seconds]);
 
   return (
     <FormContentWrapper>
-      <FormControl>
-        <RegisterFormLabel>휴대폰 번호</RegisterFormLabel>
-        <Stack direction='row' spacing='4'>
-          <RegisterFormInput
-            type='number'
-            placeholder='휴대폰 번호 (- 없이 입력)'
-          />
-          <Button onClick={sendVerificationCode}>
-            {isSend ? '재전송' : '인증번호 전송'}
-          </Button>
-        </Stack>
-      </FormControl>
+      <MobileForm
+        error={error}
+        onChange={onMobileChange}
+        onClick={(e) => {
+          sendVerification(e);
+          setSeconds(verificationTime);
+        }}
+        isSend={isSend}
+      />
       {isSend && (
-        <React.Fragment>
-          <FormControl>
-            <RegisterFormLabel>인증번호</RegisterFormLabel>
-            <RegisterFormInput type='number' />
-            <RegisterFormHelperText color='red.500'>
-              남은 시간: {'2분 50초'}
-            </RegisterFormHelperText>
-          </FormControl>
-          <SubmitButton
-            onClick={() => {
-              updateFormData({});
-              onSubmit();
-            }}
-            disabled={false}
-          >
-            확인
-          </SubmitButton>
-        </React.Fragment>
+        <MobileVerificationForm
+          error={error}
+          onChange={onMobileVerificationChange}
+          seconds={seconds}
+        />
       )}
+      <SubmitButton
+        onClick={() => {
+          onSubmitClick(onSubmit);
+        }}
+        disabled={!isSend}
+      >
+        확인
+      </SubmitButton>
     </FormContentWrapper>
   );
 };

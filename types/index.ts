@@ -52,7 +52,7 @@ export interface FormContentProps {
 export interface FormProps {
   error: FormError;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  onClick?: MouseEventHandler<HTMLInputElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   onFocusOut?: FocusEventHandler<HTMLInputElement>;
   inputRef?: any;
 }
