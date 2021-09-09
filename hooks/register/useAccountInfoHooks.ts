@@ -9,8 +9,9 @@ const useAccountInfoHooks = () => {
   const {validateEmail} = useEmailValidation();
   const {validatePassword} = usePasswordValidation();
   const {validatePasswordConfirm} = usePasswordConfirmValidation();
-  const [pw, setPW] = useState('');
-  const [pwc, setPWC] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const {error, updateFormError, isError} = useFormError([
     'email',
     'password',
@@ -18,41 +19,43 @@ const useAccountInfoHooks = () => {
   ]);
   const {updateFormData} = useFormData();
 
-  const onEmailFocusOut = (e: React.FocusEvent<HTMLInputElement>) => {
-    const result = validateEmail(e.target.value);
-    updateFormError({email: result});
-    if (!result.isInvalid) {
-      updateFormData({email: e.target.value});
-    }
-  };
-
-  const onPasswordFocusOut = (e: React.FocusEvent<HTMLInputElement>) => {
-    const result = validatePassword(e.target.value);
-    updateFormError({password: result});
-    if (!result.isInvalid) {
-      updateFormData({password: e.target.value});
-    }
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPW(e.target.value);
-    const result = validatePasswordConfirm(e.target.value, pwc);
-    updateFormError({passwordConfirm: result});
+    setPassword(e.target.value);
   };
 
   const onPasswordConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPWC(e.target.value);
-    const result = validatePasswordConfirm(pw, e.target.value);
-    updateFormError({passwordConfirm: result});
+    setPasswordConfirm(e.target.value);
+  };
+
+  const onSubmitClick = (callback: () => void) => {
+    const validateResults = {
+      email: validateEmail(email),
+      password: validatePassword(password),
+      passwordConfirm: validatePasswordConfirm(password, passwordConfirm),
+    };
+    updateFormError(validateResults);
+
+    const isSubmittable = !isError(validateResults);
+    if (isSubmittable) {
+      callback();
+      updateFormData({
+        email,
+        password,
+      });
+    }
   };
 
   return {
     error,
     isError,
-    onEmailFocusOut,
-    onPasswordFocusOut,
+    onEmailChange,
     onPasswordChange,
     onPasswordConfirmChange,
+    onSubmitClick,
   };
 };
 

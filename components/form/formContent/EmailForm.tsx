@@ -7,9 +7,7 @@ import {
 } from './sub/RegisterFormItems';
 
 const EmailForm = (props: FormProps) => {
-  const {error, onFocusOut} = props;
-  console.log(error);
-
+  const {error, onChange} = props;
   return (
     <FormControl isInvalid={error.email.isInvalid}>
       <RegisterFormLabel isInvalid={error.email.isInvalid}>
@@ -18,7 +16,7 @@ const EmailForm = (props: FormProps) => {
       <RegisterFormInput
         type='email'
         placeholder='이메일을 입력해주세요'
-        onBlur={onFocusOut}
+        onChange={onChange}
       />
       <RegisterFormErrorMessage>{error.email.message}</RegisterFormErrorMessage>
     </FormControl>

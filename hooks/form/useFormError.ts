@@ -1,5 +1,5 @@
 import produce from 'immer';
-import {useCallback, useState} from 'react';
+import {useState} from 'react';
 import {FormError} from 'types';
 
 const useFormError = (key: string[]) => {
@@ -14,8 +14,6 @@ const useFormError = (key: string[]) => {
   const updateFormError = (newError: {
     [key: string]: {isInvalid: boolean; message: string | null};
   }) => {
-    console.log('update');
-    console.log(newError);
     setError(
       produce(error, (draft) => {
         Object.entries(newError).map(([key, value]) => {
@@ -25,11 +23,11 @@ const useFormError = (key: string[]) => {
     );
   };
 
-  const isError = useCallback(() => {
+  const isError = (error: FormError) => {
     return Object.values(error)
       .map((item) => item.isInvalid)
       .some(Boolean);
-  }, [error]);
+  };
 
   return {error, updateFormError, isError};
 };
