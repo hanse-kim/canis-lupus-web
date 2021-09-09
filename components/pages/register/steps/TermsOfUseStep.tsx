@@ -18,6 +18,9 @@ import {
 } from 'components/form/formContent/sub/CustomCheckbox';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import useTermsOfUseHooks from 'hooks/register/useTermsOfUseHooks';
+import RegisterStepWrapper from '../RegisterStepWrapper';
+
+const formDataKeys = ['tos'];
 
 const TermsOfUseInput = (props: {
   tos: TosInfo;
@@ -57,7 +60,6 @@ const TermsOfUseInput = (props: {
 };
 
 const TermsOfUseStep = (props: FormContentProps) => {
-  const {onSubmit} = props;
   const {isLoading, termsOfUseList} = useTermsOfUseList();
   const {
     resetCheckItems,
@@ -78,41 +80,37 @@ const TermsOfUseStep = (props: FormContentProps) => {
   }
 
   return (
-    <FormContentWrapper>
-      <Text marginBottom='5'>
-        아래 약관에 동의하시고 이거모임에서 목표를 이루어보세요
-      </Text>
-      <Stack spacing={3}>
-        <Divider />
-        <CheckboxAll
-          checkboxProps={{
-            onChange: checkAll,
-            isChecked: allChecked,
-            isIndeterminate: isIndeterminate,
-          }}
-        >
-          모두 동의합니다
-        </CheckboxAll>
-        <Divider />
-        {termsOfUseList.map((tos, index) => (
-          <TermsOfUseInput
-            key={index}
-            tos={tos}
-            onChange={(e) => {
-              checkEach(e, index);
+    <RegisterStepWrapper {...props} formDataKeys={formDataKeys}>
+      <FormContentWrapper>
+        <Text marginBottom='5'>
+          아래 약관에 동의하시고 이거모임에서 목표를 이루어보세요
+        </Text>
+        <Stack spacing={3}>
+          <Divider />
+          <CheckboxAll
+            checkboxProps={{
+              onChange: checkAll,
+              isChecked: allChecked,
+              isIndeterminate: isIndeterminate,
             }}
-            isChecked={checkedItems[index]}
-          />
-        ))}
-      </Stack>
-      <SubmitButton
-        onClick={() => {
-          onSubmitClick(onSubmit);
-        }}
-      >
-        다음
-      </SubmitButton>
-    </FormContentWrapper>
+          >
+            모두 동의합니다
+          </CheckboxAll>
+          <Divider />
+          {termsOfUseList.map((tos, index) => (
+            <TermsOfUseInput
+              key={index}
+              tos={tos}
+              onChange={(e) => {
+                checkEach(e, index);
+              }}
+              isChecked={checkedItems[index]}
+            />
+          ))}
+        </Stack>
+        <SubmitButton onClick={onSubmitClick}>다음</SubmitButton>
+      </FormContentWrapper>
+    </RegisterStepWrapper>
   );
 };
 

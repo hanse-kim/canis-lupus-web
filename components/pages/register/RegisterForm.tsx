@@ -1,5 +1,5 @@
 import {Box, Heading} from '@chakra-ui/react';
-import {useEffect} from 'react';
+import {useCallback, useEffect} from 'react';
 import TermsOfUseStep from './steps/TermsOfUseStep';
 import useFormData from 'hooks/form/useFormData';
 import useRegisterStep from 'hooks/register/useRegisterStep';
@@ -10,11 +10,11 @@ import AccountInfoStep from 'components/pages/register/steps/AccountInfoStep';
 import MobileVerificationStep from './steps/MobileVerificationStep';
 
 const RegisterForm = () => {
-  const {step, resetStep, toNextStep: toNext} = useRegisterStep();
+  const {step, resetStep, toNext} = useRegisterStep();
   const {resetFormData, formData} = useFormData();
   const {getRedirect, pageMove} = usePageMove();
 
-  const submit = () => {
+  const submit = useCallback(() => {
     alert(JSON.stringify(formData, null, 2));
     const redirect = getRedirect();
     if (redirect) {
@@ -22,7 +22,7 @@ const RegisterForm = () => {
     } else {
       pageMove('/main');
     }
-  };
+  }, [formData, getRedirect, pageMove]);
 
   useEffect(() => {
     resetFormData();

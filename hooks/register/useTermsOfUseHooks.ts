@@ -33,10 +33,9 @@ const useTermsOfUseHooks = (termsOfUseList: TosInfo[]) => {
     return true;
   };
 
-  const onSubmitClick = (callback: () => void) => {
+  const onSubmitClick = () => {
     if (isAllRequirementsChecked()) {
       updateFormData({tos: checkedItems});
-      callback();
     } else {
       alert('필수 약관에 동의해주시기 바랍니다.');
     }

@@ -13,9 +13,8 @@ const useSelectInterestsHooks = () => {
     }
   };
 
-  const onSubmitClick = (callback: () => void) => {
+  const onSubmitClick = () => {
     updateFormData({interests: checked});
-    callback();
   };
 
   return {checked, onCheckboxChange, onSubmitClick};

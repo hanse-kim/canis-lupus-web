@@ -5,11 +5,12 @@ import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import MobileForm from 'components/form/formContent/MobileForm';
 import MobileVerificationForm from 'components/form/formContent/MobileVerificationForm';
 import useMobileVerificationHooks from 'hooks/register/useMobileVerificationHooks';
+import RegisterStepWrapper from '../RegisterStepWrapper';
 
 const verificationTime = 180;
+const formDataKeys = ['mobile'];
 
 const MobileVerificationStep = (props: FormContentProps) => {
-  const {onSubmit} = props;
   const [seconds, setSeconds] = useState(verificationTime);
   const {
     isSend,
@@ -34,32 +35,29 @@ const MobileVerificationStep = (props: FormContentProps) => {
   }, [isSend, seconds]);
 
   return (
-    <FormContentWrapper>
-      <MobileForm
-        error={error}
-        onChange={onMobileChange}
-        onClick={(e) => {
-          sendVerification(e);
-          setSeconds(verificationTime);
-        }}
-        isSend={isSend}
-      />
-      {isSend && (
-        <MobileVerificationForm
+    <RegisterStepWrapper {...props} formDataKeys={formDataKeys}>
+      <FormContentWrapper>
+        <MobileForm
           error={error}
-          onChange={onMobileVerificationChange}
-          seconds={seconds}
+          onChange={onMobileChange}
+          onClick={(e) => {
+            sendVerification(e);
+            setSeconds(verificationTime);
+          }}
+          isSend={isSend}
         />
-      )}
-      <SubmitButton
-        onClick={() => {
-          onSubmitClick(onSubmit);
-        }}
-        disabled={!isSend}
-      >
-        확인
-      </SubmitButton>
-    </FormContentWrapper>
+        {isSend && (
+          <MobileVerificationForm
+            error={error}
+            onChange={onMobileVerificationChange}
+            seconds={seconds}
+          />
+        )}
+        <SubmitButton onClick={onSubmitClick} disabled={!isSend}>
+          확인
+        </SubmitButton>
+      </FormContentWrapper>
+    </RegisterStepWrapper>
   );
 };
 

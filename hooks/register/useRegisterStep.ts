@@ -22,7 +22,7 @@ const useRegisterStep = () => {
     setStep(registerSteps[0]);
   }, []);
 
-  const toNextStep = useCallback(() => {
+  const toNext = useCallback(() => {
     const nextIndex = registerSteps.indexOf(step) + 1;
     setStep(registerSteps[nextIndex]);
   }, [step]);
@@ -30,7 +30,7 @@ const useRegisterStep = () => {
   return {
     step,
     resetStep,
-    toNextStep,
+    toNext,
   };
 };
 

@@ -24,7 +24,7 @@ const useProfileHooks = () => {
     setIntroduce(e.target.value);
   };
 
-  const onSubmitClick = (callback: () => void) => {
+  const onSubmitClick = () => {
     const validateResults = {
       nickname: validateNickname(nickname),
       introduce: validateIntroduce(introduce),
@@ -33,7 +33,6 @@ const useProfileHooks = () => {
 
     const isSubmittable = !isError(validateResults);
     if (isSubmittable) {
-      callback();
       updateFormData({
         nickname,
         introduce,

@@ -5,9 +5,11 @@ import PasswordForm from 'components/form/formContent/PasswordForm';
 import PasswordConfirmForm from 'components/form/formContent/PasswordConfirmForm';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import useAccountInfoHooks from 'hooks/register/useAccountInfoHooks';
+import RegisterStepWrapper from '../RegisterStepWrapper';
+
+const formDataKeys = ['email', 'password'];
 
 const AccountInfoStep = (props: FormContentProps) => {
-  const {onSubmit} = props;
   const {
     error,
     onEmailChange,
@@ -17,18 +19,14 @@ const AccountInfoStep = (props: FormContentProps) => {
   } = useAccountInfoHooks();
 
   return (
-    <FormContentWrapper>
-      <EmailForm error={error} onChange={onEmailChange} />
-      <PasswordForm error={error} onChange={onPasswordChange} />
-      <PasswordConfirmForm error={error} onChange={onPasswordConfirmChange} />
-      <SubmitButton
-        onClick={() => {
-          onSubmitClick(onSubmit);
-        }}
-      >
-        다음
-      </SubmitButton>
-    </FormContentWrapper>
+    <RegisterStepWrapper {...props} formDataKeys={formDataKeys}>
+      <FormContentWrapper>
+        <EmailForm error={error} onChange={onEmailChange} />
+        <PasswordForm error={error} onChange={onPasswordChange} />
+        <PasswordConfirmForm error={error} onChange={onPasswordConfirmChange} />
+        <SubmitButton onClick={onSubmitClick}>다음</SubmitButton>
+      </FormContentWrapper>
+    </RegisterStepWrapper>
   );
 };
 

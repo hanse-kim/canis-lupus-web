@@ -35,13 +35,12 @@ const useMobileVerificationHooks = () => {
     setVerificationNumber(e.target.value);
   };
 
-  const onSubmitClick = (callback: () => void) => {
+  const onSubmitClick = () => {
     const result = validateMobileVerification(verificationNumber);
     if (result.isInvalid) {
       alert(result.message);
     } else {
       updateFormData({mobile: mobile});
-      callback();
     }
   };
 

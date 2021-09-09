@@ -31,7 +31,7 @@ const useAccountInfoHooks = () => {
     setPasswordConfirm(e.target.value);
   };
 
-  const onSubmitClick = (callback: () => void) => {
+  const onSubmitClick = () => {
     const validateResults = {
       email: validateEmail(email),
       password: validatePassword(password),
@@ -41,7 +41,6 @@ const useAccountInfoHooks = () => {
 
     const isSubmittable = !isError(validateResults);
     if (isSubmittable) {
-      callback();
       updateFormData({
         email,
         password,

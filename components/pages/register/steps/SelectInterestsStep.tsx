@@ -5,9 +5,11 @@ import CheckboxForm from 'components/form/formContent/CheckboxForm';
 import useSelectInterestsHooks from 'hooks/register/useSelectInterestsHooks';
 import useCategoryList from 'hooks/register/useCategoryList';
 import LoadingSpinner from 'components/common/LoadingSpinner';
+import RegisterStepWrapper from '../RegisterStepWrapper';
+
+const formDataKeys = ['interests'];
 
 const SelectInterestsStep = (props: FormContentProps) => {
-  const {onSubmit} = props;
   const {checked, onCheckboxChange, onSubmitClick} = useSelectInterestsHooks();
   const {categoryList, isLoading} = useCategoryList();
 
@@ -16,22 +18,20 @@ const SelectInterestsStep = (props: FormContentProps) => {
   }
 
   return (
-    <FormContentWrapper>
-      <CheckboxForm
-        itemList={
-          isLoading ? [] : Object.values(categoryList).map((item) => item.name)
-        }
-        checked={checked}
-        onCheckboxChange={onCheckboxChange}
-      />
-      <SubmitButton
-        onClick={() => {
-          onSubmitClick(onSubmit);
-        }}
-      >
-        회원가입
-      </SubmitButton>
-    </FormContentWrapper>
+    <RegisterStepWrapper {...props} formDataKeys={formDataKeys}>
+      <FormContentWrapper>
+        <CheckboxForm
+          itemList={
+            isLoading ?
+              [] :
+              Object.values(categoryList).map((item) => item.name)
+          }
+          checked={checked}
+          onCheckboxChange={onCheckboxChange}
+        />
+        <SubmitButton onClick={onSubmitClick}>회원가입</SubmitButton>
+      </FormContentWrapper>
+    </RegisterStepWrapper>
   );
 };
 
