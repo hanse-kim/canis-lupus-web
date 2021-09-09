@@ -8,7 +8,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import LoadingSpinner from 'components/common/LoadingSpinner';
-import useFormData from 'hooks/form/useFormData';
 import useTermsOfUseList from 'hooks/register/useTermsOfUseList';
 import React, {useEffect} from 'react';
 import {FormContentProps, TosInfo} from 'types';
@@ -18,6 +17,7 @@ import {
   CheckboxChild,
 } from 'components/form/formContent/sub/CustomCheckbox';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
+import useTermsOfUseHooks from 'hooks/register/useTermsOfUseHooks';
 
 const TermsOfUseInput = (props: {
   tos: TosInfo;
@@ -56,46 +56,22 @@ const TermsOfUseInput = (props: {
   );
 };
 
-const keys = ['tos'];
-
 const TermsOfUseStep = (props: FormContentProps) => {
-  const {isLoading, termsOfUseList} = useTermsOfUseList();
-  const [checkedItems, setCheckedItems] = React.useState<boolean[]>([]);
   const {onSubmit} = props;
-  const {updateFormData, formDataContainsKey, formData} = useFormData();
-
-  const allChecked = checkedItems.every(Boolean);
-  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
-
-  const checkAll = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckedItems(checkedItems.map((item) => e.target.checked));
-  };
-
-  const checkEach = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
-    setCheckedItems(
-      checkedItems.map((item, index) => (index === i ? e.target.checked : item))
-    );
-  };
-
-  const validation = () => {
-    for (let i = 0; i < termsOfUseList.length; i++) {
-      if (termsOfUseList[i].is_required && !checkedItems[i]) {
-        return false;
-      }
-    }
-
-    return true;
-  };
+  const {isLoading, termsOfUseList} = useTermsOfUseList();
+  const {
+    resetCheckItems,
+    checkAll,
+    allChecked,
+    isIndeterminate,
+    checkEach,
+    checkedItems,
+    onSubmitClick,
+  } = useTermsOfUseHooks(termsOfUseList);
 
   useEffect(() => {
-    setCheckedItems(new Array(termsOfUseList.length).fill(false));
-  }, [termsOfUseList.length]);
-
-  useEffect(() => {
-    if (formDataContainsKey(keys)) {
-      onSubmit();
-    }
-  }, [formData, formDataContainsKey, onSubmit]);
+    resetCheckItems();
+  }, [resetCheckItems]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -131,9 +107,8 @@ const TermsOfUseStep = (props: FormContentProps) => {
       </Stack>
       <SubmitButton
         onClick={() => {
-          updateFormData({tos: checkedItems});
+          onSubmitClick(onSubmit);
         }}
-        disabled={!validation()}
       >
         다음
       </SubmitButton>
