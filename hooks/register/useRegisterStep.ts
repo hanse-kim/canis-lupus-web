@@ -5,7 +5,7 @@ const registerSteps: RegisterStepType[] = [
   '계정정보입력',
   '전화번호인증',
   '자기소개입력',
-  '카테고리선택',
+  '관심분야선택',
 ];
 
 type RegisterStepType =
@@ -13,7 +13,7 @@ type RegisterStepType =
   | '계정정보입력'
   | '전화번호인증'
   | '자기소개입력'
-  | '카테고리선택';
+  | '관심분야선택';
 
 const useRegisterStep = () => {
   const [step, setStep] = useState<RegisterStepType>(registerSteps[0]);

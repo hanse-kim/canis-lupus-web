@@ -4,7 +4,7 @@ import TermsOfUseStep from './steps/TermsOfUseStep';
 import useFormData from 'hooks/form/useFormData';
 import useRegisterStep from 'hooks/register/useRegisterStep';
 import ProfileStep from './steps/ProfileStep';
-import CategoryStep from './steps/CategoryStep';
+import SelectInterestsStep from './steps/SelectInterestsStep';
 import usePageMove from 'hooks/usePageMove';
 import AccountInfoStep from 'components/pages/register/steps/AccountInfoStep';
 import MobileVerificationStep from './steps/MobileVerificationStep';
@@ -38,7 +38,7 @@ const RegisterForm = () => {
       {step === '계정정보입력' && <AccountInfoStep onSubmit={toNext} />}
       {step === '전화번호인증' && <MobileVerificationStep onSubmit={toNext} />}
       {step === '자기소개입력' && <ProfileStep onSubmit={toNext} />}
-      {step === '카테고리선택' && <CategoryStep onSubmit={submit} />}
+      {step === '관심분야선택' && <SelectInterestsStep onSubmit={submit} />}
     </Box>
   );
 };
