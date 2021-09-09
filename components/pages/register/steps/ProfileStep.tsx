@@ -1,36 +1,18 @@
 import {PlusSquareIcon} from '@chakra-ui/icons';
-import {Avatar, Center, FormControl} from '@chakra-ui/react';
+import {Avatar, Center} from '@chakra-ui/react';
 import ImageUploadButton from 'components/common/ImageUploadButton';
-import useFormData from 'hooks/form/useFormData';
-import useIntroduceHooks from 'hooks/register/useIntroduceHooks';
-import {useEffect} from 'react';
 import {FormContentProps} from 'types';
 import FormContentWrapper from 'components/form/FormContentWrapper';
-import {
-  RegisterFormErrorMessage,
-  RegisterFormHelperText,
-  RegisterFormInput,
-  RegisterFormLabel,
-} from 'components/form/formContent/sub/RegisterFormItems';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
+import NicknameForm from 'components/form/formContent/NicknameForm';
+import IntroduceForm from 'components/form/formContent/IntroduceForm';
+import React from 'react';
+import useProfileHooks from 'hooks/register/useProfileHooks';
 
 const ProfileStep = (props: FormContentProps) => {
   const {onSubmit} = props;
-  const {updateFormData, formDataContainsKey, formData} = useFormData();
-  const {
-    error,
-    data,
-    onNicknameChange,
-    onIntroduceChange,
-    isSubmittable,
-    keys,
-  } = useIntroduceHooks();
-
-  useEffect(() => {
-    if (formDataContainsKey(keys)) {
-      onSubmit();
-    }
-  }, [formData, formDataContainsKey, keys, onSubmit]);
+  const {error, onNicknameChange, onIntroduceChange, onSubmitClick} =
+    useProfileHooks();
 
   return (
     <FormContentWrapper>
@@ -50,45 +32,12 @@ const ProfileStep = (props: FormContentProps) => {
           </ImageUploadButton>
         </Avatar>
       </Center>
-
-      <FormControl isInvalid={error.nickname.isInvalid}>
-        <RegisterFormLabel isInvalid={error.nickname.isInvalid}>
-          닉네임
-        </RegisterFormLabel>
-        <RegisterFormInput
-          placeholder='닉네임을 입력해주세요'
-          onBlur={onNicknameChange}
-          max={20}
-        />
-        <RegisterFormHelperText isInvalid={error.nickname.isInvalid}>
-          20자 이내로 입력할 수 있어요.
-        </RegisterFormHelperText>
-        <RegisterFormErrorMessage>
-          {error.nickname.message}
-        </RegisterFormErrorMessage>
-      </FormControl>
-
-      <FormControl isInvalid={error.introduce.isInvalid}>
-        <RegisterFormLabel isInvalid={error.introduce.isInvalid}>
-          닉네임
-        </RegisterFormLabel>
-        <RegisterFormInput
-          placeholder='자기소개를 입력해주세요'
-          onBlur={onIntroduceChange}
-        />
-        <RegisterFormHelperText isInvalid={error.introduce.isInvalid}>
-          나이와 직업, 도시 따위를 자유롭게 소개하세요.
-        </RegisterFormHelperText>
-        <RegisterFormErrorMessage>
-          {error.introduce.message}
-        </RegisterFormErrorMessage>
-      </FormControl>
-
+      <NicknameForm error={error} onChange={onNicknameChange} />
+      <IntroduceForm error={error} onChange={onIntroduceChange} />
       <SubmitButton
         onClick={() => {
-          updateFormData(data);
+          onSubmitClick(onSubmit);
         }}
-        disabled={isSubmittable()}
       >
         다음
       </SubmitButton>
