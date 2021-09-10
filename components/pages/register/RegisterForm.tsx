@@ -16,13 +16,11 @@ const registerSteps = [
   '자기소개입력',
   '관심분야선택',
 ] as const;
-
 type RegisterStepType = typeof registerSteps[number];
+const steps = registerSteps.slice();
 
 const RegisterForm = () => {
-  const {step, resetStep, toNext} = useFormStep<RegisterStepType>(
-    registerSteps.slice()
-  );
+  const {step, resetStep, toNext} = useFormStep<RegisterStepType>(steps);
   const {resetFormData, formData} = useFormData();
   const {getRedirect, pageMove} = usePageMove();
 
