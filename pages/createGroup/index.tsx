@@ -1,7 +1,12 @@
 import PageWrapper from 'components/common/PageWrapper';
+import CreateGroupForm from 'components/pages/createGroup/CreateGroupForm';
 
 const CreateGroup = () => {
-  return <PageWrapper></PageWrapper>;
+  return (
+    <PageWrapper>
+      <CreateGroupForm />
+    </PageWrapper>
+  );
 };
 
 export default CreateGroup;
