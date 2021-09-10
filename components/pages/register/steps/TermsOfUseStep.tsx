@@ -1,63 +1,22 @@
-import {ChevronRightIcon} from '@chakra-ui/icons';
 import {
-  Center,
   Divider,
-  FormControl,
-  Link,
   Stack,
   Text,
 } from '@chakra-ui/react';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import useTermsOfUseList from 'hooks/register/useTermsOfUseList';
 import React, {useEffect} from 'react';
-import {FormContentProps, TosInfo} from 'types';
+import {FormContentProps} from 'types';
 import FormContentWrapper from 'components/form/FormContentWrapper';
 import {
   CheckboxAll,
-  CheckboxChild,
 } from 'components/form/formContent/sub/CustomCheckbox';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import useTermsOfUseHooks from 'hooks/register/useTermsOfUseHooks';
 import RegisterStepWrapper from '../RegisterStepWrapper';
+import TermsOfUseForm from 'components/form/formContent/TermsOfUseForm';
 
 const formDataKeys = ['tos'];
-
-const TermsOfUseInput = (props: {
-  tos: TosInfo;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isChecked: boolean;
-}) => {
-  const {tos, onChange, isChecked} = props;
-
-  const openTos = (content: string) => {
-    alert(content);
-  };
-
-  return (
-    <FormControl
-      isRequired={tos.is_required}
-      isInvalid={tos.is_required && !isChecked}
-    >
-      <Center direction='row' justifyContent='space-between'>
-        <CheckboxChild
-          checkboxProps={{
-            onChange: onChange,
-            isChecked: isChecked,
-          }}
-        >
-          {`(${tos.is_required ? '필수' : '선택'}) ${tos.name}`}
-        </CheckboxChild>
-        <Link
-          onClick={() => {
-            openTos(tos.content);
-          }}
-        >
-          <ChevronRightIcon boxSize='6' color='gray.400' />
-        </Link>
-      </Center>
-    </FormControl>
-  );
-};
 
 const TermsOfUseStep = (props: FormContentProps) => {
   const {isLoading, termsOfUseList} = useTermsOfUseList();
@@ -98,7 +57,7 @@ const TermsOfUseStep = (props: FormContentProps) => {
           </CheckboxAll>
           <Divider />
           {termsOfUseList.map((tos, index) => (
-            <TermsOfUseInput
+            <TermsOfUseForm
               key={index}
               tos={tos}
               onChange={(e) => {
