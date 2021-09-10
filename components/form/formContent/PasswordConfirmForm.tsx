@@ -9,8 +9,8 @@ import {
 const PasswordConfirmForm = (props: FormProps) => {
   const {error, onChange} = props;
   return (
-    <FormControl isInvalid={error.passwordConfirm.isInvalid}>
-      <RegisterFormLabel isInvalid={error.passwordConfirm.isInvalid}>
+    <FormControl isInvalid={error?.passwordConfirm.isInvalid}>
+      <RegisterFormLabel isInvalid={error?.passwordConfirm.isInvalid}>
         비밀번호 확인
       </RegisterFormLabel>
       <RegisterFormInput
@@ -19,7 +19,7 @@ const PasswordConfirmForm = (props: FormProps) => {
         onChange={onChange}
       />
       <RegisterFormErrorMessage>
-        {error.passwordConfirm.message}
+        {error?.passwordConfirm.message}
       </RegisterFormErrorMessage>
     </FormControl>
   );

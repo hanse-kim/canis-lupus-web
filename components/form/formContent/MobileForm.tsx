@@ -10,8 +10,8 @@ import {
 const MobileForm = (props: FormProps & {isSend: boolean}) => {
   const {error, onClick, onChange, isSend} = props;
   return (
-    <FormControl isInvalid={error.mobile.isInvalid}>
-      <RegisterFormLabel isInvalid={error.mobile.isInvalid}>
+    <FormControl isInvalid={error?.mobile.isInvalid}>
+      <RegisterFormLabel isInvalid={error?.mobile.isInvalid}>
         휴대폰 번호
       </RegisterFormLabel>
       <HStack spacing='4'>
@@ -20,12 +20,12 @@ const MobileForm = (props: FormProps & {isSend: boolean}) => {
           placeholder='휴대폰 번호 (- 없이 입력)'
           onChange={onChange}
         />
-        <Button onClick={onClick} disabled={error.mobile.isInvalid}>
+        <Button onClick={onClick} disabled={error?.mobile.isInvalid}>
           {!isSend ? '인증번호 전송' : '재전송'}
         </Button>
       </HStack>
       <RegisterFormErrorMessage>
-        {error.mobile.message}
+        {error?.mobile.message}
       </RegisterFormErrorMessage>
     </FormControl>
   );

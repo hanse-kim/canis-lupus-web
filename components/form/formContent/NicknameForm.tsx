@@ -10,8 +10,8 @@ import {
 const NicknameForm = (props: FormProps) => {
   const {error, onChange} = props;
   return (
-    <FormControl isInvalid={error.nickname.isInvalid}>
-      <RegisterFormLabel isInvalid={error.nickname.isInvalid}>
+    <FormControl isInvalid={error?.nickname.isInvalid}>
+      <RegisterFormLabel isInvalid={error?.nickname.isInvalid}>
         닉네임
       </RegisterFormLabel>
       <RegisterFormInput
@@ -19,11 +19,11 @@ const NicknameForm = (props: FormProps) => {
         onChange={onChange}
         maxLength={20}
       />
-      <RegisterFormHelperText isInvalid={error.nickname.isInvalid}>
+      <RegisterFormHelperText isInvalid={error?.nickname.isInvalid}>
         20자 이내로 입력할 수 있어요.
       </RegisterFormHelperText>
       <RegisterFormErrorMessage>
-        {error.nickname.message}
+        {error?.nickname.message}
       </RegisterFormErrorMessage>
     </FormControl>
   );
