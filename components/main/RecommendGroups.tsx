@@ -2,7 +2,7 @@ import {Grid} from '@chakra-ui/react';
 import GroupCard from 'components/common/GroupCard';
 import LabeledContainer from 'components/common/LabeledContainer';
 import LoadingSpinner from 'components/common/LoadingSpinner';
-import useGroupList from 'hooks/main/useGroupList';
+import useGroupList from 'hooks/api/useGroupList';
 
 const RecommendGroups = () => {
   const {groupList, isLoading} = useGroupList({limit: 6});

@@ -1,7 +1,7 @@
 import {Box, Image, Link} from '@chakra-ui/react';
 import Banner from 'components/common/Banner';
 import LoadingSpinner from 'components/common/LoadingSpinner';
-import useMainBannerList from 'hooks/main/useMainBannerList';
+import useMainBannerList from 'hooks/api/useMainBannerList';
 import {BannerInfo} from 'types/domain';
 
 const BannerItem = (props: BannerInfo) => {

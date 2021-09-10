@@ -2,7 +2,7 @@ import {FormContentProps} from 'types/props';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import CheckboxForm from 'components/form/formContent/CheckboxForm';
 import useSelectInterestsHooks from 'hooks/register/useSelectInterestsHooks';
-import useCategoryList from 'hooks/register/useCategoryList';
+import useCategoryList from 'hooks/api/useCategoryList';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import FormStepWrapper from 'components/form/FormStepWrapper';
 
