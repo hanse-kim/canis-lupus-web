@@ -1,6 +1,6 @@
 import useFormData from 'hooks/form/useFormData';
 import React, {useEffect} from 'react';
-import {FormContentProps} from 'types';
+import {FormContentProps} from 'types/props';
 
 const RegisterStepWrapper = (
   props: FormContentProps & {

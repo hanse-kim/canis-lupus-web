@@ -1,6 +1,6 @@
 import {ChevronRightIcon} from '@chakra-ui/icons';
 import {Center, FormControl, Link} from '@chakra-ui/react';
-import {TosInfo} from 'types';
+import {TosInfo} from 'types/domain';
 import {CheckboxChild} from './sub/CustomCheckbox';
 
 const TermsOfUseForm = (props: {

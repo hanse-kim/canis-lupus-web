@@ -6,7 +6,7 @@ import {
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import useTermsOfUseList from 'hooks/register/useTermsOfUseList';
 import React, {useEffect} from 'react';
-import {FormContentProps} from 'types';
+import {FormContentProps} from 'types/props';
 import FormContentWrapper from 'components/form/FormContentWrapper';
 import {
   CheckboxAll,

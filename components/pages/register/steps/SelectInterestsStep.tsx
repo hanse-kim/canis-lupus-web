@@ -1,4 +1,4 @@
-import {FormContentProps} from 'types';
+import {FormContentProps} from 'types/props';
 import FormContentWrapper from 'components/form/FormContentWrapper';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import CheckboxForm from 'components/form/formContent/CheckboxForm';

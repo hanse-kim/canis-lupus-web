@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {NextApiRequest, NextApiResponse} from 'next';
 import dotenv from 'dotenv';
-import {GroupRecord} from 'types';
+import {GroupRecord} from 'types/domain';
 
 dotenv.config();
 

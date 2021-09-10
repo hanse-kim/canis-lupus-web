@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {useMemo} from 'react';
 import {useQuery} from 'react-query';
-import {TosInfo, TosRecord} from 'types';
+import {TosInfo, TosRecord} from 'types/domain';
 
 const useTermsOfUseList = () => {
   const {data, isLoading, isSuccess} = useQuery(['tos-list'], () => {

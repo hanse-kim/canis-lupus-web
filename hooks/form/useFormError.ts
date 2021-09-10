@@ -1,6 +1,6 @@
 import produce from 'immer';
 import {useState} from 'react';
-import {FormError} from 'types';
+import {FormError} from 'types/domain';
 
 const useFormError = (key: string[]) => {
   const createObjectFromArray = (array: string[], defaultValue: any) => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {useMemo} from 'react';
 import {useQuery} from 'react-query';
-import {GroupInfo, GroupRecord} from 'types';
+import {GroupInfo, GroupRecord} from 'types/domain';
 
 const useGroupList = (query: {
   filter?: {searchBy: string; keyword: string};

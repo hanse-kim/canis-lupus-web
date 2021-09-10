@@ -1,6 +1,6 @@
 import {Button, FormControl, HStack} from '@chakra-ui/react';
 import React from 'react';
-import {FormProps} from 'types';
+import {FormProps} from 'types/props';
 import {
   RegisterFormErrorMessage,
   RegisterFormInput,

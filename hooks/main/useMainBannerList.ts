@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {useMemo} from 'react';
 import {useQuery} from 'react-query';
-import {BannerInfo, BannerRecord} from 'types';
+import {BannerInfo, BannerRecord} from 'types/domain';
 
 const useMainBannerList = () => {
   const {data, isLoading, isSuccess} = useQuery(['banner-list'], () => {

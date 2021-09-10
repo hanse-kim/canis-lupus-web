@@ -1,7 +1,7 @@
 import {PlusSquareIcon} from '@chakra-ui/icons';
 import {Avatar, Center} from '@chakra-ui/react';
 import ImageUploadButton from 'components/common/ImageUploadButton';
-import {FormContentProps} from 'types';
+import {FormContentProps} from 'types/props';
 import FormContentWrapper from 'components/form/FormContentWrapper';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import NicknameForm from 'components/form/formContent/NicknameForm';

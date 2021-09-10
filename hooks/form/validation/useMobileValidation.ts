@@ -1,4 +1,4 @@
-import {ValidationResult} from 'types';
+import {ValidationResult} from 'types/domain';
 
 const mobileRegex = /^01\d{1}\d{3,4}\d{4}$/;
 

@@ -1,5 +1,5 @@
 import {Box} from '@chakra-ui/react';
-import {FeedInfo} from 'types';
+import {FeedInfo} from 'types/domain';
 
 const TextFeed = (props: { feed: FeedInfo }) => {
   return (

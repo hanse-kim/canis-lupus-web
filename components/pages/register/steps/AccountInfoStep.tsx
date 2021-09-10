@@ -1,4 +1,4 @@
-import {FormContentProps} from 'types';
+import {FormContentProps} from 'types/props';
 import FormContentWrapper from 'components/form/FormContentWrapper';
 import EmailForm from 'components/form/formContent/EmailForm';
 import PasswordForm from 'components/form/formContent/PasswordForm';

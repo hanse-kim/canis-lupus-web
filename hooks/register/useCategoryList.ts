@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {useMemo} from 'react';
 import {useQuery} from 'react-query';
-import {CategoryInfo} from 'types';
-import {CategoryRecord} from 'types';
+import {CategoryInfo} from 'types/domain';
+import {CategoryRecord} from 'types/domain';
 
 const useCategoryList = () => {
   const {data, isLoading, isSuccess} = useQuery(['category-list'], () => {

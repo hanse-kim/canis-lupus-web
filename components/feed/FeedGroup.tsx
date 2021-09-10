@@ -1,5 +1,5 @@
 import {Grid} from '@chakra-ui/react';
-import {FeedInfo} from 'types';
+import {FeedInfo} from 'types/domain';
 import Feed from './Feed';
 
 const FeedGroup = (props: {feeds: FeedInfo[]}) => {

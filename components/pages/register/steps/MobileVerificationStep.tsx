@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FormContentProps} from 'types';
+import {FormContentProps} from 'types/props';
 import FormContentWrapper from 'components/form/FormContentWrapper';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import MobileForm from 'components/form/formContent/MobileForm';

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {NextApiRequest, NextApiResponse} from 'next';
 import dotenv from 'dotenv';
-import {CategoryRecord} from 'types';
+import {CategoryRecord} from 'types/domain';
 
 dotenv.config();
 

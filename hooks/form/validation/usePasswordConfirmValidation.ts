@@ -1,4 +1,4 @@
-import {ValidationResult} from 'types';
+import {ValidationResult} from 'types/domain';
 
 const usePasswordConfirmValidation = () => {
   const validatePasswordConfirm = (

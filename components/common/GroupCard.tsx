@@ -1,5 +1,5 @@
 import {Box, Flex, Heading, HStack, Image, Text} from '@chakra-ui/react';
-import {GroupInfo} from 'types';
+import {GroupInfo} from 'types/domain';
 
 const GroupCardImage = (props: {imageUrl: string}) => {
   return (

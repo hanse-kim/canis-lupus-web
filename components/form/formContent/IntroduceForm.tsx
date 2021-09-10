@@ -1,5 +1,5 @@
 import {FormControl} from '@chakra-ui/react';
-import {FormProps} from 'types';
+import {FormProps} from 'types/props';
 import {
   RegisterFormErrorMessage,
   RegisterFormHelperText,

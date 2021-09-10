@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {useMemo} from 'react';
 import {useQuery} from 'react-query';
-import {FeedInfo, FeedRecord} from 'types';
+import {FeedInfo, FeedRecord} from 'types/domain';
 
 const useFeedList = (query: {
   filter?: {searchBy: string; keyword: string};

@@ -1,6 +1,6 @@
 import useFormData from 'hooks/form/useFormData';
 import {useCallback, useState} from 'react';
-import {TosInfo} from 'types';
+import {TosInfo} from 'types/domain';
 
 const useTermsOfUseHooks = (termsOfUseList: TosInfo[]) => {
   const [checkedItems, setCheckedItems] = useState<boolean[]>([]);
