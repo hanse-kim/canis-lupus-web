@@ -1,8 +1,9 @@
 import useFormData from 'hooks/form/useFormData';
 import React, {useEffect} from 'react';
 import {FormContentProps} from 'types/props';
+import FormContentWrapper from './FormContentWrapper';
 
-const RegisterStepWrapper = (
+const FormStepWrapper = (
   props: FormContentProps & {
     children?: React.ReactNode;
     formDataKeys?: string[];
@@ -19,7 +20,7 @@ const RegisterStepWrapper = (
     onSubmit();
   }, [formDataContainsKey, formDataKeys, onSubmit]);
 
-  return <React.Fragment>{children}</React.Fragment>;
+  return <FormContentWrapper>{children}</FormContentWrapper>;
 };
 
-export default RegisterStepWrapper;
+export default FormStepWrapper;

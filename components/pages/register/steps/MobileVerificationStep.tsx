@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {FormContentProps} from 'types/props';
-import FormContentWrapper from 'components/form/FormContentWrapper';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import MobileForm from 'components/form/formContent/MobileForm';
 import MobileVerificationForm from 'components/form/formContent/MobileVerificationForm';
 import useMobileVerificationHooks from 'hooks/register/useMobileVerificationHooks';
-import RegisterStepWrapper from '../RegisterStepWrapper';
+import FormStepWrapper from 'components/form/FormStepWrapper';
 
 const verificationTime = 180;
 const formDataKeys = ['mobile'];
@@ -35,29 +34,27 @@ const MobileVerificationStep = (props: FormContentProps) => {
   }, [isSend, seconds]);
 
   return (
-    <RegisterStepWrapper {...props} formDataKeys={formDataKeys}>
-      <FormContentWrapper>
-        <MobileForm
+    <FormStepWrapper {...props} formDataKeys={formDataKeys}>
+      <MobileForm
+        error={error}
+        onChange={onMobileChange}
+        onClick={(e) => {
+          sendVerification(e);
+          setSeconds(verificationTime);
+        }}
+        isSend={isSend}
+      />
+      {isSend && (
+        <MobileVerificationForm
           error={error}
-          onChange={onMobileChange}
-          onClick={(e) => {
-            sendVerification(e);
-            setSeconds(verificationTime);
-          }}
-          isSend={isSend}
+          onChange={onMobileVerificationChange}
+          seconds={seconds}
         />
-        {isSend && (
-          <MobileVerificationForm
-            error={error}
-            onChange={onMobileVerificationChange}
-            seconds={seconds}
-          />
-        )}
-        <SubmitButton onClick={onSubmitClick} disabled={!isSend}>
-          확인
-        </SubmitButton>
-      </FormContentWrapper>
-    </RegisterStepWrapper>
+      )}
+      <SubmitButton onClick={onSubmitClick} disabled={!isSend}>
+        확인
+      </SubmitButton>
+    </FormStepWrapper>
   );
 };
 
