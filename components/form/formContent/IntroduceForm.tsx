@@ -1,29 +1,29 @@
 import {FormControl} from '@chakra-ui/react';
 import {FormProps} from 'types/props';
 import {
-  RegisterFormErrorMessage,
-  RegisterFormHelperText,
-  RegisterFormInput,
-  RegisterFormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  FormInput,
+  FormLabel,
 } from './sub/RegisterFormItems';
 
 const IntroduceForm = (props: FormProps) => {
   const {error, onChange} = props;
   return (
     <FormControl isInvalid={error?.introduce.isInvalid}>
-      <RegisterFormLabel isInvalid={error?.introduce.isInvalid}>
+      <FormLabel isInvalid={error?.introduce.isInvalid}>
         자기소개
-      </RegisterFormLabel>
-      <RegisterFormInput
+      </FormLabel>
+      <FormInput
         placeholder='자기소개를 입력해주세요'
         onChange={onChange}
       />
-      <RegisterFormHelperText isInvalid={error?.introduce.isInvalid}>
+      <FormHelperText isInvalid={error?.introduce.isInvalid}>
         나이와 직업, 도시 따위를 자유롭게 소개하세요.
-      </RegisterFormHelperText>
-      <RegisterFormErrorMessage>
+      </FormHelperText>
+      <FormErrorMessage>
         {error?.introduce.message}
-      </RegisterFormErrorMessage>
+      </FormErrorMessage>
     </FormControl>
   );
 };

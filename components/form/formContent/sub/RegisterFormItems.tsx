@@ -1,50 +1,60 @@
 import {
   ColorProps,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Input,
+  FormErrorMessage as ChakraFormErrorMessage,
+  FormHelperText as ChakraFormHelperText,
+  FormLabel as ChakraFormLabel,
+  Input as ChakraInput,
+  Textarea as ChakraTextarea,
   InputProps,
+  TextareaProps,
 } from '@chakra-ui/react';
 import React from 'react';
 
-export const RegisterFormLabel = (props: {
+export const FormLabel = (props: {
   isInvalid?: boolean;
   children?: React.ReactNode;
 }) => {
   return (
-    <FormLabel
+    <ChakraFormLabel
       as='legend'
       fontWeight='bold'
       color={props.isInvalid ? 'red.500' : undefined}
     >
       {props.children}
-    </FormLabel>
+    </ChakraFormLabel>
   );
 };
 
-export const RegisterFormHelperText = (props: {
+export const FormHelperText = (props: {
   color?: ColorProps['color'];
   isInvalid?: boolean;
   children?: React.ReactNode;
 }) => {
   return (
-    <FormHelperText
+    <ChakraFormHelperText
       fontSize='xs'
       display={props.isInvalid ? 'none' : undefined}
       color={props.color ? props.color : 'gray.400'}
     >
       {props.children}
-    </FormHelperText>
+    </ChakraFormHelperText>
   );
 };
 
-export const RegisterFormErrorMessage = (props: {
+export const FormErrorMessage = (props: {
   children?: React.ReactNode;
 }) => {
-  return <FormErrorMessage fontSize='xs'>{props.children}</FormErrorMessage>;
+  return (
+    <ChakraFormErrorMessage fontSize='xs'>
+      {props.children}
+    </ChakraFormErrorMessage>
+  );
 };
 
-export const RegisterFormInput = (props: {ref?: any} & InputProps) => {
-  return <Input borderRadius={0} {...props} />;
+export const FormInput = (props: {ref?: any} & InputProps) => {
+  return <ChakraInput borderRadius={0} {...props} />;
+};
+
+export const FormTextArea = (props: TextareaProps) => {
+  return <ChakraTextarea {...props} />;
 };

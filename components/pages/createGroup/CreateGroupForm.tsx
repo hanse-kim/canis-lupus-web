@@ -4,6 +4,7 @@ import useFormData from 'hooks/form/useFormData';
 import useFormStep from 'hooks/form/useFormStep';
 import usePageMove from 'hooks/usePageMove';
 import SelectGroupInterestStep from './steps/SelectGroupInterestStep';
+import GroupInfoForm from './steps/GroupInfoForm';
 
 const createGroupSteps = ['관심사선택', '모임정보입력'] as const;
 type CreateGroupStepType = typeof createGroupSteps[number];
@@ -35,6 +36,7 @@ const CreateGroupForm = () => {
         모임개설
       </Heading>
       {step === '관심사선택' && <SelectGroupInterestStep onSubmit={toNext} />}
+      {step === '모임정보입력' && <GroupInfoForm onSubmit={submit} />}
     </Box>
   );
 };

@@ -1,30 +1,30 @@
 import {FormControl} from '@chakra-ui/react';
 import {FormProps} from 'types/props';
 import {
-  RegisterFormErrorMessage,
-  RegisterFormHelperText,
-  RegisterFormInput,
-  RegisterFormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  FormInput,
+  FormLabel,
 } from './sub/RegisterFormItems';
 
 const NicknameForm = (props: FormProps) => {
   const {error, onChange} = props;
   return (
     <FormControl isInvalid={error?.nickname.isInvalid}>
-      <RegisterFormLabel isInvalid={error?.nickname.isInvalid}>
+      <FormLabel isInvalid={error?.nickname.isInvalid}>
         닉네임
-      </RegisterFormLabel>
-      <RegisterFormInput
+      </FormLabel>
+      <FormInput
         placeholder='닉네임을 입력해주세요'
         onChange={onChange}
         maxLength={20}
       />
-      <RegisterFormHelperText isInvalid={error?.nickname.isInvalid}>
+      <FormHelperText isInvalid={error?.nickname.isInvalid}>
         20자 이내로 입력할 수 있어요.
-      </RegisterFormHelperText>
-      <RegisterFormErrorMessage>
+      </FormHelperText>
+      <FormErrorMessage>
         {error?.nickname.message}
-      </RegisterFormErrorMessage>
+      </FormErrorMessage>
     </FormControl>
   );
 };

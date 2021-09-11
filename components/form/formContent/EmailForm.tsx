@@ -1,26 +1,26 @@
 import {FormControl} from '@chakra-ui/react';
 import {FormProps} from 'types/props';
 import {
-  RegisterFormErrorMessage,
-  RegisterFormInput,
-  RegisterFormLabel,
+  FormErrorMessage,
+  FormInput,
+  FormLabel,
 } from './sub/RegisterFormItems';
 
 const EmailForm = (props: FormProps) => {
   const {error, onChange} = props;
   return (
     <FormControl isInvalid={error?.email.isInvalid}>
-      <RegisterFormLabel isInvalid={error?.email.isInvalid}>
+      <FormLabel isInvalid={error?.email.isInvalid}>
         이메일
-      </RegisterFormLabel>
-      <RegisterFormInput
+      </FormLabel>
+      <FormInput
         type='email'
         placeholder='이메일을 입력해주세요'
         onChange={onChange}
       />
-      <RegisterFormErrorMessage>
+      <FormErrorMessage>
         {error?.email.message}
-      </RegisterFormErrorMessage>
+      </FormErrorMessage>
     </FormControl>
   );
 };
