@@ -1,16 +1,13 @@
 import {FormControl} from '@chakra-ui/react';
+import {CheckboxFormProps} from 'types/props';
 import CategoryCheckbox from './sub/CategoryCheckbox';
 import {FormLabel} from './sub/RegisterFormItems';
 
-const CheckboxForm = (props: {
-  itemList: string[];
-  checked: string[];
-  onCheckboxChange: (checkboxItem: string, isChecked: boolean) => void;
-}) => {
-  const {itemList, checked, onCheckboxChange} = props;
+const CheckboxForm = (props: CheckboxFormProps) => {
+  const {itemList, checked, onCheckboxChange, label} = props;
   return (
     <FormControl>
-      <FormLabel>관심 카테고리 선택</FormLabel>
+      <FormLabel>{label}</FormLabel>
       {itemList.map((item, index) => {
         return (
           <CategoryCheckbox

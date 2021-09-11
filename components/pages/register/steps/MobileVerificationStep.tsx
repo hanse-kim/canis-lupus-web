@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {FormContentProps} from 'types/props';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import MobileForm from 'components/form/formContent/MobileForm';
-import MobileVerificationForm from 'components/form/formContent/MobileVerificationForm';
 import useMobileVerificationHooks from 'hooks/register/useMobileVerificationHooks';
 import FormStepWrapper from 'components/form/FormStepWrapper';
+import InputForm from 'components/form/formContent/InputForm';
 
 const verificationTime = 180;
 const formDataKeys = ['mobile'];
@@ -19,6 +19,12 @@ const MobileVerificationStep = (props: FormContentProps) => {
     onMobileVerificationChange,
     onSubmitClick,
   } = useMobileVerificationHooks();
+
+  const secondsToTime = (seconds: number) => {
+    const min = Math.floor(seconds / 60);
+    const sec = String(seconds % 60).padStart(2, '0');
+    return `${min}분 ${sec}초`;
+  };
 
   useEffect(() => {
     if (isSend) {
@@ -36,7 +42,7 @@ const MobileVerificationStep = (props: FormContentProps) => {
   return (
     <FormStepWrapper {...props} formDataKeys={formDataKeys}>
       <MobileForm
-        error={error}
+        error={error.mobile}
         onChange={onMobileChange}
         onClick={(e) => {
           sendVerification(e);
@@ -45,10 +51,13 @@ const MobileVerificationStep = (props: FormContentProps) => {
         isSend={isSend}
       />
       {isSend && (
-        <MobileVerificationForm
-          error={error}
+        <InputForm
+          error={error.mobileVerification}
           onChange={onMobileVerificationChange}
-          seconds={seconds}
+          label='인증번호'
+          type='number'
+          helperText={secondsToTime(seconds)}
+          helperTextColor='red.500'
         />
       )}
       <SubmitButton onClick={onSubmitClick} disabled={!isSend}>

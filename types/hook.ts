@@ -1,7 +1,12 @@
 /* eslint-disable camelcase */
 
+export interface FormErrorContainer {
+  [key: string]: FormError;
+}
+
 export interface FormError {
-  [key: string]: {isInvalid: boolean; message: string | null};
+  isInvalid: boolean;
+  message: string | null;
 }
 
 export interface ValidationResult {

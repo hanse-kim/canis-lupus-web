@@ -3,8 +3,7 @@ import {Avatar, Center} from '@chakra-ui/react';
 import ImageUploadButton from 'components/common/ImageUploadButton';
 import {FormContentProps} from 'types/props';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
-import NicknameForm from 'components/form/formContent/NicknameForm';
-import IntroduceForm from 'components/form/formContent/IntroduceForm';
+import InputForm from 'components/form/formContent/InputForm';
 import React from 'react';
 import useProfileHooks from 'hooks/register/useProfileHooks';
 import FormStepWrapper from 'components/form/FormStepWrapper';
@@ -33,8 +32,21 @@ const ProfileStep = (props: FormContentProps) => {
           </ImageUploadButton>
         </Avatar>
       </Center>
-      <NicknameForm error={error} onChange={onNicknameChange} />
-      <IntroduceForm error={error} onChange={onIntroduceChange} />
+      <InputForm
+        error={error}
+        onChange={onNicknameChange}
+        label='닉네임'
+        placeholder='닉네임을 입력해주세요'
+        maxLength={20}
+        helperText='20자 이내로 입력할 수 있어요'
+      />
+      <InputForm
+        error={error}
+        onChange={onIntroduceChange}
+        label='자기소개'
+        placeholder='자기소개를 입력해주세요'
+        helperText='나이와 직업, 도시 따위를 자유롭게 소개하세요.'
+      />
       <SubmitButton onClick={onSubmitClick}>다음</SubmitButton>
     </FormStepWrapper>
   );
