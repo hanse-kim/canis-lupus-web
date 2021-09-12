@@ -8,27 +8,11 @@ import {
 } from './sub/RegisterFormItems';
 
 const InputForm = (props: InputFormProps) => {
-  const {
-    error,
-    onChange,
-    onFocusOut,
-    label,
-    placeholder,
-    maxLength,
-    type,
-    helperText,
-    helperTextColor,
-  } = props;
+  const {error, label, helperText, helperTextColor, ...inputProps} = props;
   return (
     <FormControl isInvalid={error?.isInvalid}>
       <FormLabel isInvalid={error?.isInvalid}>{label}</FormLabel>
-      <FormInput
-        type={type}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        onChange={onChange}
-        onBlur={onFocusOut}
-      />
+      <FormInput {...inputProps} />
       <FormHelperText isInvalid={error?.isInvalid} color={helperTextColor}>
         {helperText}
       </FormHelperText>

@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
+import {ButtonProps} from '@chakra-ui/button';
 import {InputProps} from '@chakra-ui/input';
-import {ChangeEventHandler, FocusEventHandler, MouseEventHandler} from 'react';
+import {TextareaProps} from '@chakra-ui/textarea';
 import {FormError} from './hook';
 
 export interface ProductProps {
@@ -20,25 +21,15 @@ export interface FormContentProps {
 export interface FormProps {
   error?: FormError;
   label?: string;
-}
-
-export interface InputFormProps extends FormProps {
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  onFocusOut?: FocusEventHandler<HTMLInputElement>;
-  type?: string;
-  placeholder?: string;
-  maxLength?: number;
   helperText?: string;
   helperTextColor?: InputProps['color'];
 }
 
-export interface TextareaFormProps extends FormProps {
-  onTextareaChange?: ChangeEventHandler<HTMLTextAreaElement>;
-}
+export interface InputFormProps extends FormProps, InputProps {}
 
-export interface ButtonFormProps extends FormProps {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+export interface TextareaFormProps extends FormProps, TextareaProps {}
+
+export interface ButtonFormProps extends FormProps, ButtonProps {}
 
 export interface CheckboxFormProps extends FormProps {
   itemList: string[];

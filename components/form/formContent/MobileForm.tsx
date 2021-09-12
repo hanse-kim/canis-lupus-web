@@ -14,9 +14,12 @@ const MobileForm = (
         <FormInput
           type='number'
           placeholder='휴대폰 번호 (- 없이 입력)'
-          onChange={onChange}
+          onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
         />
-        <Button onClick={onClick} disabled={error?.isInvalid}>
+        <Button
+          onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+          disabled={error?.isInvalid}
+        >
           {!isSend ? '인증번호 전송' : '재전송'}
         </Button>
       </HStack>

@@ -18,7 +18,6 @@ const useMobileVerificationHooks = () => {
 
   const onMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const result = validateMobile(e.target.value);
-    console.log(result);
     updateFormError({mobile: result});
     if (!result.isInvalid) {
       setMobile(e.target.value);
