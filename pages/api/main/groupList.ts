@@ -31,7 +31,7 @@ const mainBannerList = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const records: GroupRecord[] = list.data.records;
     res.status(200).json({records: records});
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.message);
     res.status(500).json({error: true});
   }
