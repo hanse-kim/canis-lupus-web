@@ -1,4 +1,4 @@
-import {ValidationResult} from 'types/domain';
+import {ValidationResult} from 'types/hook';
 
 const useMobileVerficationValidation = () => {
   const validateMobileVerification = (mobile: string) => {

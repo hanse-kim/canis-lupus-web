@@ -1,13 +1,13 @@
 import produce from 'immer';
 import {useState} from 'react';
-import {FormError} from 'types/domain';
+import {FormErrorContainer} from 'types/hook';
 
 const useFormError = (key: string[]) => {
   const createObjectFromArray = (array: string[], defaultValue: any) => {
     return array.reduce((acc, cur) => ({...acc, [cur]: defaultValue}), {});
   };
 
-  const [error, setError] = useState<FormError>(
+  const [error, setError] = useState<FormErrorContainer>(
     createObjectFromArray(key, {isInvalid: false, message: null})
   );
 
@@ -23,7 +23,7 @@ const useFormError = (key: string[]) => {
     );
   };
 
-  const isError = (error: FormError) => {
+  const isError = (error: FormErrorContainer) => {
     return Object.values(error)
       .map((item) => item.isInvalid)
       .some(Boolean);

@@ -1,4 +1,4 @@
-import {ValidationResult} from 'types/domain';
+import {ValidationResult} from 'types/hook';
 
 const usePasswordConfirmValidation = () => {
   const validatePasswordConfirm = (
