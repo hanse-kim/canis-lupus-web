@@ -17,18 +17,17 @@ axios.interceptors.request.use(async (config) => {
   return config;
 });
 
-const mainBannerList = async (req: NextApiRequest, res: NextApiResponse) => {
+const groupList = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const list = await axios.get(BASE_URL, {
       params: {
         view: 'raw',
         filterByFormula: req.query.searchBy ?
-          `({${req.query.searchBy}}='${req.query.keyword}')` :
+          `(FIND("${req.query.keyword}", {${req.query.searchBy}}))` :
           '',
         maxRecords: req.query.maxRecords,
       },
     });
-
     const records: GroupRecord[] = list.data.records;
     res.status(200).json({records: records});
   } catch (e: any) {
@@ -37,4 +36,4 @@ const mainBannerList = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default mainBannerList;
+export default groupList;

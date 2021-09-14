@@ -2,22 +2,28 @@ import axios from 'axios';
 import {useMemo} from 'react';
 import {useQuery} from 'react-query';
 import {GroupInfo, GroupRecord} from 'types/domain';
+import objectToParams from 'utils/objectToParams';
 
 const useGroupList = (query: {
   filter?: {searchBy: string; keyword: string};
   limit?: number;
 }) => {
-  const {data, isLoading, isSuccess} = useQuery(['group-list'], () => {
-    return axios.get<{
-      records: GroupRecord[];
-    }>('/api/main/groupList', {
-      params: {
-        searchBy: query.filter?.searchBy,
-        keyword: query.filter?.keyword,
-        maxRecords: query.limit,
-      },
-    });
-  });
+  const params = {
+    searchBy: query.filter?.searchBy,
+    keyword: query.filter?.keyword,
+    maxRecords: query.limit,
+  };
+
+  const {data, isLoading, isSuccess} = useQuery(
+    [objectToParams(params)],
+    () => {
+      return axios.get<{
+        records: GroupRecord[];
+      }>('/api/main/groupList', {
+        params: params,
+      });
+    }
+  );
 
   const groupList = useMemo(() => {
     if (isSuccess && data!.data) {
