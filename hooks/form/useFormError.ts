@@ -1,12 +1,9 @@
 import produce from 'immer';
 import {useState} from 'react';
 import {FormErrorContainer} from 'types/hook';
+import createObjectFromArray from 'utils/createObjectFromArray';
 
 const useFormError = (key: string[]) => {
-  const createObjectFromArray = (array: string[], defaultValue: any) => {
-    return array.reduce((acc, cur) => ({...acc, [cur]: defaultValue}), {});
-  };
-
   const [error, setError] = useState<FormErrorContainer>(
     createObjectFromArray(key, {isInvalid: false, message: null})
   );
