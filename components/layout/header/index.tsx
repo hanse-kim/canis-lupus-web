@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-  Container,
-  Divider,
-  useDisclosure,
-} from '@chakra-ui/react';
-import SearchProductForm from './SearchProductForm';
+import {Container, Divider, useDisclosure} from '@chakra-ui/react';
+import SearchProductForm from './SearchGroupForm';
 import NavContainer from './NavContainer';
 import SearchPanel from './SearchPanel';
 import Logo from './Logo';
-
 
 const Header = () => {
   const {isOpen, onOpen, onClose} = useDisclosure();
@@ -26,13 +21,16 @@ const Header = () => {
   return (
     <header>
       <Container
-        className="headerWrapper"
-        display="flex"
-        maxWidth="container.lg"
-        marginY="6"
+        className='headerWrapper'
+        display='flex'
+        maxWidth='container.lg'
+        marginY='6'
       >
         <Logo />
-        <SearchProductForm onOpen={onOpenSearchPanel} />
+        <SearchProductForm
+          onOpen={onOpenSearchPanel}
+          onClose={onCloseSearchPanel}
+        />
         <NavContainer />
       </Container>
       <Divider />
