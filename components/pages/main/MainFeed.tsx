@@ -1,7 +1,7 @@
 import LabeledContainer from 'components/common/LabeledContainer';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import FeedGroup from 'components/feed/FeedGroup';
-import useFeedList from 'hooks/main/useMainFeed';
+import useFeedList from 'hooks/api/useMainFeed';
 
 const MainFeed = () => {
   const {feedList, isLoading} = useFeedList({limit: 4});
