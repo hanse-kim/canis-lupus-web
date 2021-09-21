@@ -42,11 +42,12 @@ const MobileVerificationStep = (props: FormContentProps) => {
   return (
     <FormStepWrapper {...props} formDataKeys={formDataKeys}>
       <MobileForm
-        error={error.mobile}
-        onChange={onMobileChange}
-        onClick={(e) => {
-          sendVerification(e);
-          setSeconds(verificationTime);
+        inputProps={{error: error.mobile, onChange: onMobileChange}}
+        buttonProps={{
+          onClick: (e) => {
+            sendVerification(e);
+            setSeconds(verificationTime);
+          },
         }}
         isSend={isSend}
       />

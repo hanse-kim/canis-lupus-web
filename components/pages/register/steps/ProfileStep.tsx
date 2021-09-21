@@ -33,7 +33,7 @@ const ProfileStep = (props: FormContentProps) => {
         </Avatar>
       </Center>
       <InputForm
-        error={error}
+        error={error.nickname}
         onChange={onNicknameChange}
         label='닉네임'
         placeholder='닉네임을 입력해주세요'
@@ -41,7 +41,7 @@ const ProfileStep = (props: FormContentProps) => {
         helperText='20자 이내로 입력할 수 있어요'
       />
       <InputForm
-        error={error}
+        error={error.introduce}
         onChange={onIntroduceChange}
         label='자기소개'
         placeholder='자기소개를 입력해주세요'

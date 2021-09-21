@@ -3,10 +3,15 @@ import React from 'react';
 import {ButtonFormProps, InputFormProps} from 'types/props';
 import {FormErrorMessage, FormInput, FormLabel} from './sub/RegisterFormItems';
 
-const MobileForm = (
-  props: InputFormProps & ButtonFormProps & {isSend: boolean}
-) => {
-  const {error, onClick, onChange, isSend} = props;
+const MobileForm = (props: {
+  inputProps: InputFormProps;
+  buttonProps: ButtonFormProps;
+  isSend: boolean;
+}) => {
+  const {error, onChange} = props.inputProps;
+  const {onClick} = props.buttonProps;
+  const {isSend} = props;
+
   return (
     <FormControl isInvalid={error?.isInvalid}>
       <FormLabel isInvalid={error?.isInvalid}>휴대폰 번호</FormLabel>
