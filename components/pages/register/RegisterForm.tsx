@@ -1,5 +1,5 @@
 import {Box, Heading} from '@chakra-ui/react';
-import {useCallback, useEffect} from 'react';
+import {useEffect} from 'react';
 import TermsOfUseStep from './steps/TermsOfUseStep';
 import useFormData from 'hooks/form/useFormData';
 import useFormStep from 'hooks/form/useFormStep';
@@ -8,6 +8,7 @@ import SelectInterestsStep from './steps/SelectInterestsStep';
 import usePageMove from 'hooks/usePageMove';
 import AccountInfoStep from 'components/pages/register/steps/AccountInfoStep';
 import MobileVerificationStep from './steps/MobileVerificationStep';
+import axios from 'axios';
 
 const registerSteps = [
   '이용약관',
@@ -24,15 +25,20 @@ const RegisterForm = () => {
   const {resetFormData, formData} = useFormData();
   const {getRedirect, pageMove} = usePageMove();
 
-  const submit = useCallback(() => {
-    alert(JSON.stringify(formData, null, 2));
+  const submit = async () => {
+    const response = await axios.post('/api/register/signUp', formData);
+    if (response.status === 201) {
+      const data = response.data;
+      localStorage.setItem('user', JSON.stringify(data));
+    }
+
     const redirect = getRedirect();
     if (redirect) {
       pageMove(redirect);
     } else {
       pageMove('/main');
     }
-  }, [formData, getRedirect, pageMove]);
+  };
 
   useEffect(() => {
     resetFormData();
