@@ -1,7 +1,7 @@
 import {Center, Divider, Link, Flex} from '@chakra-ui/react';
 import useAuth from 'hooks/auth/useAuth';
 import usePageMove from 'hooks/usePageMove';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const refresh = () => {
   window.location.reload();
@@ -62,7 +62,12 @@ const MemberNav = () => {
 };
 
 const NavContainer = () => {
-  const {isLoggedIn} = useAuth();
+  const {isLoggedIn: authIsLoggedIn} = useAuth();
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setLoggedIn(authIsLoggedIn);
+  }, [authIsLoggedIn]);
 
   return (
     <Center className='navContainer' marginLeft='auto'>
