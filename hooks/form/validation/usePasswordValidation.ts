@@ -1,4 +1,4 @@
-import {ValidationResult} from 'types/domain';
+import {ValidationResult} from 'types/hook';
 
 const passwordRegex = /^(?=.*?\d)(?=.*?[a-zA-Z])[A-Za-z\d@$!%*#?&]{8,}$/;
 

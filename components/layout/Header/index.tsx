@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Divider, useDisclosure} from '@chakra-ui/react';
-import SearchProductForm from './SearchGroupForm';
+import SearchGroupForm from './SearchGroupForm';
 import NavContainer from './NavContainer';
 import SearchPanel from './SearchPanel';
 import Logo from './Logo';
@@ -27,7 +27,7 @@ const Header = () => {
         marginY='6'
       >
         <Logo />
-        <SearchProductForm
+        <SearchGroupForm
           onOpen={onOpenSearchPanel}
           onClose={onCloseSearchPanel}
         />

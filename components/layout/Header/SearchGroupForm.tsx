@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import usePageMove from 'hooks/usePageMove';
 
-const SearchProductForm = (props: {
+const SearchGroupForm = (props: {
   onOpen: () => void;
   onClose: () => void;
 }) => {
@@ -76,4 +76,4 @@ const SearchProductForm = (props: {
   );
 };
 
-export default SearchProductForm;
+export default SearchGroupForm;
