@@ -1,21 +1,8 @@
 import axios from 'axios';
 import {NextApiRequest, NextApiResponse} from 'next';
-import dotenv from 'dotenv';
 import {FeedRecord} from 'types/domain';
 
-dotenv.config();
-
 const BASE_URL = 'https://api.airtable.com/v0/appJ4BvTGzF8kGD3O/feed';
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-
-axios.interceptors.request.use(async (config) => {
-  if (!config.headers['Authorization']) {
-    config.headers['Authorization'] = `Bearer ${AIRTABLE_API_KEY}`;
-  }
-  config.headers['Content-Type'] = 'application/json';
-
-  return config;
-});
 
 const feedList = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
