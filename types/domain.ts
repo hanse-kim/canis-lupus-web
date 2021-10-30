@@ -1,5 +1,10 @@
 /* eslint-disable camelcase */
 
+export interface NextResponse<T> {
+  data?: T;
+  error?: string;
+}
+
 export interface BannerRecord {
   id: string;
   fields: BannerInfo;
@@ -30,7 +35,12 @@ export interface CategoryRecord {
 }
 
 export interface CategoryInfo {
+  _id: string;
   name: string;
+  imageUrl: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: string;
 }
 
 export interface GroupRecord {
