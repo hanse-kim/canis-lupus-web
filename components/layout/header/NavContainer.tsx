@@ -1,7 +1,7 @@
-import {Center, Divider, Link} from '@chakra-ui/react';
-import useLogin from 'hooks/useLogin';
+import {Center, Divider, Link, Flex} from '@chakra-ui/react';
+import useAuth from 'hooks/auth/useAuth';
 import usePageMove from 'hooks/usePageMove';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 const refresh = () => {
   window.location.reload();
@@ -19,50 +19,54 @@ const TextButton = (props: {
   );
 };
 
+const UserNavContainer = (props: {children?: React.ReactNode}) => {
+  return (
+    <Flex height='21px' minWidth='36' justifyContent='flex-end'>
+      {props.children}
+    </Flex>
+  );
+};
+
 const GuestNav = () => {
   const {pageMoveWithRedirect} = usePageMove();
 
   return (
-    <TextButton
-      onClick={() => {
-        pageMoveWithRedirect('/login');
-      }}
-    >
-      로그인
-    </TextButton>
+    <UserNavContainer>
+      <TextButton
+        onClick={() => {
+          pageMoveWithRedirect('/login');
+        }}
+      >
+        로그인
+      </TextButton>
+    </UserNavContainer>
   );
 };
 
 const MemberNav = () => {
-  const {logout} = useLogin();
-
+  const {logout} = useAuth();
   const logoutAndRefresh = () => {
-    logout({});
+    logout();
     refresh();
   };
 
   return (
-    <Center height='21px'>
+    <UserNavContainer>
       <TextButton href='/mygroups'>내 모임</TextButton>
       <Divider orientation='vertical' />
       <TextButton href='/mypage'>마이페이지</TextButton>
       <Divider orientation='vertical' />
       <TextButton onClick={logoutAndRefresh}>로그아웃</TextButton>
-    </Center>
+    </UserNavContainer>
   );
 };
 
 const NavContainer = () => {
-  const [isLogin, setLogin] = useState(false);
-  const {isLoggedIn} = useLogin();
-
-  useEffect(() => {
-    setLogin(isLoggedIn);
-  }, [isLoggedIn]);
+  const {isLoggedIn} = useAuth();
 
   return (
     <Center className='navContainer' marginLeft='auto'>
-      {isLogin ? <MemberNav /> : <GuestNav />}
+      {isLoggedIn ? <MemberNav /> : <GuestNav />}
     </Center>
   );
 };

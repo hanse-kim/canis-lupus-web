@@ -1,21 +1,8 @@
 import axios from 'axios';
 import {NextApiRequest, NextApiResponse} from 'next';
-import dotenv from 'dotenv';
 import {TosRecord} from 'types/domain';
 
-dotenv.config();
-
 const BASE_URL = 'https://api.airtable.com/v0/appJ4BvTGzF8kGD3O/terms_of_use';
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-
-axios.interceptors.request.use(async (config) => {
-  if (!config.headers['Authorization']) {
-    config.headers['Authorization'] = `Bearer ${AIRTABLE_API_KEY}`;
-  }
-  config.headers['Content-Type'] = 'application/json';
-
-  return config;
-});
 
 const termsOfUseList = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -25,7 +12,7 @@ const termsOfUseList = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const records: TosRecord[] = list.data.records;
     res.status(200).json({records: records});
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.message);
     res.status(500).json({error: true});
   }

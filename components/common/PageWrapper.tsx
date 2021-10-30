@@ -2,7 +2,7 @@ import React from 'react';
 import {Container} from '@chakra-ui/layout';
 
 const styles = {
-  maxWidth: 'container.lg',
+  maxWidth: 'container.md',
   minHeight: '',
 };
 

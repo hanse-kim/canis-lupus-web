@@ -23,7 +23,7 @@ const Header = () => {
       <Container
         className='headerWrapper'
         display='flex'
-        maxWidth='container.lg'
+        maxWidth='container.md'
         marginY='6'
       >
         <Logo />
