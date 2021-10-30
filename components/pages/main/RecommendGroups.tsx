@@ -14,7 +14,7 @@ const RecommendGroups = () => {
       ) : (
         <Grid
           className='groupContainer'
-          templateColumns='repeat(3, 1fr)'
+          templateColumns='repeat(2, 1fr)'
           gap={3}
         >
           {groupList.map((item, index) => (

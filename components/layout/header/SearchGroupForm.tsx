@@ -39,7 +39,7 @@ const SearchProductForm = (props: {
   };
 
   return (
-    <Box className='searchFormWrapper' width='540px'>
+    <Box className='searchFormWrapper' width='320px'>
       <FormControl id='searchProductForm'>
         <InputGroup className='searchInput' maxWidth='container.sm'>
           <InputLeftElement
