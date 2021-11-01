@@ -1,29 +1,26 @@
 import axios from 'axios';
-import {useMemo} from 'react';
+import {useState} from 'react';
 import {useQuery} from 'react-query';
 import {CategoryInfo} from 'types/domain';
-import {CategoryRecord} from 'types/domain';
 
 const useCategoryList = () => {
-  const {data, isLoading, isSuccess} = useQuery(['category-list'], () => {
-    return axios.get<{
-      records: CategoryRecord[];
-    }>('/api/register/categoryList');
-  });
-
-  const categoryList = useMemo(() => {
-    if (isSuccess && data!.data) {
-      const records = data!.data.records;
-      const list: CategoryInfo[] = [];
-      for (const record of records) {
-        const banner = record.fields;
-        list.push(banner);
-      }
-      return list;
-    } else {
-      return [];
+  const [categoryList, setCategoryList] = useState<CategoryInfo[]>([]);
+  const {isLoading} = useQuery(
+    ['category-list'],
+    () => {
+      return axios.get<CategoryInfo[]>('/api/register/categoryList');
+    },
+    {
+      onSuccess: (axiosResponse) => {
+        setCategoryList(axiosResponse.data);
+        if (axiosResponse.data) {
+          setCategoryList(axiosResponse.data);
+        } else {
+          return [];
+        }
+      },
     }
-  }, [isSuccess, data]);
+  );
 
   return {
     categoryList,

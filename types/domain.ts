@@ -1,10 +1,5 @@
 /* eslint-disable camelcase */
 
-export interface NextResponse<T> {
-  data?: T;
-  error?: string;
-}
-
 export interface BannerRecord {
   id: string;
   fields: BannerInfo;
@@ -26,12 +21,6 @@ export interface TosInfo {
   name: string;
   content: string;
   is_required: boolean;
-}
-
-export interface CategoryRecord {
-  id: string;
-  fields: CategoryInfo;
-  createdTime: string;
 }
 
 export interface CategoryInfo {

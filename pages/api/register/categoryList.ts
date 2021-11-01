@@ -1,20 +1,23 @@
 import axios from 'axios';
 import {NextApiRequest, NextApiResponse} from 'next';
-import {CategoryRecord} from 'types/domain';
-
-const BASE_URL = 'https://api.airtable.com/v0/appJ4BvTGzF8kGD3O/category';
+import {CategoryInfo} from 'types/domain';
+import getCommonError from 'utils/api/getCommonError';
+import {API_URL} from 'utils/api/_constants';
 
 const categoryList = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const list = await axios.get(BASE_URL, {
-      params: {view: 'raw'},
-    });
-
-    const records: CategoryRecord[] = list.data.records;
-    res.status(200).json({records: records});
+    if (req.method === 'GET') {
+      const axiosResponse = await axios.get<CategoryInfo[]>(
+        `${API_URL}/categories`
+      );
+      res.status(200).json(axiosResponse.data);
+    } else {
+      throw new Error('allowed method: GET');
+    }
   } catch (e: any) {
-    console.log(e.message);
-    res.status(500).json({error: true});
+    res.status(500).json({
+      message: getCommonError(e),
+    });
   }
 };
 
