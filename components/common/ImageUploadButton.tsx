@@ -1,11 +1,12 @@
-import {Button, ButtonProps, Input} from '@chakra-ui/react';
-import React, {ChangeEventHandler, useRef} from 'react';
+import {Button, ButtonProps, Input, InputProps} from '@chakra-ui/react';
+import React, {useRef} from 'react';
 
 const ImageUploadButton = (props: {
   buttonProps: ButtonProps;
+  inputProps: InputProps;
   children?: React.ReactNode;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
 }) => {
+  const {children, buttonProps, inputProps} = props;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onClick = () => {
@@ -13,13 +14,14 @@ const ImageUploadButton = (props: {
   };
 
   return (
-    <Button {...props.buttonProps} onClick={onClick}>
-      {props.children}
+    <Button {...buttonProps} onClick={onClick}>
+      {children}
       <Input
         type='file'
         display='none'
         ref={inputRef}
-        onChange={props.onChange}
+        accept='image/jpg, image/jpeg, image/png'
+        {...inputProps}
       />
     </Button>
   );

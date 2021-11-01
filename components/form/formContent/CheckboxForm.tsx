@@ -12,12 +12,12 @@ const CheckboxForm = (props: CheckboxFormProps) => {
         return (
           <CategoryCheckbox
             key={index}
-            isChecked={checked.includes(item)}
+            isChecked={checked.includes(item.value)}
             onChange={(isChecked) => {
-              onCheckboxChange(item, isChecked);
+              onCheckboxChange(item.value, isChecked);
             }}
           >
-            {item}
+            {item.name}
           </CategoryCheckbox>
         );
       })}

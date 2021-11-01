@@ -1,16 +1,18 @@
 import {FormControl} from '@chakra-ui/form-control';
 import {PlusSquareIcon} from '@chakra-ui/icons';
+import {InputProps} from '@chakra-ui/input';
 import {Text} from '@chakra-ui/layout';
 import ImageUploadButton from 'components/common/ImageUploadButton';
-import {InputFormProps} from 'types/props';
+import {FormProps, InputFormProps} from 'types/props';
 import {FormLabel} from './sub/RegisterFormItems';
 
 const ImageUploadForm = (props: InputFormProps) => {
-  const {label, placeholder, onChange} = props;
+  const formProps: FormProps = props;
+  const inputProps: InputProps = props;
 
   return (
     <FormControl>
-      <FormLabel>{label}</FormLabel>
+      <FormLabel>{formProps.label}</FormLabel>
       <ImageUploadButton
         buttonProps={{
           variant: 'outline',
@@ -18,10 +20,10 @@ const ImageUploadForm = (props: InputFormProps) => {
           height: '160px',
           flexDirection: 'column',
         }}
-        onChange={onChange}
+        inputProps={inputProps}
       >
         <PlusSquareIcon />
-        <Text>{placeholder}</Text>
+        <Text>{inputProps.placeholder}</Text>
       </ImageUploadButton>
     </FormControl>
   );

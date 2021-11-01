@@ -9,6 +9,16 @@ export interface LoginData {
   password: string;
 }
 
+export interface RegisterData {
+  [key: string]: any;
+  name: string;
+  email: string;
+  password: string;
+  introduce: string;
+  categories: string[];
+  image: any;
+}
+
 export interface UserToken {
   token: string;
 }

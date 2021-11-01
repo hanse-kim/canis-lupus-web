@@ -1,37 +1,28 @@
-import {PlusSquareIcon} from '@chakra-ui/icons';
-import {Avatar, Center} from '@chakra-ui/react';
-import ImageUploadButton from 'components/common/ImageUploadButton';
 import {FormContentProps} from 'types/props';
 import SubmitButton from 'components/form/formContent/sub/SubmitButton';
 import InputForm from 'components/form/formContent/InputForm';
 import React from 'react';
 import useProfileHooks from 'hooks/register/useProfileHooks';
 import FormStepWrapper from 'components/form/FormStepWrapper';
+import ProfileImageUploadForm from 'components/form/formContent/ProfileImageUploadForm';
 
 const formDataKeys = ['name', 'introduce'];
 
 const ProfileStep = (props: FormContentProps) => {
-  const {error, onNameChange, onIntroduceChange, onSubmitClick} =
-    useProfileHooks();
-
+  const {
+    error,
+    profileImageUrl,
+    onPropfileImageChange,
+    onNameChange,
+    onIntroduceChange,
+    onSubmitClick,
+  } = useProfileHooks();
   return (
     <FormStepWrapper {...props} formDataKeys={formDataKeys}>
-      <Center>
-        <Avatar size='2xl'>
-          <ImageUploadButton
-            buttonProps={{
-              position: 'absolute',
-              right: '0',
-              bottom: '0',
-              borderRadius: '9999',
-              padding: '0',
-            }}
-            onChange={undefined}
-          >
-            <PlusSquareIcon />
-          </ImageUploadButton>
-        </Avatar>
-      </Center>
+      <ProfileImageUploadForm
+        onChange={onPropfileImageChange}
+        imageUrl={profileImageUrl}
+      />
       <InputForm
         error={error.name}
         onChange={onNameChange}

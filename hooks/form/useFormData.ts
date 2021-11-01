@@ -3,7 +3,7 @@ import {useCallback} from 'react';
 import {atom, useRecoilState} from 'recoil';
 
 const formDataState = atom<{[key: string]: any}>({
-  key: 'useFormDataState',
+  key: 'formDataState',
   default: {},
 });
 

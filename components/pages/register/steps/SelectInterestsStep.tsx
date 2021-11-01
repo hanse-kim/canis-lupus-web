@@ -6,7 +6,7 @@ import useCategoryList from 'hooks/api/useCategoryList';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import FormStepWrapper from 'components/form/FormStepWrapper';
 
-const formDataKeys = ['interests'];
+const formDataKeys = ['categories'];
 
 const SelectInterestsStep = (props: FormContentProps) => {
   const {checked, onCheckboxChange, onSubmitClick} = useSelectInterestsHooks();
@@ -21,12 +21,18 @@ const SelectInterestsStep = (props: FormContentProps) => {
       <CheckboxForm
         label='관심 카테고리 선택'
         itemList={
-          isLoading ? [] : Object.values(categoryList).map((item) => item.name)
+          isLoading ?
+            [] :
+            Object.values(categoryList).map((item) => {
+                return {name: item.name, value: item._id};
+              })
         }
         checked={checked}
         onCheckboxChange={onCheckboxChange}
       />
-      <SubmitButton onClick={onSubmitClick}>회원가입</SubmitButton>
+      <SubmitButton onClick={onSubmitClick} isLoading={props.isLoading}>
+        회원가입
+      </SubmitButton>
     </FormStepWrapper>
   );
 };

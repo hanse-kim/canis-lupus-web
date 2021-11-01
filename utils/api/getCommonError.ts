@@ -1,5 +1,4 @@
 const getCommonError = (e: any) => {
-  console.log(e);
   if (e.response) {
     return e.response.data.message;
   } else {

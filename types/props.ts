@@ -16,6 +16,7 @@ export interface ProductProps {
 
 export interface FormContentProps {
   onSubmit: () => void;
+  isLoading?: boolean;
 }
 
 export interface FormProps {
@@ -32,7 +33,12 @@ export interface TextareaFormProps extends FormProps, TextareaProps {}
 export interface ButtonFormProps extends FormProps, ButtonProps {}
 
 export interface CheckboxFormProps extends FormProps {
-  itemList: string[];
+  itemList: CheckboxItemList[];
   checked: string[];
   onCheckboxChange: (checkboxItem: string, isChecked: boolean) => void;
+}
+
+export interface CheckboxItemList {
+  name: string;
+  value: string;
 }
