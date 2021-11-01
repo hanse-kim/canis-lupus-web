@@ -8,10 +8,10 @@ import React from 'react';
 import useProfileHooks from 'hooks/register/useProfileHooks';
 import FormStepWrapper from 'components/form/FormStepWrapper';
 
-const formDataKeys = ['nickname', 'introduce'];
+const formDataKeys = ['name', 'introduce'];
 
 const ProfileStep = (props: FormContentProps) => {
-  const {error, onNicknameChange, onIntroduceChange, onSubmitClick} =
+  const {error, onNameChange, onIntroduceChange, onSubmitClick} =
     useProfileHooks();
 
   return (
@@ -33,8 +33,8 @@ const ProfileStep = (props: FormContentProps) => {
         </Avatar>
       </Center>
       <InputForm
-        error={error.nickname}
-        onChange={onNicknameChange}
+        error={error.name}
+        onChange={onNameChange}
         label='닉네임'
         placeholder='닉네임을 입력해주세요'
         maxLength={20}

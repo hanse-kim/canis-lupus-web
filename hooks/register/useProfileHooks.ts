@@ -1,23 +1,23 @@
 import useFormData from 'hooks/form/useFormData';
 import useFormError from 'hooks/form/useFormError';
 import useIntroduceValidation from 'hooks/form/validation/useIntroduceValidation';
-import useNicknameValidation from 'hooks/form/validation/useNicknameValidation';
+import useNameValidation from 'hooks/form/validation/useNameValidation';
 import {useState} from 'react';
 
 const useProfileHooks = () => {
   const {updateFormData} = useFormData();
 
   const {error, updateFormError, isError} = useFormError([
-    'nickname',
+    'name',
     'introduce',
   ]);
-  const [nickname, setNickname] = useState('');
+  const [name, setName] = useState('');
   const [introduce, setIntroduce] = useState('');
-  const {validateNickname} = useNicknameValidation();
+  const {validateName} = useNameValidation();
   const {validateIntroduce} = useIntroduceValidation();
 
-  const onNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
+  const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
   };
 
   const onIntroduceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ const useProfileHooks = () => {
 
   const onSubmitClick = () => {
     const validateResults = {
-      nickname: validateNickname(nickname),
+      name: validateName(name),
       introduce: validateIntroduce(introduce),
     };
     updateFormError(validateResults);
@@ -34,14 +34,14 @@ const useProfileHooks = () => {
     const isSubmittable = !isError(validateResults);
     if (isSubmittable) {
       updateFormData({
-        nickname,
+        name,
         introduce,
       });
     }
   };
   return {
     error,
-    onNicknameChange,
+    onNameChange,
     onIntroduceChange,
     onSubmitClick,
   };

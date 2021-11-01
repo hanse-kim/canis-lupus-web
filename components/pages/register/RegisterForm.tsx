@@ -7,13 +7,11 @@ import ProfileStep from './steps/ProfileStep';
 import SelectInterestsStep from './steps/SelectInterestsStep';
 import usePageMove from 'hooks/usePageMove';
 import AccountInfoStep from 'components/pages/register/steps/AccountInfoStep';
-import MobileVerificationStep from './steps/MobileVerificationStep';
 import axios from 'axios';
 
 const registerSteps = [
   '이용약관',
   '계정정보입력',
-  '전화번호인증',
   '자기소개입력',
   '관심분야선택',
 ] as const;
@@ -52,7 +50,6 @@ const RegisterForm = () => {
       </Heading>
       {step === '이용약관' && <TermsOfUseStep onSubmit={toNext} />}
       {step === '계정정보입력' && <AccountInfoStep onSubmit={toNext} />}
-      {step === '전화번호인증' && <MobileVerificationStep onSubmit={toNext} />}
       {step === '자기소개입력' && <ProfileStep onSubmit={toNext} />}
       {step === '관심분야선택' && <SelectInterestsStep onSubmit={submit} />}
     </Box>
