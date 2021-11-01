@@ -1,41 +1,38 @@
 import axios from 'axios';
-import {useEffect} from 'react';
+import {useState} from 'react';
 import {useMutation} from 'react-query';
 import {LoginData, UserData, UserToken} from 'types/auth';
-import {NextResponse} from 'types/domain';
+import getCommonError from 'utils/api/getCommonError';
 import decodeJwtToken from 'utils/auth/decodeToken';
 import useAuth from './useAuth';
 
 const useLogin = (callback?: () => void) => {
   const {login: authLogin} = useAuth();
-  const loginMutation = useMutation((loginData: LoginData) => {
-    return axios.post<NextResponse<UserToken>>('/api/auth/login', loginData);
-  });
-
-  const login = loginMutation.mutate;
-  const isLogining = loginMutation.isLoading;
-  const loginResponseData = loginMutation.data;
-
-  useEffect(() => {
-    if (
-      loginResponseData &&
-      !loginResponseData.data.error &&
-      loginResponseData.data.data?.token
-    ) {
-      const token = loginResponseData.data.data.token;
-      const userData: UserData =
-        decodeJwtToken<{_id: string; name: string}>(token);
-      authLogin(userData);
-      if (callback) {
-        callback();
-      }
+  const [error, setError] = useState('');
+  const loginMutation = useMutation(
+    (loginData: LoginData) => {
+      return axios.post<UserToken>('/api/auth/login', loginData);
+    },
+    {
+      onSuccess: (axiosResponse) => {
+        const token = axiosResponse.data.token;
+        const userData: UserData =
+          decodeJwtToken<{_id: string; name: string}>(token);
+        authLogin(userData);
+        if (callback) {
+          callback();
+        }
+      },
+      onError: (e: any) => {
+        setError(getCommonError(e));
+      },
     }
-  }, [authLogin, callback, loginResponseData]);
+  );
 
   return {
-    login,
-    isLogining,
-    loginResponseData,
+    login: loginMutation.mutate,
+    isLogining: loginMutation.isLoading,
+    loginError: error,
   };
 };
 

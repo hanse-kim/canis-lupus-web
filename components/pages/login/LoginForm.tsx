@@ -20,7 +20,7 @@ const LoginForm = () => {
     formState: {errors},
   } = useForm();
   const {pageMove, pageMoveWithRedirect, getRedirect} = usePageMove();
-  const {login, isLogining, loginResponseData} = useLogin(() => {
+  const {login, isLogining, loginError} = useLogin(() => {
     pageMove('/main');
   });
   const {isLoggedIn} = useAuth();
@@ -35,7 +35,23 @@ const LoginForm = () => {
   }
 
   const onSubmit = (loginData: {email: string; password: string}) => {
+    if (Object.values(loginData).some((value) => !value)) {
+      return;
+    }
+
     return login(loginData);
+  };
+
+  const getError = () => {
+    if (errors.email) {
+      return errors.email.message;
+    } else if (errors.password) {
+      return errors.password.message;
+    } else if (loginError) {
+      return loginError;
+    } else {
+      return '';
+    }
   };
 
   return (
@@ -62,20 +78,8 @@ const LoginForm = () => {
             {...register('password', {required: '비밀번호를 입력해주세요'})}
           />
         </FormControl>
-        <FormControl
-          isInvalid={
-            errors.email || errors.password || loginResponseData?.data.error
-          }
-        >
-          <FormErrorMessage>
-            {errors.email ?
-              errors.email.message :
-              errors.password ?
-              errors.password.message :
-              loginResponseData?.data.error ?
-              loginResponseData.data.error :
-              ''}
-          </FormErrorMessage>
+        <FormControl isInvalid={errors.email || errors.password || loginError}>
+          <FormErrorMessage>{getError()}</FormErrorMessage>
         </FormControl>
         <Flex justifyContent='space-between'>
           <Link fontSize='sm' onClick={() => pageMoveWithRedirect('/register')}>
