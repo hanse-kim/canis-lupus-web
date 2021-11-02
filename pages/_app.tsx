@@ -8,6 +8,7 @@ import Layout from 'components/layout/Layout';
 import 'public/global.css';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import defaultChakraTheme from 'style/defaultChakraTheme';
 
 const queryClient = new QueryClient();
 
@@ -27,7 +28,7 @@ const MyApp = ({Component, pageProps}: AppProps) => {
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <ChakraProvider>
+        <ChakraProvider theme={defaultChakraTheme}>
           <Meta />
           <Layout>
             <Component {...pageProps} />
