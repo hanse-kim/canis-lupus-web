@@ -4,8 +4,7 @@ import {colors} from 'style';
 const defaultChakraTheme = extendTheme({
   styles: {
     global: {
-      body: {
-        minHeight: '100vh',
+      'html, body': {
         color: colors.black,
         fontSize: '14px',
         fontFamily: 'AppleSDGothicNeo, Noto Sans KR, sans-serif',

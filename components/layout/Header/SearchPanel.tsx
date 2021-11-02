@@ -1,4 +1,5 @@
-import {Box, Container, Divider, Fade} from '@chakra-ui/react';
+import {Box, Divider, Fade} from '@chakra-ui/react';
+import Container from 'components/common/Container';
 import React from 'react';
 
 const SearchPanel = (props: {

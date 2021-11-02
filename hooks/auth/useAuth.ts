@@ -1,4 +1,4 @@
-import {useCallback} from 'react';
+import {useCallback, useMemo} from 'react';
 import {UserData} from 'types/auth';
 
 export const USER_DATA = 'userData';
@@ -13,9 +13,19 @@ const useAuth = () => {
   }, []);
 
   const isLoggedIn =
-    typeof window !== 'undefined' && localStorage.getItem(USER_DATA) !== null;
+    typeof localStorage !== 'undefined' &&
+    localStorage.getItem(USER_DATA) !== null;
 
-  return {login, logout, isLoggedIn: isLoggedIn};
+  const userData: UserData = useMemo(() => {
+    if (!isLoggedIn) {
+      return {};
+    }
+
+    const data = localStorage.getItem(USER_DATA);
+    return JSON.parse(data!);
+  }, [isLoggedIn]);
+
+  return {login, logout, isLoggedIn, userData};
 };
 
 export default useAuth;
