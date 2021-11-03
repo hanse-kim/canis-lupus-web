@@ -8,9 +8,9 @@ import {
   InputLeftElement,
   InputRightElement,
 } from '@chakra-ui/react';
-import usePageMove from 'hooks/usePageMove';
 import {colors} from 'style';
 import multiplyColors from 'utils/style/multiplyColors';
+import useSearch from 'hooks/search/useSearch';
 
 const searchFormStyle = {
   backgroundColor: colors.panelGray,
@@ -25,9 +25,9 @@ const searchFormStyle = {
 };
 
 const SearchForm = (props: {onOpen: () => void; onClose: () => void}) => {
-  const {onOpen, onClose} = props;
+  const {onOpen} = props;
   const [keyword, setKeyword] = React.useState('');
-  const {pageMove} = usePageMove();
+  const {search} = useSearch(keyword);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
@@ -41,11 +41,6 @@ const SearchForm = (props: {onOpen: () => void; onClose: () => void}) => {
     if (e.key === 'Enter') {
       search();
     }
-  };
-
-  const search = () => {
-    pageMove(`/search?keyword=${keyword}`);
-    onClose();
   };
 
   return (

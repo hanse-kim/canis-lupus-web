@@ -1,6 +1,6 @@
 import {Box, Divider, Fade} from '@chakra-ui/react';
-import Container from 'components/common/Container';
 import React from 'react';
+import SearchPanelContent from './SearchPanelContent';
 
 const SearchPanel = (props: {
   isOpen: boolean;
@@ -27,9 +27,7 @@ const SearchPanel = (props: {
         zIndex='modal'
         boxShadow='lg'
       >
-        <Container maxWidth='container.md'>
-          This is search panel content.
-        </Container>
+        <SearchPanelContent />
         <Divider />
       </Box>
       <Box
