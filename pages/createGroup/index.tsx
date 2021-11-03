@@ -1,11 +1,14 @@
 import PageWrapper from 'components/common/PageWrapper';
+import Layout from 'components/layout/Layout';
 import CreateGroupForm from 'components/pages/createGroup/CreateGroupForm';
 
 const CreateGroup = () => {
   return (
-    <PageWrapper>
-      <CreateGroupForm />
-    </PageWrapper>
+    <Layout>
+      <PageWrapper>
+        <CreateGroupForm />
+      </PageWrapper>
+    </Layout>
   );
 };
 

@@ -19,6 +19,7 @@ const ProfileStep = (props: FormContentProps) => {
     onSubmitClick,
     disabled,
   } = useProfileHooks();
+
   return (
     <FormStepWrapper {...props} formDataKeys={formDataKeys}>
       <Stack spacing='28px'>

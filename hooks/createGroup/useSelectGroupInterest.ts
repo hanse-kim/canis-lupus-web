@@ -1,7 +1,7 @@
 import useFormData from 'hooks/form/useFormData';
 import {useState} from 'react';
 
-const useSelectGroupInterestHooks = () => {
+const useSelectGroupInterest = () => {
   const [checked, setChecked] = useState<string[]>([]);
   const {updateFormData} = useFormData();
 
@@ -24,4 +24,4 @@ const useSelectGroupInterestHooks = () => {
   return {checked, onCheckboxChange, onSubmitClick};
 };
 
-export default useSelectGroupInterestHooks;
+export default useSelectGroupInterest;

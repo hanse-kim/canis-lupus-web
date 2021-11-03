@@ -38,6 +38,7 @@ export interface CheckboxFormProps extends FormProps {
   checked: string[];
   onCheckboxChange: (checkboxItem: string, isChecked: boolean) => void;
   label?: string;
+  isLoading?: boolean;
 }
 
 export interface CheckboxItemList {

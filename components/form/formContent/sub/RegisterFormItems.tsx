@@ -52,17 +52,26 @@ export const FormErrorMessage = (props: {children?: React.ReactNode}) => {
   );
 };
 
-export const FormInput = (props: {ref?: any} & InputProps) => {
+export const FormInput = (props: InputProps) => {
   return (
     <ChakraInput
+      borderColor={colors.mainGray[0]}
       borderRadius='2px'
       height='46px'
-      _placeholder={{color: colors.mainGray[0]}}
+      _placeholder={{color: colors.mainGray[0], fontSize: '12px'}}
       {...props}
     />
   );
 };
 
 export const FormTextArea = (props: TextareaProps) => {
-  return <ChakraTextarea {...props} />;
+  return (
+    <ChakraTextarea
+      borderColor={colors.mainGray[0]}
+      borderRadius='2px'
+      height='46px'
+      _placeholder={{color: colors.mainGray[0], fontSize: '12px'}}
+      {...props}
+    />
+  );
 };

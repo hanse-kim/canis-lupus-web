@@ -4,7 +4,7 @@ const objectToFormData = (object: any) => {
     const value = object[key];
     if (Array.isArray(value)) {
       for (let i = 0; i < value.length; i++) {
-        formData.append(`${key}[${i}]`, value[i]);
+        formData.append(key, value[i]);
       }
     } else {
       formData.append(key, object[key]);
