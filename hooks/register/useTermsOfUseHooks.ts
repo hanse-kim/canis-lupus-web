@@ -25,7 +25,7 @@ const useTermsOfUseHooks = (termsOfUseList: TosInfo[]) => {
 
   const isAllRequirementsChecked = () => {
     for (let i = 0; i < termsOfUseList.length; i++) {
-      if (termsOfUseList[i].is_required && !checkedItems[i]) {
+      if (termsOfUseList[i].isRequired && !checkedItems[i]) {
         return false;
       }
     }

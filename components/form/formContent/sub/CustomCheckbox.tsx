@@ -8,18 +8,17 @@ interface CustomCheckboxProps {
 
 const CustomCheckbox = (props: CustomCheckboxProps) => {
   return (
-    <Checkbox {...props.checkboxProps} size='lg'>
-      <Text {...props.textStyle}>{props.children}</Text>
+    <Checkbox size='lg' {...props.checkboxProps}>
+      <Text fontSize='14px' {...props.textStyle}>
+        {props.children}
+      </Text>
     </Checkbox>
   );
 };
 
 export const CheckboxAll = (props: CustomCheckboxProps) => {
   return (
-    <CustomCheckbox
-      {...props}
-      textStyle={{fontSize: 'lg', fontWeight: 'semibold'}}
-    >
+    <CustomCheckbox {...props} textStyle={{fontWeight: 'bold'}}>
       {props.children}
     </CustomCheckbox>
   );
@@ -27,10 +26,7 @@ export const CheckboxAll = (props: CustomCheckboxProps) => {
 
 export const CheckboxChild = (props: CustomCheckboxProps) => {
   return (
-    <CustomCheckbox
-      {...props}
-      textStyle={{fontSize: 'sm', fontWeight: '400', color: 'gray.400'}}
-    >
+    <CustomCheckbox {...props} textStyle={{color: '#636c73'}}>
       {props.children}
     </CustomCheckbox>
   );

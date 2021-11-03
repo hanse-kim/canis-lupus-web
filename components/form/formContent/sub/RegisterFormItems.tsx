@@ -9,6 +9,7 @@ import {
   TextareaProps,
 } from '@chakra-ui/react';
 import React from 'react';
+import {colors} from 'style';
 
 export const FormLabel = (props: {
   isInvalid?: boolean;
@@ -18,7 +19,8 @@ export const FormLabel = (props: {
     <ChakraFormLabel
       as='legend'
       fontWeight='bold'
-      color={props.isInvalid ? 'red.500' : undefined}
+      color={props.isInvalid ? colors.warningRed : undefined}
+      marginBottom='8px'
     >
       {props.children}
     </ChakraFormLabel>
@@ -32,27 +34,33 @@ export const FormHelperText = (props: {
 }) => {
   return (
     <ChakraFormHelperText
-      fontSize='xs'
+      fontSize='12px'
+      marginTop='4px'
       display={props.isInvalid ? 'none' : undefined}
-      color={props.color ? props.color : 'gray.400'}
+      color={props.color ? props.color : '#636c73'}
     >
       {props.children}
     </ChakraFormHelperText>
   );
 };
 
-export const FormErrorMessage = (props: {
-  children?: React.ReactNode;
-}) => {
+export const FormErrorMessage = (props: {children?: React.ReactNode}) => {
   return (
-    <ChakraFormErrorMessage fontSize='xs'>
+    <ChakraFormErrorMessage fontSize='12px' marginTop='4px'>
       {props.children}
     </ChakraFormErrorMessage>
   );
 };
 
 export const FormInput = (props: {ref?: any} & InputProps) => {
-  return <ChakraInput borderRadius={0} {...props} />;
+  return (
+    <ChakraInput
+      borderRadius={0}
+      height='46px'
+      _placeholder={{color: colors.mainGray[0]}}
+      {...props}
+    />
+  );
 };
 
 export const FormTextArea = (props: TextareaProps) => {

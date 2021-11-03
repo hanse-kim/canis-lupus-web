@@ -7,7 +7,7 @@ const CheckboxForm = (props: CheckboxFormProps) => {
   const {itemList, checked, onCheckboxChange, label} = props;
   return (
     <FormControl>
-      <FormLabel>{label}</FormLabel>
+      {label && <FormLabel>{label}</FormLabel>}
       {itemList.map((item, index) => {
         return (
           <CategoryCheckbox

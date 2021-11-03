@@ -1,4 +1,4 @@
-import {Box, Heading} from '@chakra-ui/react';
+import {Box} from '@chakra-ui/react';
 import {useCallback, useEffect} from 'react';
 import TermsOfUseStep from './steps/TermsOfUseStep';
 import useFormData from 'hooks/form/useFormData';
@@ -37,15 +37,27 @@ const RegisterForm = () => {
   }, [resetFormData, resetStep]);
 
   return (
-    <Box className='registerBox' maxWidth='320px' marginX='auto'>
-      <Heading paddingY='10' size='md' textAlign='center'>
-        회원가입
-      </Heading>
-      {step === '이용약관' && <TermsOfUseStep onSubmit={toNext} />}
-      {step === '계정정보입력' && <AccountInfoStep onSubmit={toNext} />}
-      {step === '자기소개입력' && <ProfileStep onSubmit={toNext} />}
+    <Box
+      className='registerBox'
+      maxWidth='360px'
+      marginX='auto'
+      paddingY='140px'
+    >
+      {step === '이용약관' && (
+        <TermsOfUseStep onSubmit={toNext} heading='이건모임 약관 동의' />
+      )}
+      {step === '계정정보입력' && (
+        <AccountInfoStep onSubmit={toNext} heading='이메일로 회원가입' />
+      )}
+      {step === '자기소개입력' && (
+        <ProfileStep onSubmit={toNext} heading='자신을 멋지게 소개해보세요' />
+      )}
       {step === '관심분야선택' && (
-        <SelectInterestsStep onSubmit={submit} isLoading={isRegistering} />
+        <SelectInterestsStep
+          onSubmit={submit}
+          isLoading={isRegistering}
+          heading='관심 카테고리 선택'
+        />
       )}
     </Box>
   );

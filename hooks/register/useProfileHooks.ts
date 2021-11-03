@@ -53,6 +53,9 @@ const useProfileHooks = () => {
       });
     }
   };
+
+  const disabled = !name || !introduce || !profileImage;
+
   return {
     error,
     profileImage,
@@ -61,6 +64,7 @@ const useProfileHooks = () => {
     onNameChange,
     onIntroduceChange,
     onSubmitClick,
+    disabled,
   };
 };
 

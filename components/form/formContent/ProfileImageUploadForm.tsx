@@ -1,5 +1,4 @@
-import {PlusSquareIcon} from '@chakra-ui/icons';
-import {Avatar, Center, InputProps} from '@chakra-ui/react';
+import {Image, Box, Center, InputProps} from '@chakra-ui/react';
 import ImageUploadButton from 'components/common/ImageUploadButton';
 import React from 'react';
 
@@ -8,20 +7,18 @@ const ProfileImageUploadForm = (props: InputProps & {imageUrl?: string}) => {
 
   return (
     <Center>
-      <Avatar size='2xl' src={imageUrl}>
-        <ImageUploadButton
-          buttonProps={{
-            position: 'absolute',
-            right: '0',
-            bottom: '0',
-            borderRadius: '9999',
-            padding: '0',
-          }}
-          inputProps={inputProps}
-        >
-          <PlusSquareIcon />
-        </ImageUploadButton>
-      </Avatar>
+      <Box className='frame' width='120px' height='120px' position='relative'>
+        <Image
+          width='full'
+          height='full'
+          src={imageUrl}
+          alt='profileImage'
+          borderRadius='full'
+          fallbackSrc='profileFallback.png'
+          objectFit='cover'
+        />
+        <ImageUploadButton inputProps={inputProps} />
+      </Box>
     </Center>
   );
 };

@@ -10,14 +10,10 @@ const TermsOfUseForm = (props: {
 }) => {
   const {tos, onChange, isChecked} = props;
 
-  const openTos = (content: string) => {
-    alert(content);
-  };
-
   return (
     <FormControl
-      isRequired={tos.is_required}
-      isInvalid={tos.is_required && !isChecked}
+      isRequired={tos.isRequired}
+      isInvalid={tos.isRequired && !isChecked}
     >
       <Center direction='row' justifyContent='space-between'>
         <CheckboxChild
@@ -26,13 +22,9 @@ const TermsOfUseForm = (props: {
             isChecked: isChecked,
           }}
         >
-          {`(${tos.is_required ? '필수' : '선택'}) ${tos.name}`}
+          {`(${tos.isRequired ? '필수' : '선택'}) ${tos.name}`}
         </CheckboxChild>
-        <Link
-          onClick={() => {
-            openTos(tos.content);
-          }}
-        >
+        <Link href={tos.url} target='_blank' rel='noopener noreferrer'>
           <ChevronRightIcon boxSize='6' color='gray.400' />
         </Link>
       </Center>

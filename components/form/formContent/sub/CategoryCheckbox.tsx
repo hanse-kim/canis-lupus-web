@@ -1,12 +1,16 @@
-import {Tag, TagProps} from '@chakra-ui/react';
+import {Tag} from '@chakra-ui/react';
+import {colors} from 'style';
 
-const checkedStyle: TagProps = {
-  colorScheme: 'blue',
+const checkedStyle = {
+  backgroundColor: colors.mainBlue[1],
+  borderColor: colors.mainBlue[1],
+  color: colors.white,
 };
 
-const notCheckedStyle: TagProps = {
-  variant: 'outline',
-  colorScheme: 'gray',
+const notCheckedStyle = {
+  backgroundColor: colors.white,
+  borderColor: colors.mainGray[0],
+  color: colors.mainGray[0],
 };
 
 const CategoryCheckbox = (props: {
@@ -19,7 +23,10 @@ const CategoryCheckbox = (props: {
       onClick={() => {
         props.onChange(!props.isChecked);
       }}
+      borderWidth='1px'
       borderRadius='full'
+      paddingX='12px'
+      paddingY='8px'
       userSelect='none'
       margin='1'
       {...(props.isChecked ? checkedStyle : notCheckedStyle)}

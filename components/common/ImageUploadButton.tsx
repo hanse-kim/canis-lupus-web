@@ -1,12 +1,11 @@
-import {Button, ButtonProps, Input, InputProps} from '@chakra-ui/react';
+import {Center, Input, InputProps, Image} from '@chakra-ui/react';
 import React, {useRef} from 'react';
 
 const ImageUploadButton = (props: {
-  buttonProps: ButtonProps;
   inputProps: InputProps;
   children?: React.ReactNode;
 }) => {
-  const {children, buttonProps, inputProps} = props;
+  const {inputProps} = props;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onClick = () => {
@@ -14,8 +13,19 @@ const ImageUploadButton = (props: {
   };
 
   return (
-    <Button {...buttonProps} onClick={onClick}>
-      {children}
+    <Center
+      onClick={onClick}
+      backgroundColor='#c2c6cd'
+      height='32px'
+      width='32px'
+      position='absolute'
+      bottom='0'
+      right='0'
+      borderRadius='9999'
+      padding='0'
+      _hover={{cursor: 'pointer'}}
+    >
+      <Image position='absolute' src='icons/icon_camera.svg' alt='uploadIcon' />
       <Input
         type='file'
         display='none'
@@ -23,7 +33,7 @@ const ImageUploadButton = (props: {
         accept='image/jpg, image/jpeg, image/png'
         {...inputProps}
       />
-    </Button>
+    </Center>
   );
 };
 

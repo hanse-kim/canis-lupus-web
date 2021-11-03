@@ -19,7 +19,6 @@ const SelectInterestsStep = (props: FormContentProps) => {
   return (
     <FormStepWrapper {...props} formDataKeys={formDataKeys}>
       <CheckboxForm
-        label='관심 카테고리 선택'
         itemList={
           isLoading ?
             [] :

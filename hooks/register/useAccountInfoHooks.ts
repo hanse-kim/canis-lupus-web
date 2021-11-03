@@ -48,6 +48,8 @@ const useAccountInfoHooks = () => {
     }
   };
 
+  const disabled = !email || !password || !passwordConfirm;
+
   return {
     error,
     isError,
@@ -55,6 +57,7 @@ const useAccountInfoHooks = () => {
     onPasswordChange,
     onPasswordConfirmChange,
     onSubmitClick,
+    disabled,
   };
 };
 

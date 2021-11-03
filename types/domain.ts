@@ -11,16 +11,10 @@ export interface BannerInfo {
   img_url: string;
 }
 
-export interface TosRecord {
-  id: string;
-  fields: TosInfo;
-  createdTime: string;
-}
-
 export interface TosInfo {
   name: string;
-  content: string;
-  is_required: boolean;
+  url: string;
+  isRequired: boolean;
 }
 
 export interface CategoryInfo {

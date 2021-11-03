@@ -14,7 +14,6 @@ const Button = (props: ButtonProps) => {
       <ChakraButton
         {...props}
         {...{color: colors.white, backgroundColor: colors.mainGray[0]}}
-        overflow='hidden'
         _hover={{color: colors.white, backgroundColor: colors.mainGray[0]}}
         _active={{color: colors.white, backgroundColor: colors.mainGray[0]}}
       >
@@ -27,7 +26,6 @@ const Button = (props: ButtonProps) => {
     <ChakraButton
       {...props}
       {...{color: colors.white, backgroundColor: idleColor}}
-      overflow='hidden'
       _hover={{color: colors.white, backgroundColor: hoverColor}}
       _active={{color: colors.white, backgroundColor: activeColor}}
     >
