@@ -1,7 +1,12 @@
-import {useCallback, useMemo} from 'react';
+import {useCallback, useEffect, useMemo} from 'react';
+import {atom, useRecoilState} from 'recoil';
 import {UserData} from 'types/auth';
 
 export const USER_DATA = 'userData';
+const isLoggedInState = atom({
+  key: 'isLoggedInState',
+  default: false,
+});
 
 const useAuth = () => {
   const login = useCallback((userData: UserData) => {
@@ -12,9 +17,14 @@ const useAuth = () => {
     localStorage.removeItem(USER_DATA);
   }, []);
 
-  const isLoggedIn =
-    typeof localStorage !== 'undefined' &&
-    localStorage.getItem(USER_DATA) !== null;
+  const [isLoggedIn, setLoggedIn] = useRecoilState(isLoggedInState);
+
+  useEffect(() => {
+    setLoggedIn(
+      typeof localStorage !== 'undefined' &&
+        localStorage.getItem(USER_DATA) !== null
+    );
+  }, [setLoggedIn]);
 
   const userData: UserData = useMemo(() => {
     if (!isLoggedIn) {

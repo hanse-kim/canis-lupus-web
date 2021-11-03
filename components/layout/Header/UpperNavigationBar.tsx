@@ -2,7 +2,7 @@ import {Box, Flex, HStack, Link, LinkProps} from '@chakra-ui/layout';
 import Container from 'components/common/Container';
 import useAuth from 'hooks/auth/useAuth';
 import usePageMove from 'hooks/usePageMove';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {colors} from 'style';
 
 const upperMenu = [
@@ -35,15 +35,10 @@ const UpperNavigationButton = (props: LinkProps) => {
 const UpperNavigationBar = () => {
   const {logout, isLoggedIn} = useAuth();
   const {pageMoveWithRedirect} = usePageMove();
-  const [isLoggedInState, setLoggedIn] = useState(false);
   const logoutAndRefresh = () => {
     logout();
     refresh();
   };
-
-  useEffect(() => {
-    setLoggedIn(isLoggedIn);
-  }, [isLoggedIn]);
 
   return (
     <Box
@@ -58,7 +53,7 @@ const UpperNavigationBar = () => {
         alignItems='center'
       >
         <HStack spacing='20px'>
-          {isLoggedInState && (
+          {isLoggedIn && (
             <React.Fragment>
               <UpperNavigationMemberText />
               <UpperNavigationButton onClick={logoutAndRefresh}>
@@ -66,7 +61,7 @@ const UpperNavigationBar = () => {
               </UpperNavigationButton>
             </React.Fragment>
           )}
-          {!isLoggedInState && (
+          {!isLoggedIn && (
             <UpperNavigationButton
               onClick={() => {
                 pageMoveWithRedirect('/login');
