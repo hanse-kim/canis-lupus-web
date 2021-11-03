@@ -1,3 +1,4 @@
+import {BoxProps} from '@chakra-ui/layout';
 import React from 'react';
 import Container from './Container';
 
@@ -5,9 +6,9 @@ const styles = {
   minHeight: 'container.sm',
 };
 
-const PageWrapper = (props: { children?: React.ReactNode }) => {
+const PageWrapper = (props: BoxProps) => {
   return (
-    <Container {...styles} className='pageWrapper'>
+    <Container className='pageWrapper' {...props} {...styles}>
       {props.children}
     </Container>
   );

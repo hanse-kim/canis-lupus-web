@@ -6,8 +6,8 @@ import React, {useEffect, useState} from 'react';
 import {colors} from 'style';
 
 const upperMenu = [
-  {title: '공지사항', url: ''},
-  {title: '자주 묻는 질문', url: ''},
+  {title: '공지사항', url: '/notice'},
+  {title: '자주 묻는 질문', url: '/faq'},
 ];
 
 const refresh = () => {

@@ -3,10 +3,10 @@ import Container from 'components/common/Container';
 import {colors} from 'style';
 
 const footerMenu = [
-  {title: '개인정보취급방침', url: ''},
-  {title: '이용약관', url: ''},
-  {title: '공지사항', url: ''},
-  {title: '자주 묻는 질문', url: ''},
+  {title: '개인정보취급방침', url: '/terms/privacyPolicy'},
+  {title: '이용약관', url: '/terms/termsOfUse'},
+  {title: '공지사항', url: '/notice'},
+  {title: '자주 묻는 질문', url: '/faq'},
 ];
 
 const corperation = '(주)이건모임';
