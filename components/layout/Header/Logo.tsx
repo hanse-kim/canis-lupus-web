@@ -1,12 +1,15 @@
 import {Box, Image, Link} from '@chakra-ui/react';
 
-const LOGO_WIDTH = 122;
-
-const Logo = () => {
+const Logo = (props: {width?: string; height?: string}) => {
   return (
-    <Box className="logoContainer" marginRight="5" height="auto" marginY="auto">
-      <Link className="logoButton" href="/main">
-        <Image src="/logo.svg" alt="logo" width={`${LOGO_WIDTH}px`} />
+    <Box
+      className='logoContainer'
+      height='auto'
+      width='fit-content'
+      marginY='auto'
+    >
+      <Link className='logoButton' href='/main'>
+        <Image src='/logo.svg' alt='logo' {...props} />
       </Link>
     </Box>
   );

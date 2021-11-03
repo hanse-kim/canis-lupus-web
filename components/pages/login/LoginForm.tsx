@@ -1,16 +1,18 @@
 import {
-  Box,
-  Button,
   Flex,
   FormControl,
+  FormLabel,
   FormErrorMessage,
-  Heading,
   Input,
   Link,
+  Stack,
 } from '@chakra-ui/react';
+import {Button} from 'components/common/_basic';
+import Logo from 'components/layout/Header/Logo';
 import useAuth from 'hooks/auth/useAuth';
 import useLogin from 'hooks/auth/useLogin';
 import usePageMove from 'hooks/usePageMove';
+import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 
 const LoginForm = () => {
@@ -24,6 +26,8 @@ const LoginForm = () => {
     pageMove('/main');
   });
   const {isLoggedIn} = useAuth();
+  const [email, setEmail] = useState('');
+  const [passwrod, setPassword] = useState('');
 
   if (isLoggedIn) {
     const redirect = getRedirect();
@@ -55,27 +59,48 @@ const LoginForm = () => {
   };
 
   return (
-    <Box className='loginBox' maxWidth='320px' marginX='auto'>
-      <Heading paddingY='10' size='md' textAlign='center'>
-        로그인
-      </Heading>
+    <Stack
+      className='loginBox'
+      maxWidth='360px'
+      paddingY='140px'
+      marginX='auto'
+      alignItems='center'
+      spacing='24px'
+    >
+      <Logo height='32px' />
       <form style={{width: '100%'}} onSubmit={handleSubmit(onSubmit)}>
-        <FormControl marginBottom='2'>
+        <FormControl marginBottom='20px'>
+          <FormLabel marginBottom='8px' fontWeight='bold'>
+            이메일
+          </FormLabel>
           <Input
             id='email'
+            height='46px'
+            borderRadius='0'
             placeholder='이메일을 입력해주세요'
             {...register('email', {required: '이메일을 입력해주세요'})}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
           <FormErrorMessage>
             {errors.email && errors.email.message}
           </FormErrorMessage>
         </FormControl>
-        <FormControl marginBottom='2'>
+        <FormControl marginBottom='12px'>
+          <FormLabel marginBottom='8px' fontWeight='bold'>
+            비밀번호
+          </FormLabel>
           <Input
             id='password'
+            height='46px'
+            borderRadius='0'
             placeholder='비밀번호를 입력해주세요'
             type='password'
             {...register('password', {required: '비밀번호를 입력해주세요'})}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </FormControl>
         <FormControl isInvalid={errors.email || errors.password || loginError}>
@@ -89,15 +114,16 @@ const LoginForm = () => {
         </Flex>
         <Button
           width='full'
-          height='12'
-          marginTop='8'
+          height='52px'
+          marginTop='32px'
           isLoading={isLogining}
+          disabled={!email || !passwrod}
           type='submit'
         >
           로그인
         </Button>
       </form>
-    </Box>
+    </Stack>
   );
 };
 
