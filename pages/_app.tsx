@@ -4,8 +4,8 @@ import {QueryClient, QueryClientProvider} from 'react-query';
 // import {ReactQueryDevtools} from 'react-query-devtools';
 import {RecoilRoot} from 'recoil';
 import Meta from 'components/layout/Meta';
-import Layout from 'components/layout/Layout';
 import 'public/global.css';
+import 'public/slick-theme-custom.css';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import defaultChakraTheme from 'style/defaultChakraTheme';
@@ -30,9 +30,7 @@ const MyApp = ({Component, pageProps}: AppProps) => {
       <QueryClientProvider client={queryClient}>
         <ChakraProvider theme={defaultChakraTheme}>
           <Meta />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Component {...pageProps} />
         </ChakraProvider>
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>

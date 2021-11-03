@@ -1,11 +1,14 @@
 import PageWrapper from 'components/common/PageWrapper';
+import Layout from 'components/layout/Layout';
 import SearchResult from 'components/pages/search/SearchResult';
 
 const Search = () => {
   return (
-    <PageWrapper>
-      <SearchResult />
-    </PageWrapper>
+    <Layout>
+      <PageWrapper>
+        <SearchResult />
+      </PageWrapper>
+    </Layout>
   );
 };
 
