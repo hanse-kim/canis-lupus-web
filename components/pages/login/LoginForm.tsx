@@ -3,11 +3,11 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  Input,
   Link,
   Stack,
 } from '@chakra-ui/react';
 import {Button} from 'components/common/_basic';
+import {FormInput} from 'components/form/formContent/sub/RegisterFormItems';
 import Logo from 'components/layout/Header/Logo';
 import useAuth from 'hooks/auth/useAuth';
 import useLogin from 'hooks/auth/useLogin';
@@ -73,10 +73,8 @@ const LoginForm = () => {
           <FormLabel marginBottom='8px' fontWeight='bold'>
             이메일
           </FormLabel>
-          <Input
+          <FormInput
             id='email'
-            height='46px'
-            borderRadius='0'
             placeholder='이메일을 입력해주세요'
             {...register('email', {required: '이메일을 입력해주세요'})}
             onChange={(e) => {
@@ -91,10 +89,8 @@ const LoginForm = () => {
           <FormLabel marginBottom='8px' fontWeight='bold'>
             비밀번호
           </FormLabel>
-          <Input
+          <FormInput
             id='password'
-            height='46px'
-            borderRadius='0'
             placeholder='비밀번호를 입력해주세요'
             type='password'
             {...register('password', {required: '비밀번호를 입력해주세요'})}

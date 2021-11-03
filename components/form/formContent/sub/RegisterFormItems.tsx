@@ -55,7 +55,7 @@ export const FormErrorMessage = (props: {children?: React.ReactNode}) => {
 export const FormInput = (props: {ref?: any} & InputProps) => {
   return (
     <ChakraInput
-      borderRadius={0}
+      borderRadius='2px'
       height='46px'
       _placeholder={{color: colors.mainGray[0]}}
       {...props}
