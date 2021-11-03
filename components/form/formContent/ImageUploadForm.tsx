@@ -14,12 +14,6 @@ const ImageUploadForm = (props: InputFormProps) => {
     <FormControl>
       <FormLabel>{formProps.label}</FormLabel>
       <ImageUploadButton
-        buttonProps={{
-          variant: 'outline',
-          width: 'full',
-          height: '160px',
-          flexDirection: 'column',
-        }}
         inputProps={inputProps}
       >
         <PlusSquareIcon />

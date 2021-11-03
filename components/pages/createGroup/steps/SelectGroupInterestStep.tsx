@@ -21,7 +21,11 @@ const SelectGroupInterestStep = (props: FormContentProps) => {
     <FormStepWrapper {...props} formDataKeys={formDataKeys}>
       <CheckboxForm
         itemList={
-          isLoading ? [] : Object.values(categoryList).map((item) => item.name)
+          isLoading ?
+            [] :
+            Object.values(categoryList).map((item) => {
+                return {name: item.name, value: item._id};
+              })
         }
         checked={checked}
         onCheckboxChange={onCheckboxChange}
