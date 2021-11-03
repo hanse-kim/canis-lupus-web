@@ -1,5 +1,6 @@
 import {Box, Flex, Heading, HStack, Stack, Text} from '@chakra-ui/react';
 import React from 'react';
+import {colors} from 'style';
 import {FeedInfo} from 'types/domain';
 import TextFeed from './type/TextFeed';
 
@@ -35,11 +36,10 @@ const FeedTitle = (props: {title: string}) => {
 
 const FeedFooter = (props: {feed: FeedInfo}) => {
   return (
-    <Stack spacing={1}>
-      <Text
-        fontSize='xs'
-        color='gray.400'
-      >{`${props.feed.group_name} · ${props.feed.user_nickname}`}</Text>
+    <Stack spacing={1} color={colors.minorTextGray}>
+      <Text fontSize='xs'>
+        {`${props.feed.group_name} · ${props.feed.user_nickname}`}
+      </Text>
       <HStack spacing={3}>
         <IconAndNumber icon='heart' number={props.feed.like} />
         <IconAndNumber icon='message' number={props.feed.comment} />
@@ -55,9 +55,7 @@ const IconAndNumber = (props: {icon: string; number: number}) => {
         boxSize='16px'
         background={`no-repeat center url(/icons/${props.icon}.svg)`}
       />
-      <Text fontSize='xs' color='gray.400'>
-        {props.number}
-      </Text>
+      <Text fontSize='xs'>{props.number}</Text>
     </HStack>
   );
 };

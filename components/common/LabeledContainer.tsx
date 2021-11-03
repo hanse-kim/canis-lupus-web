@@ -6,25 +6,23 @@ const LabeledContainer = (props: {
   viewMoreUrl?: string;
 }) => {
   return (
-    <Box className="labeledContainer">
+    <Box className='labeledContainer'>
       <Box
-        className="label"
-        display="flex"
-        justifyContent="space-between"
-        marginBottom="5"
+        className='label'
+        display='flex'
+        justifyContent='space-between'
+        marginBottom='5'
       >
-        <Heading size="md">{props.label}</Heading>
         {props.viewMoreUrl && (
           <Link
-            color="gray.500"
-            verticalAlign="middle"
             href={props.viewMoreUrl}
           >
-            전체 보기
+            <Heading size='md'>{props.label}</Heading>
           </Link>
         )}
+        {!props.viewMoreUrl && <Heading size='md'>{props.label}</Heading>}
       </Box>
-      <Box className="content">{props.children}</Box>
+      <Box className='content'>{props.children}</Box>
     </Box>
   );
 };

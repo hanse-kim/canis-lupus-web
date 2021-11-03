@@ -24,7 +24,9 @@ const MainBanner = () => {
   return (
     <Banner
       bannerItemComponent={BannerItem}
-      bannerItemProps={bannerList} />
+      bannerItemProps={bannerList}
+      autoplay
+    />
   );
 };
 

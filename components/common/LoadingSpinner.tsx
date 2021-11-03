@@ -1,8 +1,8 @@
-import {Center, Spinner} from '@chakra-ui/react';
+import {BoxProps, Center, Spinner} from '@chakra-ui/react';
 
-const LoadingSpinner = () => {
+const LoadingSpinner = (props: BoxProps) => {
   return (
-    <Center marginY='5'>
+    <Center {...props} marginY='5'>
       <Spinner />
     </Center>
   );

@@ -12,15 +12,15 @@ const settings = {
   slidesToScroll: 1,
   arrows: false,
   variableWidth: false,
+  autoplaySpeed: 3000,
 };
-
-const SLICK_SLIDE_DOTS_HEIGHT = 28;
 
 const Banner = (props: {
   width?: string;
   bannerItemComponent?: (props: any) => JSX.Element;
   bannerItemProps?: any[];
   sliderProps?: any;
+  autoplay?: boolean;
 }) => {
   let sliderSettings = Object.assign({}, settings);
   if (props.sliderProps) {
@@ -28,17 +28,12 @@ const Banner = (props: {
   }
 
   return (
-    <Box
-      className="bannerWrapper"
-      marginBottom={`${SLICK_SLIDE_DOTS_HEIGHT}px`}
-      display="flex"
-      justifyContent="center"
-    >
+    <Box className='bannerWrapper' display='flex' justifyContent='center'>
       <Box
-        className="bannerContainer"
+        className='bannerContainer'
         width={props.width ? props.width : '100%'}
       >
-        <Slider {...sliderSettings}>
+        <Slider {...sliderSettings} autoplay={props.autoplay}>
           {props.bannerItemProps?.map((bannerItemProp, index) => {
             return (
               props.bannerItemComponent && (

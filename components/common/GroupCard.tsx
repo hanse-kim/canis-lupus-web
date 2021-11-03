@@ -1,4 +1,5 @@
 import {Box, Flex, Heading, HStack, Image, Text} from '@chakra-ui/react';
+import {colors} from 'style';
 import {GroupInfo} from 'types/domain';
 
 const GroupCardImage = (props: {imageUrl: string}) => {
@@ -33,25 +34,43 @@ const GroupCardInfo = (props: {
     <Box className='groupInfoWrapper' position='relative' width='100%'>
       <Text
         className='groupCategory'
-        color='gray.500'
+        color={colors.minorTextGray}
         marginBottom='1'
         fontSize='xs'
+        {...{
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'normal',
+          display: '-webkit-box',
+          style: {WebkitLineClamp: 1, WebkitBoxOrient: 'vertical'},
+        }}
       >
         {props.category}
       </Text>
-      <Heading className='groupName' size='sm'>
+      <Heading
+        className='groupName'
+        fontSize='1em'
+        {...{
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'normal',
+          display: '-webkit-box',
+          style: {WebkitLineClamp: 1, WebkitBoxOrient: 'vertical'},
+        }}
+      >
         {props.name}
       </Heading>
       <Text
         className='groupDescription'
-        fontSize='xs'
-        width='173px'
-        overflow='hidden'
-        textOverflow='ellipsis'
+        fontSize='12px'
         marginBottom='20px'
-        whiteSpace='normal'
-        display='-webkit-box'
-        style={{WebkitLineClamp: 3, WebkitBoxOrient: 'vertical'}}
+        {...{
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'normal',
+          display: '-webkit-box',
+          style: {WebkitLineClamp: 3, WebkitBoxOrient: 'vertical'},
+        }}
       >
         {props.description}
       </Text>
@@ -65,10 +84,10 @@ const GroupCardInfo = (props: {
           boxSize='10px'
           background='no-repeat center/960% url(/icons/userIcon.svg)'
         />
-        <Text fontSize='xs'>
+        <Text fontSize='10px' fontWeight='semibold'>
           {`(${props.memberCount}명/${props.memberCountMax}명)`}
         </Text>
-        <Text color='blue.500' fontWeight='bold'>
+        <Text color={colors.mainBlue[1]} fontWeight='bold'>
           모집중
         </Text>
       </HStack>

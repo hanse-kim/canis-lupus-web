@@ -43,7 +43,7 @@ const MainNavigationBar = (props: {
   return (
     <Container className='mainNavigationBar' paddingY='14px'>
       <Flex justifyContent='space-between'>
-        <Logo />
+        <Logo width='122px' />
         <HStack spacing='24px'>
           <SearchForm {...props} />
           {mainNavMenu.map((item, index) => (

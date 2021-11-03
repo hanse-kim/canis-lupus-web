@@ -5,4 +5,5 @@ export const colors = {
   mainGray: ['#d1d5d9', '#636c73', '#303538'],
   warningRed: '#d93826',
   panelGray: '#f4f4f4',
+  minorTextGray: '#8a8a8a',
 };
