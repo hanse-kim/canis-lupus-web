@@ -1,14 +1,14 @@
 # Canis-Lupus-Web
 
-![Typescript][ts-badge] ![License][mit-badge]
-
 SW마에스트로 제 12기 B2K팀의 모임 관리 서비스 '이건모임'의 Web Front-end 개발 Repository입니다.
 
 ## Built With
 
 - [React.js](https://reactjs.org/)
 - [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Recoil](https://recoiljs.org/)
+- [React Query ](https://react-query.tanstack.com/)
 - [Chakra UI](https://chakra-ui.com/)
 
 <br>
@@ -57,25 +57,36 @@ SW마에스트로 제 12기 B2K팀의 모임 관리 서비스 '이건모임'의 
 
 ## Todo
 
-- [x] 로그인 화면 구성
-- [x] 회원가입 화면 구성
-  - [x] 회원가입 입력 폼 화면 구성
-  - [x] 회원가입 이후 정보 입력 화면 구성
-- [x] 메인 화면 구성
-  - [x] 둘러보기 화면 구성
-  - [x] 모임 개설 화면 구성
-- [ ] 검색 화면 구성
-  - [ ] 카테고리 화면 구성
-  - [ ] 검색패널 구성
-  - [ ] 검색결과 화면 구성
-  - [ ] 필터 패널 구성
-- [ ] 마이페이지 화면 구성
+- [x] 로그인
+  - [x] 화면 구성
+  - [x] 로직 구현
+  - [x] 디자인 적용
+- [x] 회원가입
+  - [x] 화면 구성
+  - [x] 로직 구현
+  - [x] 디자인 적용
+- [ ] 메인 화면
+  - [x] 화면 구성
+  - [ ] 로직 구현
+  - [x] 디자인 적용
+- [ ] 검색
+  - [x] 화면 구성
+  - [ ] 로직 구현
+  - [ ] 디자인 적용
+- [ ] 내 모임
+  - [ ] 화면 구성
+  - [ ] 로직 구현
+  - [ ] 디자인 적용
+- [ ] 마이페이지
+  - [ ] 화면 구성
+  - [ ] 로직 구현
+  - [ ] 디자인 적용
+- [ ] 모임
+  - [ ] 화면 구성
+  - [ ] 로직 구현
+  - [ ] 디자인 적용
 
 <br>
 
-
-[ts-badge]: https://img.shields.io/badge/%3C%2F%3E-Typescript-blue
-
-[mit-badge]: https://img.shields.io/badge/license-MIT-green
 [github-badge]: https://img.shields.io/badge/Github-black.svg?&style=for-the-badge&logo=github&logoColor=white&link=https://github.com/bluewood-truth/
 
