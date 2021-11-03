@@ -3,7 +3,7 @@ import {Box, Divider, Flex, HStack, Link, Stack} from '@chakra-ui/layout';
 import {Tag, TagProps} from '@chakra-ui/tag';
 import Container from 'components/common/Container';
 import useRecentSearch from 'hooks/search/useRecentSearch';
-import useSearch from 'hooks/search/useSearch';
+import useSearchForm from 'hooks/search/useSearchForm';
 import React from 'react';
 import {colors} from 'style';
 
@@ -29,7 +29,7 @@ const Keyword = (props: TagProps) => {
 const RecentKeyword = (props: {keyword: string}) => {
   const {keyword} = props;
   const {removeKeyword} = useRecentSearch();
-  const {search} = useSearch(keyword);
+  const {search} = useSearchForm(keyword);
   return (
     <Keyword
       backgroundColor={colors.white}
@@ -52,7 +52,7 @@ const RecentKeyword = (props: {keyword: string}) => {
 
 const RecommendKeyword = (props: {keyword: string}) => {
   const {keyword} = props;
-  const {search} = useSearch(keyword);
+  const {search} = useSearchForm(keyword);
   return (
     <Keyword
       backgroundColor={colors.mainBlue[1]}

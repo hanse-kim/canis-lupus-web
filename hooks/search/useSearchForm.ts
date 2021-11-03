@@ -2,7 +2,7 @@ import usePageMove from 'hooks/usePageMove';
 import useRecentSearch from './useRecentSearch';
 import useSearchPanel from './useSearchPanel';
 
-const useSearch = (keyword: string) => {
+const useSearchForm = (keyword: string) => {
   const {addKeyword} = useRecentSearch();
   const {pageMove} = usePageMove();
   const {onClose} = useSearchPanel();
@@ -16,4 +16,4 @@ const useSearch = (keyword: string) => {
   return {search};
 };
 
-export default useSearch;
+export default useSearchForm;

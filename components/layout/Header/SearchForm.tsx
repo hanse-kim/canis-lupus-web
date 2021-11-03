@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import {colors} from 'style';
 import multiplyColors from 'utils/style/multiplyColors';
-import useSearch from 'hooks/search/useSearch';
+import useSearchForm from 'hooks/search/useSearchForm';
 
 const searchFormStyle = {
   backgroundColor: colors.panelGray,
@@ -27,7 +27,7 @@ const searchFormStyle = {
 const SearchForm = (props: {onOpen: () => void; onClose: () => void}) => {
   const {onOpen} = props;
   const [keyword, setKeyword] = React.useState('');
-  const {search} = useSearch(keyword);
+  const {search} = useSearchForm(keyword);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
