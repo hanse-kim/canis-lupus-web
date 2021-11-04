@@ -8,9 +8,13 @@ import Logo from './Logo';
 import SearchForm from './SearchForm';
 
 const mainNavMenu = [
-  {icon: 'icon_myGroups', title: '내 모임', onClick: () => {}},
+  {
+    icon: 'icon_myGroups',
+    title: '내 모임',
+    url: '/mygroups',
+  },
   {icon: 'icon_notice', title: '알림', onClick: () => {}},
-  {icon: 'icon_myPage', title: '마이페이지', onClick: () => {}},
+  {icon: 'icon_myPage', title: '마이페이지', url: '/mypage'},
 ];
 
 const MainNavigationIconButton = (props: {
@@ -40,6 +44,19 @@ const MainNavigationBar = (props: {
   const {isLoggedIn} = useAuth();
   const {pageMove} = usePageMove();
 
+  const onMainNavMenuClick = (mainNavMemuItem: {
+    icon: string;
+    title: string;
+    onClick?: () => void;
+    url?: string;
+  }) => {
+    if (mainNavMemuItem.onClick) {
+      mainNavMemuItem.onClick();
+    } else if (mainNavMemuItem.url) {
+      pageMove(mainNavMemuItem.url);
+    }
+  };
+
   return (
     <Container className='mainNavigationBar' paddingY='14px'>
       <Flex justifyContent='space-between'>
@@ -51,13 +68,13 @@ const MainNavigationBar = (props: {
               key={index}
               icon={item.icon}
               title={item.title}
-              onClick={
-                isLoggedIn ?
-                  item.onClick :
-                  () => {
-                      pageMove('/register');
-                    }
-              }
+              onClick={() => {
+                if (isLoggedIn) {
+                  onMainNavMenuClick(item);
+                } else {
+                  pageMove('/register');
+                }
+              }}
             />
           ))}
         </HStack>

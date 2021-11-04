@@ -1,30 +1,27 @@
 import axios from 'axios';
+import useAuth from 'hooks/auth/useAuth';
 import {useMemo, useState} from 'react';
 import {useMutation} from 'react-query';
-import {GroupInfo} from 'types/group';
+import {UserInfo} from 'types/auth';
 import {SearchQuery} from 'types/hook';
 import {API_URL} from 'utils/api/_constants';
-import objectToParams from 'utils/objectToParams';
 
 const itemPerPage = 10;
 
-const useGroupList = () => {
+const useMyGroupList = () => {
   const [page, setPage] = useState(1);
+  const {userData} = useAuth();
 
   const getRequestUrl = (searchQuery: SearchQuery) => {
-    if (searchQuery.searchBy === 'keyword') {
-      return `${API_URL}/meetings/keyword/${searchQuery.value}?${objectToParams(
-        searchQuery.options
-      )}`;
-    } else {
-      return `${API_URL}/meetings?${objectToParams(searchQuery.options)}`;
-    }
+    return `${API_URL}/users/${userData._id}`;
   };
 
   const groupListMutation = useMutation(
     (searchQuery: SearchQuery) => {
-      console.log(getRequestUrl(searchQuery));
-      return axios.get<GroupInfo[]>(getRequestUrl(searchQuery));
+      console.log('request');
+      return axios
+        .get<UserInfo>(getRequestUrl(searchQuery))
+        .then((res) => res.data.meetings.joining);
     },
     {
       onSuccess: (axiosResponse) => {
@@ -35,7 +32,7 @@ const useGroupList = () => {
 
   const groupList = useMemo(() => {
     if (groupListMutation.data) {
-      return groupListMutation.data.data;
+      return groupListMutation.data;
     }
 
     return [];
@@ -43,7 +40,7 @@ const useGroupList = () => {
 
   const groupCount = useMemo(() => {
     if (groupListMutation.data) {
-      return groupListMutation.data.data.length;
+      return groupListMutation.data.length;
     }
 
     return 0;
@@ -55,7 +52,7 @@ const useGroupList = () => {
 
   const groupListPerPage = useMemo(() => {
     if (groupListMutation.data) {
-      return groupListMutation.data.data.slice(
+      return groupListMutation.data.slice(
         (page - 1) * itemPerPage,
         page * itemPerPage
       );
@@ -76,4 +73,4 @@ const useGroupList = () => {
   };
 };
 
-export default useGroupList;
+export default useMyGroupList;
