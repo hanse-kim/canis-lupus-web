@@ -1,14 +1,11 @@
 import useFormData from 'hooks/form/useFormData';
 import useFormError from 'hooks/form/useFormError';
-import usePasswordConfirmValidation from 'hooks/form/validation/usePasswordConfirmValidation';
-import usePasswordValidation from 'hooks/form/validation/usePasswordValidation';
 import {useState} from 'react';
-import useEmailValidation from '../form/validation/useEmailValidation';
+import validateEmail from 'utils/validation/validateEmail';
+import validatePassword from 'utils/validation/validatePassword';
+import validatePasswordConfirm from 'utils/validation/validatePasswordConfirm';
 
 const useAccountInfoHooks = () => {
-  const {validateEmail} = useEmailValidation();
-  const {validatePassword} = usePasswordValidation();
-  const {validatePasswordConfirm} = usePasswordConfirmValidation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');

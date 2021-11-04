@@ -1,6 +1,5 @@
 import {ValidationResult} from 'types/hook';
 
-const usePasswordConfirmValidation = () => {
   const validatePasswordConfirm = (
     password: string,
     passwordConfirm: string
@@ -15,9 +14,4 @@ const usePasswordConfirmValidation = () => {
     return result;
   };
 
-  return {
-    validatePasswordConfirm,
-  };
-};
-
-export default usePasswordConfirmValidation;
+export default validatePasswordConfirm;

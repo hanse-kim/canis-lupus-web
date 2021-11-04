@@ -1,17 +1,13 @@
-import useGroupNameValidation from 'hooks/form/validation/useGroupNameValidation';
-import useGroupInroduceValidation from 'hooks/form/validation/useGroupIntroduceValidation';
-import useGroupMaxPersonValidation from 'hooks/form/validation/useGroupMaxPersonValidation';
 import useFormError from 'hooks/form/useFormError';
 import {useState} from 'react';
 import useSelectGroupInterest from './useSelectGroupInterest';
-import useGroupImageValidation from 'hooks/form/validation/useGroupImageValidation';
 import useCreateGroup from './useCreateGroup';
+import validateGroupImage from 'utils/validation/validateGroupImage';
+import validateGroupIntroduce from 'utils/validation/validateGroupIntroduce';
+import validateGroupMaxPerson from 'utils/validation/validateGroupMaxPerson';
+import validateGroupName from 'utils/validation/validateGroupName';
 
 const useCreateGroupForm = (formDataKeys: string[], callback?: () => void) => {
-  const {validateGroupImage} = useGroupImageValidation();
-  const {validateGroupName} = useGroupNameValidation();
-  const {validateGroupIntroduce} = useGroupInroduceValidation();
-  const {validateGroupMaxPerson} = useGroupMaxPersonValidation();
   const [uploadImageState, setUploadImageState] = useState<{
     image?: File;
     imageUrl?: string;

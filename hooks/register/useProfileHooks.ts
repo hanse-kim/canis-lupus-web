@@ -1,9 +1,9 @@
 import useFormData from 'hooks/form/useFormData';
 import useFormError from 'hooks/form/useFormError';
-import useIntroduceValidation from 'hooks/form/validation/useIntroduceValidation';
-import useNameValidation from 'hooks/form/validation/useNameValidation';
-import useProfileImageValidation from 'hooks/form/validation/useProfileImageValidation';
 import React, {useState} from 'react';
+import validateIntroduce from 'utils/validation/validateIntroduce';
+import validateName from 'utils/validation/validateName';
+import validateProfileImage from 'utils/validation/validateProfileImage';
 
 const useProfileHooks = () => {
   const {updateFormData} = useFormData();
@@ -17,9 +17,6 @@ const useProfileHooks = () => {
   const [profileImageUrl, setProfileImgUrl] = useState('');
   const [name, setName] = useState('');
   const [introduce, setIntroduce] = useState('');
-  const {validateProfileImage} = useProfileImageValidation();
-  const {validateName} = useNameValidation();
-  const {validateIntroduce} = useIntroduceValidation();
 
   const onPropfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const image = e.target.files![0];
