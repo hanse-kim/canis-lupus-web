@@ -1,47 +1,77 @@
 import axios from 'axios';
-import {useMemo} from 'react';
-import {useQuery} from 'react-query';
-import {GroupInfo, GroupRecord} from 'types/domain';
+import {useMemo, useState} from 'react';
+import {useMutation} from 'react-query';
+import {GroupInfo} from 'types/group';
+import {SearchQuery} from 'types/hook';
+import {API_URL} from 'utils/api/_constants';
 import objectToParams from 'utils/objectToParams';
 
-const useGroupList = (query: {
-  filter?: {searchBy: string; keyword: string};
-  limit?: number;
-}) => {
-  const params = {
-    searchBy: query.filter?.searchBy,
-    keyword: query.filter?.keyword,
-    maxRecords: query.limit,
+const itemPerPage = 10;
+
+const useGroupList = () => {
+  const [page, setPage] = useState(1);
+
+  const getRequestUrl = (searchQuery: SearchQuery) => {
+    if (searchQuery.searchBy === 'keyword') {
+      return `${API_URL}/meetings/keyword/${searchQuery.value}?${objectToParams(
+        searchQuery.options
+      )}`;
+    } else {
+      return `${API_URL}/meetings?${objectToParams(searchQuery.options)}`;
+    }
   };
 
-  const {data, isLoading, isSuccess} = useQuery(
-    [objectToParams(params)],
-    () => {
-      return axios.get<{
-        records: GroupRecord[];
-      }>('/api/main/groupList', {
-        params: params,
-      });
+  const groupListMutation = useMutation(
+    (searchQuery: SearchQuery) => {
+      return axios.get<GroupInfo[]>(getRequestUrl(searchQuery));
+    },
+    {
+      onSuccess: (axiosResponse) => {
+        setPage(1);
+      },
     }
   );
 
   const groupList = useMemo(() => {
-    if (isSuccess && data!.data) {
-      const records = data!.data.records;
-      const list: GroupInfo[] = [];
-      for (const record of records) {
-        const group = record.fields;
-        list.push(group);
-      }
-      return list;
-    } else {
-      return [];
+    if (groupListMutation.data) {
+      return groupListMutation.data.data;
     }
-  }, [isSuccess, data]);
+
+    return [];
+  }, [groupListMutation.data]);
+
+  const groupCount = useMemo(() => {
+    if (groupListMutation.data) {
+      return groupListMutation.data.data.length;
+    }
+
+    return 0;
+  }, [groupListMutation.data]);
+
+  const maxPage = useMemo(() => {
+    return Math.ceil(groupCount / itemPerPage);
+  }, [groupCount]);
+
+  const groupListPerPage = useMemo(() => {
+    if (groupListMutation.data) {
+      return groupListMutation.data.data.slice(
+        (page - 1) * itemPerPage,
+        page * itemPerPage
+      );
+    }
+
+    return [];
+  }, [groupListMutation.data, page]);
 
   return {
+    fetchGroupList: groupListMutation.mutate,
+    groupCount,
     groupList,
-    isLoading,
+    groupListPerPage,
+    setPage,
+    maxPage,
+    page,
+    isLoading: groupListMutation.isLoading,
   };
 };
 

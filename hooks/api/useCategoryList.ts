@@ -14,11 +14,6 @@ const useCategoryList = () => {
     {
       onSuccess: (axiosResponse) => {
         setCategoryList(axiosResponse.data);
-        if (axiosResponse.data) {
-          setCategoryList(axiosResponse.data);
-        } else {
-          return [];
-        }
       },
     }
   );

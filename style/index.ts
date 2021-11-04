@@ -6,4 +6,5 @@ export const colors = {
   warningRed: '#d93826',
   panelGray: '#f4f4f4',
   minorTextGray: '#8a8a8a',
+  multiply: '#eee',
 };

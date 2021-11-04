@@ -26,21 +26,6 @@ export interface CategoryInfo {
   __v: string;
 }
 
-export interface GroupRecord {
-  id: string;
-  fields: GroupInfo;
-  createdTime: string;
-}
-
-export interface GroupInfo {
-  category: string;
-  name: string;
-  description: string;
-  member_count: number;
-  member_count_max: number;
-  image_url: string;
-}
-
 export interface FeedRecord {
   id: string;
   fields: FeedInfo;

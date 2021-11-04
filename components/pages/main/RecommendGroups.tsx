@@ -3,9 +3,14 @@ import GroupCard from 'components/common/GroupCard';
 import LabeledContainer from 'components/common/LabeledContainer';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import useGroupList from 'hooks/api/useGroupList';
+import {useEffect} from 'react';
 
 const RecommendGroups = () => {
-  const {groupList, isLoading} = useGroupList({limit: 6});
+  const {fetchGroupList, groupList, isLoading} = useGroupList();
+
+  useEffect(() => {
+    fetchGroupList({searchBy: 'all', options: {limit: 6}});
+  }, [fetchGroupList]);
 
   return (
     <LabeledContainer label='추천모임' viewMoreUrl='/main'>
