@@ -1,6 +1,7 @@
-import {Box, Flex, Heading, HStack, Image, Text} from '@chakra-ui/react';
+import {Box, Heading, HStack, Image, Text} from '@chakra-ui/react';
 import {colors} from 'style';
 import {GroupInfo} from 'types/group';
+import CardBox from './CardBox';
 
 const GroupCardImage = (props: {imageUrl: string}) => {
   return (
@@ -97,11 +98,11 @@ const GroupCardInfo = (props: {
 
 const GroupCard = (props: GroupInfo) => {
   return (
-    <Flex
+    <CardBox
       className='groupCardWrapper'
+      display='flex'
       width='auto'
       padding='12px'
-      boxShadow='0 0 30px 0 rgba(141, 151, 158, 0.2)'
     >
       <HStack alignItems='stretch' width='100%'>
         <GroupCardImage imageUrl={props.imageUrls[0]} />
@@ -113,7 +114,7 @@ const GroupCard = (props: GroupInfo) => {
           memberCountMax={props.maxPerson}
         />
       </HStack>
-    </Flex>
+    </CardBox>
   );
 };
 

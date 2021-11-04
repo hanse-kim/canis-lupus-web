@@ -1,4 +1,5 @@
 import {Box, Flex, Heading, HStack, Stack, Text} from '@chakra-ui/react';
+import CardBox from 'components/common/CardBox';
 import React from 'react';
 import {colors} from 'style';
 import {FeedInfo} from 'types/domain';
@@ -6,14 +7,9 @@ import TextFeed from './type/TextFeed';
 
 const FeedWrapper = (props: {children?: React.ReactNode}) => {
   return (
-    <Box
-      className='feedWrapper'
-      paddingX='12px'
-      paddingY='20px'
-      boxShadow='0 0 30px 0 rgba(141, 151, 158, 0.2)'
-    >
+    <CardBox className='feedWrapper' paddingX='12px' paddingY='20px'>
       {props.children}
-    </Box>
+    </CardBox>
   );
 };
 
