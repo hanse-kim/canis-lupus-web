@@ -9,6 +9,9 @@ import 'public/slick-theme-custom.css';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import defaultChakraTheme from 'style/defaultChakraTheme';
+import {useEffect} from 'react';
+import {useRouter} from 'next/dist/client/router';
+import {colors} from 'style';
 
 const queryClient = new QueryClient();
 
@@ -25,6 +28,17 @@ axios.interceptors.request.use(async (config) => {
 });
 
 const MyApp = ({Component, pageProps}: AppProps) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log(router.pathname.split('/')[1]);
+    if (router.pathname.split('/')[1] === 'group') {
+      document.body.style.backgroundColor = '#f8f9fa';
+    } else {
+      document.body.style.backgroundColor = colors.white;
+    }
+  }, [router.pathname]);
+
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>

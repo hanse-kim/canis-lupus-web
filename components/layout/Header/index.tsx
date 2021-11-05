@@ -4,13 +4,14 @@ import SearchPanel from './SearchPanel';
 import UpperNavigationBar from './UpperNavigationBar';
 import MainNavigationBar from './MainNavigationBar';
 import useSearchPanel from 'hooks/search/useSearchPanel';
+import {colors} from 'style';
 
 const Header = () => {
   const {isOpen, onOpen, onClose} = useSearchPanel();
 
   return (
     <header>
-      <Box className='headerWrapper'>
+      <Box className='headerWrapper' backgroundColor={colors.white}>
         <UpperNavigationBar />
         <MainNavigationBar onOpen={onOpen} onClose={onClose} />
       </Box>

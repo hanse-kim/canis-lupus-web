@@ -1,4 +1,5 @@
-import {Box, Heading, HStack, Image, Text} from '@chakra-ui/react';
+import {Box, Heading, HStack, Image, Link, Text} from '@chakra-ui/react';
+import React from 'react';
 import {colors} from 'style';
 import {GroupInfo} from 'types/group';
 import CardBox from './CardBox';
@@ -98,22 +99,24 @@ const GroupCardInfo = (props: {
 
 const GroupCard = (props: GroupInfo) => {
   return (
-    <CardBox
-      className='groupCardWrapper'
-      display='flex'
-      width='auto'
-      padding='12px'
-    >
-      <HStack alignItems='stretch' width='100%'>
-        <GroupCardImage imageUrl={props.imageUrls[0]} />
-        <GroupCardInfo
-          name={props.name}
-          category={props.category.name}
-          description={props.introduction}
-          memberCount={props.personsCount}
-          memberCountMax={props.maxPerson}
-        />
-      </HStack>
+    <CardBox className='groupCardWrapper'>
+      <Link
+        href={`/group/${props._id}`}
+        display='flex'
+        width='auto'
+        padding='12px'
+      >
+        <HStack alignItems='stretch' width='100%'>
+          <GroupCardImage imageUrl={props.imageUrls[0]} />
+          <GroupCardInfo
+            name={props.name}
+            category={props.category.name}
+            description={props.introduction}
+            memberCount={props.personsCount}
+            memberCountMax={props.maxPerson}
+          />
+        </HStack>
+      </Link>
     </CardBox>
   );
 };
