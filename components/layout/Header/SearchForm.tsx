@@ -48,7 +48,6 @@ const SearchForm = (props: {onOpen: () => void; onClose: () => void}) => {
 
   useEffect(() => {
     if (params.keyword) {
-      console.log(params.keyword);
       setKeyword(params.keyword);
     }
   }, [params.keyword]);

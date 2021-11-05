@@ -16,14 +16,12 @@ const ImageUploadButton = (props: BoxProps & ImageUploadButtonProps) => {
 
   useEffect(() => {
     if (onImageUploading) {
-      console.log('uploading...');
       onImageUploading(isLoading);
     }
   }, [isLoading, onImageUploading]);
 
   useEffect(() => {
     if (isUploaded && onImageChange) {
-      console.log('uploaded!');
       onImageChange(imageUrl);
     }
   }, [imageUrl, isUploaded, onImageChange]);

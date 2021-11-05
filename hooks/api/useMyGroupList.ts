@@ -18,7 +18,6 @@ const useMyGroupList = () => {
 
   const groupListMutation = useMutation(
     (searchQuery: SearchQuery) => {
-      console.log('request');
       return axios
         .get<UserInfo>(getRequestUrl(searchQuery))
         .then((res) => res.data.meetings.joining);
