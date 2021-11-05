@@ -23,11 +23,19 @@ const usePageMove = () => {
     router.replace(url);
   };
 
+  const pageRedirectWithRedirect = (url: string) => {
+    router.replace({
+      pathname: url,
+      query: {redirect: window.location.pathname},
+    });
+  };
+
   return {
     pageMove,
     pageRedirect,
     pageMoveWithRedirect,
     getRedirect,
+    pageRedirectWithRedirect,
   };
 };
 

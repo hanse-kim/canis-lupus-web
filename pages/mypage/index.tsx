@@ -7,13 +7,17 @@ import {useEffect} from 'react';
 
 const MyPage = () => {
   const {isLoggedIn} = useAuth();
-  const {pageRedirect} = usePageMove();
+  const {pageRedirectWithRedirect} = usePageMove();
 
   useEffect(() => {
     if (!isLoggedIn) {
-      pageRedirect('/register');
+      pageRedirectWithRedirect('/login');
     }
-  }, [isLoggedIn, pageRedirect]);
+  }, [isLoggedIn, pageRedirectWithRedirect]);
+
+  if (!isLoggedIn) {
+    return null;
+  }
 
   return (
     <Layout>

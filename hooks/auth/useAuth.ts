@@ -5,25 +5,29 @@ import {UserData} from 'types/auth';
 export const USER_DATA = 'userData';
 const isLoggedInState = atom({
   key: 'isLoggedInState',
-  default: false,
+  default:
+    typeof localStorage !== 'undefined' &&
+    localStorage.getItem(USER_DATA) !== null,
 });
 
 const useAuth = () => {
-  const login = useCallback((userData: UserData) => {
-    localStorage.setItem(USER_DATA, JSON.stringify(userData));
-  }, []);
+  const [isLoggedIn, setLoggedIn] = useRecoilState(isLoggedInState);
+
+  const login = useCallback(
+    (userData: UserData) => {
+      localStorage.setItem(USER_DATA, JSON.stringify(userData));
+      setLoggedIn(true);
+    },
+    [setLoggedIn]
+  );
 
   const logout = useCallback(() => {
     localStorage.removeItem(USER_DATA);
-  }, []);
-
-  const [isLoggedIn, setLoggedIn] = useRecoilState(isLoggedInState);
+    setLoggedIn(false);
+  }, [setLoggedIn]);
 
   useEffect(() => {
-    setLoggedIn(
-      typeof localStorage !== 'undefined' &&
-        localStorage.getItem(USER_DATA) !== null
-    );
+    setLoggedIn(localStorage.getItem(USER_DATA) !== null);
   }, [setLoggedIn]);
 
   const userData: UserData = useMemo(() => {

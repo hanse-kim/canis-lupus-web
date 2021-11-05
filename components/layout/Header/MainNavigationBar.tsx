@@ -1,7 +1,6 @@
 import {Image} from '@chakra-ui/image';
 import {Box, Flex, HStack, Link, Stack} from '@chakra-ui/layout';
 import Container from 'components/common/Container';
-import useAuth from 'hooks/auth/useAuth';
 import usePageMove from 'hooks/usePageMove';
 import React from 'react';
 import Logo from './Logo';
@@ -41,7 +40,6 @@ const MainNavigationBar = (props: {
   onOpen: () => void;
   onClose: () => void;
 }) => {
-  const {isLoggedIn} = useAuth();
   const {pageMove} = usePageMove();
 
   const onMainNavMenuClick = (mainNavMemuItem: {
@@ -69,11 +67,7 @@ const MainNavigationBar = (props: {
               icon={item.icon}
               title={item.title}
               onClick={() => {
-                if (isLoggedIn) {
-                  onMainNavMenuClick(item);
-                } else {
-                  pageMove('/register');
-                }
+                onMainNavMenuClick(item);
               }}
             />
           ))}
