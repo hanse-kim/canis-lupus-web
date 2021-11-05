@@ -7,7 +7,7 @@ import FormStepWrapper from 'components/form/FormStepWrapper';
 import ProfileImageUploadForm from 'components/form/formContent/ProfileImageUploadForm';
 import {Stack} from '@chakra-ui/layout';
 
-const formDataKeys = ['name', 'introduce'];
+const formDataKeys = ['imageUrl', 'name', 'introduce'];
 
 const ProfileStep = (props: FormContentProps) => {
   const {
@@ -24,7 +24,7 @@ const ProfileStep = (props: FormContentProps) => {
     <FormStepWrapper {...props} formDataKeys={formDataKeys}>
       <Stack spacing='28px'>
         <ProfileImageUploadForm
-          onChange={onPropfileImageChange}
+          onImageChange={onPropfileImageChange}
           imageUrl={profileImageUrl}
         />
         <InputForm

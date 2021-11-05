@@ -1,21 +1,22 @@
-import {Image, Box, Center, InputProps} from '@chakra-ui/react';
-import {Input} from '@chakra-ui/react';
-import React, {useRef} from 'react';
+import {Image, Box, Flex, Center} from '@chakra-ui/react';
+import ImageUploadButton from 'components/common/ImageUploadButton';
+import LoadingSpinner from 'components/common/LoadingSpinner';
+import React, {useState} from 'react';
+import {ImageUploadFormProps} from 'types/props';
 
-const ProfileImageUploadButton = (props: {
-  inputProps: InputProps;
-  children?: React.ReactNode;
-}) => {
-  const {inputProps} = props;
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const onClick = () => {
-    inputRef.current?.click();
-  };
-
+const ProfileImageUploadButton = (
+  props: {
+    children?: React.ReactNode;
+  } & ImageUploadFormProps
+) => {
   return (
-    <Center
-      onClick={onClick}
+    <ImageUploadButton
+      onImageChange={props.onImageChange}
+      onImageUploading={props.onImageUploading}
+      imageType='users'
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
       backgroundColor='#c2c6cd'
       height='32px'
       width='32px'
@@ -24,38 +25,52 @@ const ProfileImageUploadButton = (props: {
       right='0'
       borderRadius='9999'
       padding='0'
-      _hover={{cursor: 'pointer'}}
     >
-      <Image position='absolute' src='icons/icon_camera.svg' alt='uploadIcon' />
-      <Input
-        type='file'
-        display='none'
-        ref={inputRef}
-        accept='image/jpg, image/jpeg, image/png'
-        {...inputProps}
+      <Image
+        position='absolute'
+        src='/icons/icon_camera.svg'
+        alt='uploadIcon'
       />
-    </Center>
+    </ImageUploadButton>
   );
 };
 
-const ProfileImageUploadForm = (props: InputProps & {imageUrl?: string}) => {
-  const {imageUrl, ...inputProps} = props;
+const ProfileImageUploadForm = (
+  props: {imageUrl?: string} & ImageUploadFormProps
+) => {
+  const {imageUrl, onImageChange} = props;
+  const [isUploading, setUploading] = useState(false);
 
   return (
-    <Center>
-      <Box className='frame' width='120px' height='120px' position='relative'>
-        <Image
+    <Flex className='profileImageUploadForm' justifyContent='center'>
+      <Box width='120px' height='120px' position='relative'>
+        <Center
+          className='frame'
           width='full'
           height='full'
-          src={imageUrl}
-          alt='profileImage'
+          backgroundColor='#ebebeb'
           borderRadius='full'
-          fallbackSrc='profileFallback.png'
-          objectFit='cover'
+          overflow='hidden'
+          position='relative'
+        >
+          {isUploading && <LoadingSpinner />}
+          {!isUploading && (
+            <Image
+              width='full'
+              height='full'
+              src={imageUrl}
+              alt='profileImage'
+              fallbackSrc='/profileFallback.png'
+              objectFit='cover'
+            />
+          )}
+        </Center>
+        <ProfileImageUploadButton
+          onImageChange={onImageChange}
+          onImageUploading={setUploading}
         />
-        <ProfileImageUploadButton inputProps={inputProps} />
       </Box>
-    </Center>
+    </Flex>
   );
 };
 

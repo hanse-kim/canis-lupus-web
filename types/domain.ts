@@ -41,3 +41,7 @@ export interface FeedInfo {
   like: number;
   comment: number;
 }
+
+export interface ImageInfo {
+  imageUrls: string[];
+}

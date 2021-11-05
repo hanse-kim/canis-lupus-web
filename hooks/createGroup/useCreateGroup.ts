@@ -4,7 +4,6 @@ import {useState} from 'react';
 import {useMutation} from 'react-query';
 import {CreateGroupData} from 'types/group';
 import getCommonError from 'utils/api/getCommonError';
-import objectToFormData from 'utils/api/objectToFormData';
 import {API_URL} from 'utils/api/_constants';
 
 const useCreateGroup = (callback?: () => void) => {
@@ -12,11 +11,9 @@ const useCreateGroup = (callback?: () => void) => {
   const [error, setError] = useState('');
   const createGroupMutation = useMutation(
     (groupData: CreateGroupData) => {
-      const formData = objectToFormData(groupData);
-      return axios.post(`${API_URL}/meetings`, formData, {
+      return axios.post(`${API_URL}/meetings`, groupData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': userData.token,
+          Authorization: userData.token,
         },
       });
     },

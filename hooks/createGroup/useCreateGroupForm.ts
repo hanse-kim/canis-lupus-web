@@ -2,16 +2,12 @@ import useFormError from 'hooks/form/useFormError';
 import {useState} from 'react';
 import useSelectGroupInterest from './useSelectGroupInterest';
 import useCreateGroup from './useCreateGroup';
-import validateGroupImage from 'utils/validation/validateGroupImage';
 import validateGroupIntroduce from 'utils/validation/validateGroupIntroduce';
 import validateGroupMaxPerson from 'utils/validation/validateGroupMaxPerson';
 import validateGroupName from 'utils/validation/validateGroupName';
 
 const useCreateGroupForm = (formDataKeys: string[], callback?: () => void) => {
-  const [uploadImageState, setUploadImageState] = useState<{
-    image?: File;
-    imageUrl?: string;
-  }>({});
+  const [imageUrl, setImageUrl] = useState('');
   const [name, setName] = useState('');
   const [introduction, setIntroduction] = useState('');
   const [maxPerson, setMaxPerson] = useState('');
@@ -19,10 +15,8 @@ const useCreateGroupForm = (formDataKeys: string[], callback?: () => void) => {
   const {error, updateFormError, isError} = useFormError(formDataKeys);
   const {createGroup, isCreating, createGroupError} = useCreateGroup(callback);
 
-  const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const image = e.target.files![0];
-    const imageUrl = URL.createObjectURL(image);
-    setUploadImageState({image, imageUrl});
+  const onImageChange = (imageUrl: string) => {
+    setImageUrl(imageUrl);
   };
 
   const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,15 +32,11 @@ const useCreateGroupForm = (formDataKeys: string[], callback?: () => void) => {
   };
 
   const isSubmitable =
-    uploadImageState.image &&
-    name &&
-    introduction &&
-    maxPerson &&
-    checked.length;
+    imageUrl && name && introduction && maxPerson && checked.length;
 
   const onSubmitClick = () => {
     const validateResults = {
-      images: validateGroupImage(uploadImageState.image),
+      images: {isInvalid: false, message: ''},
       name: validateGroupName(name),
       introduction: validateGroupIntroduce(introduction),
       maxPerson: validateGroupMaxPerson(maxPerson),
@@ -56,19 +46,12 @@ const useCreateGroupForm = (formDataKeys: string[], callback?: () => void) => {
     };
     updateFormError(validateResults);
 
-    const isSubmittable = !isError(validateResults);
-    if (isSubmittable) {
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('introduction', introduction);
-      formData.append('maxPerson', maxPerson);
-      formData.append('images', uploadImageState.image!);
-      formData.append('category', checked[0]);
+    if (!isError(validateResults)) {
       createGroup({
         name,
         introduction,
         maxPerson,
-        images: uploadImageState.image!,
+        imageUrls: [imageUrl],
         category: checked[0],
       });
     }
@@ -77,7 +60,7 @@ const useCreateGroupForm = (formDataKeys: string[], callback?: () => void) => {
   return {
     error,
     checked,
-    uploadImageState,
+    imageUrl,
     onImageChange,
     onNameChange,
     onIntroductionChange,

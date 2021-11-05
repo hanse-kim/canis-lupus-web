@@ -45,3 +45,12 @@ export interface CheckboxItemList {
   name: string;
   value: string;
 }
+
+export interface ImageUploadFormProps {
+  onImageChange?: (imageUrl: string) => void;
+  onImageUploading?: (isUploading: boolean) => void;
+}
+
+export interface ImageUploadButtonProps extends ImageUploadFormProps {
+  imageType: 'users' | 'meetings' | 'posts' | 'categories';
+}

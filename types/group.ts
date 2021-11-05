@@ -6,7 +6,7 @@ export interface CreateGroupData {
   introduction: string;
   maxPerson: string;
   category: string;
-  images: File;
+  imageUrls: string[];
 }
 
 export interface GroupInfo {

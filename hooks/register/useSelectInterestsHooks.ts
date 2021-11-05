@@ -17,7 +17,7 @@ const useSelectInterestsHooks = () => {
     updateFormData({categories: checked});
   };
 
-  return {checked, onCheckboxChange, onSubmitClick};
+  return {checked, setChecked, onCheckboxChange, onSubmitClick};
 };
 
 export default useSelectInterestsHooks;

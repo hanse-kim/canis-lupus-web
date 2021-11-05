@@ -3,7 +3,6 @@ import {useState} from 'react';
 import {useMutation} from 'react-query';
 import {RegisterData, UserData, UserToken} from 'types/auth';
 import getCommonError from 'utils/api/getCommonError';
-import objectToFormData from 'utils/api/objectToFormData';
 import {API_URL} from 'utils/api/_constants';
 import decodeJwtToken from 'utils/auth/decodeToken';
 import useAuth from './useAuth';
@@ -13,15 +12,7 @@ const useRegister = (callback?: () => void) => {
   const [error, setError] = useState('');
   const registerMutation = useMutation(
     (registerData: RegisterData) => {
-      return axios.post<UserToken>(
-        `${API_URL}/auth/sign-up`,
-        objectToFormData(registerData),
-        {
-          headers: {
-            'Content-Type': `multipart/form-data`,
-          },
-        }
-      );
+      return axios.post<UserToken>(`${API_URL}/auth/sign-up`, registerData);
     },
     {
       onSuccess: (axiosResponse) => {

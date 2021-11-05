@@ -10,14 +10,14 @@ const GroupCardImage = (props: {imageUrl: string}) => {
       borderRadius='4px'
       overflow='hidden'
       minWidth='128px'
-      minHeight='128px'
+      height='128px'
     >
       <Image
         src={props.imageUrl}
         alt='group-image'
         fallbackSrc='https://via.placeholder.com/128'
         objectFit='cover'
-        width='128px'
+        width='100%'
         height='100%'
       />
     </Box>

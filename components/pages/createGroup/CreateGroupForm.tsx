@@ -15,7 +15,7 @@ const CreateGroupForm = () => {
   const {
     error,
     checked,
-    uploadImageState,
+    imageUrl,
     onImageChange,
     onNameChange,
     onIntroductionChange,
@@ -27,7 +27,7 @@ const CreateGroupForm = () => {
   } = useCreateGroupForm(
     ['images', 'introduction', 'name', 'maxPerson', 'category'],
     () => {
-      pageMove('/mypages');
+      pageMove('/mygorups');
     }
   );
 
@@ -46,8 +46,8 @@ const CreateGroupForm = () => {
         <ImageUploadForm
           label='모임 사진'
           placeholder='사진을 등록해주세요.'
-          onChange={onImageChange}
-          imageUrl={uploadImageState.imageUrl}
+          onImageChange={onImageChange}
+          imageUrl={imageUrl}
         />
         <InputForm
           label='모임이름'

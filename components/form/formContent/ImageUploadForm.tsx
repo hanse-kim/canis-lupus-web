@@ -1,47 +1,44 @@
 import {FormControl} from '@chakra-ui/form-control';
 import {Image} from '@chakra-ui/image';
-import {Input, InputProps} from '@chakra-ui/input';
+import {InputProps} from '@chakra-ui/input';
 import {Box, Center, Text} from '@chakra-ui/layout';
-import {useRef} from 'react';
+import ImageUploadButton from 'components/common/ImageUploadButton';
+import LoadingSpinner from 'components/common/LoadingSpinner';
+import React, {useState} from 'react';
 import {colors} from 'style';
+import {ImageUploadFormProps} from 'types/props';
 import {FormLabel} from './sub/RegisterFormItems';
 
-const ImageUploadButton = (props: {
-  inputProps: InputProps;
-  children?: React.ReactNode;
-}) => {
-  const {inputProps, children} = props;
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const onClick = () => {
-    inputRef.current?.click();
-  };
+const GroupImageUploadButton = (
+  props: {
+    children?: React.ReactNode;
+  } & ImageUploadFormProps
+) => {
+  const {onImageChange, onImageUploading, children} = props;
 
   return (
-    <Center
+    <ImageUploadButton
       className='imageUploadButton'
-      onClick={onClick}
-      _hover={{cursor: 'pointer'}}
+      onImageChange={onImageChange}
+      onImageUploading={onImageUploading}
+      imageType='meetings'
       width='full'
       height='full'
       position='relative'
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
     >
       {children}
-      <Input
-        type='file'
-        display='none'
-        ref={inputRef}
-        accept='image/jpg, image/jpeg, image/png'
-        {...inputProps}
-      />
-    </Center>
+    </ImageUploadButton>
   );
 };
 
 const ImageUploadForm = (
-  props: InputProps & {label?: string; imageUrl?: string}
+  props: InputProps & ImageUploadFormProps & {label?: string; imageUrl?: string}
 ) => {
-  const {label, imageUrl, ...inputProps} = props;
+  const {label, imageUrl, onImageChange, ...inputProps} = props;
+  const [isUploading, setUploading] = useState(false);
 
   return (
     <FormControl>
@@ -53,29 +50,37 @@ const ImageUploadForm = (
         border={`1px solid ${colors.mainGray[0]}`}
         borderRadius='2px'
       >
-        <ImageUploadButton inputProps={inputProps}>
-          <Center
-            className='buttonBackground'
-            flexDirection='column'
-            position='absolute'
-          >
-            <Image src='icons/icon_photo.svg' alt='uploadIcon' />
-            <Text color={colors.mainGray[0]} fontSize='12px'>
-              {inputProps.placeholder}
-            </Text>
-          </Center>
-          <Box className='uploadImage' position='absolute'>
-            {imageUrl && (
-              <Image
-                src={imageUrl}
-                alt='groupImage'
-                width='full'
-                height='full'
-                objectFit='cover'
-              />
-            )}
-          </Box>
-        </ImageUploadButton>
+        <GroupImageUploadButton
+          onImageChange={onImageChange}
+          onImageUploading={setUploading}
+        >
+          {isUploading && <LoadingSpinner />}
+          {!isUploading && (
+            <React.Fragment>
+              <Center
+                className='buttonBackground'
+                flexDirection='column'
+                position='absolute'
+              >
+                <Image src='icons/icon_photo.svg' alt='uploadIcon' />
+                <Text color={colors.mainGray[0]} fontSize='12px'>
+                  {inputProps.placeholder}
+                </Text>
+              </Center>
+              <Box className='uploadImage' position='absolute'>
+                {imageUrl && (
+                  <Image
+                    src={imageUrl}
+                    alt='groupImage'
+                    width='full'
+                    height='full'
+                    objectFit='cover'
+                  />
+                )}
+              </Box>
+            </React.Fragment>
+          )}
+        </GroupImageUploadButton>
       </Box>
     </FormControl>
   );
