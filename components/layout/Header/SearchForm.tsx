@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {CloseIcon, Search2Icon} from '@chakra-ui/icons';
 import {
   Box,
@@ -11,6 +11,7 @@ import {
 import {colors} from 'style';
 import multiplyColors from 'utils/style/multiplyColors';
 import useSearchForm from 'hooks/search/useSearchForm';
+import {useRouter} from 'next/dist/client/router';
 
 const searchFormStyle = {
   backgroundColor: colors.panelGray,
@@ -25,12 +26,14 @@ const searchFormStyle = {
 };
 
 const SearchForm = (props: {onOpen: () => void; onClose: () => void}) => {
+  const router = useRouter();
+  const params: any = router.query;
   const {onOpen} = props;
   const [keyword, setKeyword] = React.useState('');
   const {search} = useSearchForm(keyword);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(event.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
   };
 
   const handleReset = () => {
@@ -42,6 +45,13 @@ const SearchForm = (props: {onOpen: () => void; onClose: () => void}) => {
       search();
     }
   };
+
+  useEffect(() => {
+    if (params.keyword) {
+      console.log(params.keyword);
+      setKeyword(params.keyword);
+    }
+  }, [params.keyword]);
 
   return (
     <Box className='searchFormWrapper' width='340px' height='36px'>
