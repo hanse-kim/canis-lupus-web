@@ -42,6 +42,13 @@ export interface RegisterData {
   image: any;
 }
 
+export interface EditProfileData {
+  imageUrl: string;
+  name: string;
+  introduce: string;
+  categories: string[];
+}
+
 export interface UserToken {
   token: string;
 }

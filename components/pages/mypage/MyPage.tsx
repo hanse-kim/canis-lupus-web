@@ -15,6 +15,7 @@ import LoadingSpinner from 'components/common/LoadingSpinner';
 import useUserInfo from 'hooks/api/useUserInfo';
 import useAuth from 'hooks/auth/useAuth';
 import usePageMove from 'hooks/usePageMove';
+import {colors} from 'style';
 
 const moreMenu = [
   {title: '공지사항', url: '/notice'},
@@ -51,7 +52,13 @@ const ProfileCard = () => {
   }
 
   return (
-    <CardBox className='profileCard' flex='1' padding='16px' height='full'>
+    <CardBox
+      className='profileCard'
+      flex='1'
+      padding='16px'
+      height='full'
+      position='relative'
+    >
       <CardHeading>{`${userData.name}님의 프로필`}</CardHeading>
       <HStack spacing='12px' alignItems='flex-start'>
         <Image
@@ -71,6 +78,16 @@ const ProfileCard = () => {
           </Box>
         </Stack>
       </HStack>
+      <Link
+        position='absolute'
+        right='16px'
+        bottom='16px'
+        fontSize='12px'
+        color={colors.minorTextGray}
+        href='/mypage/editProfile'
+      >
+        프로필 편집
+      </Link>
     </CardBox>
   );
 };
@@ -112,8 +129,7 @@ const QuestCount = (props: {label: string; count: number}) => {
 const MoreMenuCard = () => {
   const {pageMove, pageRedirect} = usePageMove();
   const {logout} = useAuth();
-  const onMoreMenuClick = (moreMenuItem: { title: string; url?: string }) => {
-    console.log('!!');
+  const onMoreMenuClick = (moreMenuItem: {title: string; url?: string}) => {
     if (moreMenuItem.url) {
       pageMove(moreMenuItem.url);
     } else if (moreMenuItem.title === '로그아웃') {

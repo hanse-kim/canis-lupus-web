@@ -6,7 +6,7 @@ interface CustomCheckboxProps {
   textStyle?: ChakraProps;
 }
 
-const CustomCheckbox = (props: CustomCheckboxProps) => {
+export const CustomCheckbox = (props: CustomCheckboxProps) => {
   return (
     <Checkbox size='lg' {...props.checkboxProps}>
       <Text fontSize='14px' {...props.textStyle}>
