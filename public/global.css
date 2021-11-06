@@ -26,7 +26,7 @@ input {
   user-select: none;
 }
 
-img[alt]:after {  
+/* img[alt]:after {  
   display: block;
   position: absolute;
   top: 0;
@@ -35,4 +35,4 @@ img[alt]:after {
   height: 100%;
   background-color: #fff;
   content: attr(alt);
-}
+} */

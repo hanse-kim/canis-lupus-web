@@ -62,13 +62,13 @@ const ImageUploadForm = (
                 flexDirection='column'
                 position='absolute'
               >
-                <Image src='icons/icon_photo.svg' alt='uploadIcon' />
+                <Image src='/icons/icon_photo.svg' alt='uploadIcon' />
                 <Text color={colors.mainGray[0]} fontSize='12px'>
                   {inputProps.placeholder}
                 </Text>
               </Center>
-              <Box className='uploadImage' position='absolute'>
-                {imageUrl && (
+              {imageUrl !== undefined && (
+                <Box className='uploadImage' position='absolute'>
                   <Image
                     src={imageUrl}
                     alt='groupImage'
@@ -76,8 +76,8 @@ const ImageUploadForm = (
                     height='full'
                     objectFit='cover'
                   />
-                )}
-              </Box>
+                </Box>
+              )}
             </React.Fragment>
           )}
         </GroupImageUploadButton>

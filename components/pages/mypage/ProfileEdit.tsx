@@ -56,6 +56,7 @@ const ResignModal = () => {
 
 const ProfileEdit = () => {
   const {categoryList, isLoading: isCategoryListLoading} = useCategoryList();
+  const {pageMove} = usePageMove();
   const {
     imageUrl,
     name,
@@ -69,7 +70,12 @@ const ProfileEdit = () => {
     isSubmitable,
     onSubmitClick,
     isEditing,
-  } = useEditProfileForm(['imageUrl', 'name', 'introduce', 'categories']);
+  } = useEditProfileForm(
+    ['imageUrl', 'name', 'introduce', 'categories'],
+    () => {
+      pageMove('/mypage');
+    }
+  );
   const {onOpen} = useModal();
 
   return (

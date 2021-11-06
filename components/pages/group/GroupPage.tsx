@@ -4,12 +4,14 @@ import {Tab, TabList, TabPanel, TabPanels, Tabs} from '@chakra-ui/tabs';
 import CardBox from 'components/common/CardBox';
 import {useState} from 'react';
 import {SpecificGroupInfo} from 'types/group';
-import GroupMemberContainer from './GroupMemberContainer';
+import GroupMemberContainer from './containers/GroupMemberContainer';
+import PostContainer from './containers/PostContainer';
 import HomeTab from './tabs/HomeTab';
+import PostTab from './tabs/PostTab';
 
 const tabs = [
   {title: '홈', tab: HomeTab},
-  {title: '게시판', tab: undefined},
+  {title: '게시판', tab: PostTab},
   {title: '퀘스트', tab: undefined},
   {title: '채팅', tab: undefined},
 ];
@@ -37,7 +39,7 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
       marginBottom='80px'
     >
       <CardBox borderRadius='8pt' overflow='hidden'>
-        <GroupImage src={props.groupInfo.imageUrls[0]} />
+        {tabIndex === 0 && <GroupImage src={props.groupInfo.imageUrls[0]} />}
         <Tabs isFitted onChange={(index) => setTabIndex(index)}>
           <TabList fontWeight='semibold' height='48px'>
             {tabs.map((item, index) => (
@@ -58,6 +60,7 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
         </Tabs>
       </CardBox>
       {tabIndex === 0 && <GroupMemberContainer groupInfo={props.groupInfo} />}
+      {tabIndex === 1 && <PostContainer groupInfo={props.groupInfo} />}
     </Stack>
   );
 };
