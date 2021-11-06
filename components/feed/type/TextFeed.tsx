@@ -4,7 +4,7 @@ import {FeedInfo} from 'types/domain';
 const TextFeed = (props: { feed: FeedInfo }) => {
   return (
     <Box
-      fontSize='10px'
+      fontSize='12px'
       overflow='hidden'
       textOverflow='ellipsis'
       whiteSpace='normal'

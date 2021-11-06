@@ -39,7 +39,7 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
       <CardBox borderRadius='8pt' overflow='hidden'>
         <GroupImage src={props.groupInfo.imageUrls[0]} />
         <Tabs isFitted onChange={(index) => setTabIndex(index)}>
-          <TabList fontWeight='semibold'>
+          <TabList fontWeight='semibold' height='48px'>
             {tabs.map((item, index) => (
               <Tab key={index} borderBottomWidth='1px'>
                 {item.title}

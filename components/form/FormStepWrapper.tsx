@@ -1,4 +1,5 @@
 import {Heading} from '@chakra-ui/layout';
+import {SlideFade} from '@chakra-ui/react';
 import useFormData from 'hooks/form/useFormData';
 import React, {useEffect} from 'react';
 import {FormContentProps} from 'types/props';
@@ -22,12 +23,12 @@ const FormStepWrapper = (
   }, [formDataContainsKey, formDataKeys, onSubmit]);
 
   return (
-    <React.Fragment>
+    <SlideFade reverse in={formDataKeys && !formDataContainsKey(formDataKeys)}>
       <Heading marginBottom='24px' fontSize='26px' textAlign='center'>
         {heading}
       </Heading>
       <FormContentWrapper>{children}</FormContentWrapper>
-    </React.Fragment>
+    </SlideFade>
   );
 };
 

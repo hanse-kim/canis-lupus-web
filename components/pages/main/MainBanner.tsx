@@ -1,4 +1,4 @@
-import {Box, Image, Link} from '@chakra-ui/react';
+import {Box, Image, Link, SlideFade, Center} from '@chakra-ui/react';
 import Banner from 'components/common/Banner';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import useMainBannerList from 'hooks/api/useMainBannerList';
@@ -18,15 +18,22 @@ const MainBanner = () => {
   const {isLoading, bannerList} = useMainBannerList();
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <Center height='460px' magin='0' padding='0'>
+        <LoadingSpinner />
+      </Center>
+    );
   }
 
   return (
-    <Banner
-      bannerItemComponent={BannerItem}
-      bannerItemProps={bannerList}
-      autoplay
-    />
+    <SlideFade in={!isLoading}>
+      <Banner
+        height='460px'
+        bannerItemComponent={BannerItem}
+        bannerItemProps={bannerList}
+        autoplay
+      />
+    </SlideFade>
   );
 };
 

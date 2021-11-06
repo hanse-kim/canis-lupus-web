@@ -1,5 +1,6 @@
 import React from 'react';
 import {Box} from '@chakra-ui/react';
+import {LayoutProps} from '@chakra-ui/styled-system';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,7 +17,8 @@ const settings = {
 };
 
 const Banner = (props: {
-  width?: string;
+  width?: LayoutProps['width'];
+  height?: LayoutProps['height'];
   bannerItemComponent?: (props: any) => JSX.Element;
   bannerItemProps?: any[];
   sliderProps?: any;
@@ -28,10 +30,15 @@ const Banner = (props: {
   }
 
   return (
-    <Box className='bannerWrapper' display='flex' justifyContent='center'>
+    <Box
+      className='bannerWrapper'
+      display='flex'
+      justifyContent='center'
+    >
       <Box
         className='bannerContainer'
         width={props.width ? props.width : '100%'}
+        height={props.height}
       >
         <Slider {...sliderSettings} autoplay={props.autoplay}>
           {props.bannerItemProps?.map((bannerItemProp, index) => {

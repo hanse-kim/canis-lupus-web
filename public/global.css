@@ -25,3 +25,14 @@ input {
   -ms-user-select: none;
   user-select: none;
 }
+
+img[alt]:after {  
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  content: attr(alt);
+}

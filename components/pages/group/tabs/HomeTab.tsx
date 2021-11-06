@@ -30,7 +30,7 @@ const HomeTab = (props: {groupInfo: SpecificGroupInfo}) => {
         {groupInfo.introduction}
       </Box>
       {userInfo &&
-        !userInfo.meetings.joining.every(
+        userInfo.meetings.joining.every(
           (group) => group._id !== groupInfo._id
         ) && (
           <Button width='full' height='48px' marginTop='24px'>
