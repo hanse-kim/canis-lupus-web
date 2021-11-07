@@ -5,6 +5,7 @@ import usePageMove from 'hooks/usePageMove';
 import React from 'react';
 import Logo from './Logo';
 import SearchForm from './SearchForm';
+import NotificationButton from './Notification';
 
 const mainNavMenu = [
   {
@@ -16,10 +17,10 @@ const mainNavMenu = [
   {icon: 'icon_myPage', title: '마이페이지', url: '/mypage'},
 ];
 
-const MainNavigationIconButton = (props: {
+export const MainNavigationIconButton = (props: {
   icon: string;
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
 }) => {
   return (
     <Link onClick={props.onClick} color='#aaa'>
@@ -61,16 +62,21 @@ const MainNavigationBar = (props: {
         <Logo width='122px' />
         <HStack spacing='24px'>
           <SearchForm {...props} />
-          {mainNavMenu.map((item, index) => (
-            <MainNavigationIconButton
-              key={index}
-              icon={item.icon}
-              title={item.title}
-              onClick={() => {
-                onMainNavMenuClick(item);
-              }}
-            />
-          ))}
+          <MainNavigationIconButton
+            icon={mainNavMenu[0].icon}
+            title={mainNavMenu[0].title}
+            onClick={() => {
+              onMainNavMenuClick(mainNavMenu[0]);
+            }}
+          />
+          <NotificationButton />
+          <MainNavigationIconButton
+            icon={mainNavMenu[2].icon}
+            title={mainNavMenu[2].title}
+            onClick={() => {
+              onMainNavMenuClick(mainNavMenu[2]);
+            }}
+          />
         </HStack>
       </Flex>
     </Container>
