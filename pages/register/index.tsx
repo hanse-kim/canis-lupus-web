@@ -10,7 +10,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      pageRedirectWithRedirect('/main');
+      pageRedirectWithRedirect('/');
     }
   }, [isLoggedIn, pageRedirectWithRedirect]);
 

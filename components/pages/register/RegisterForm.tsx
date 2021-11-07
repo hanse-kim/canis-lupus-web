@@ -24,7 +24,7 @@ const RegisterForm = () => {
   const {resetFormData, formData} = useFormData();
   const {pageMove} = usePageMove();
   const {register, isRegistering} = useRegister(() => {
-    pageMove('/main');
+    pageMove('/');
   });
 
   const submit = useCallback(async () => {

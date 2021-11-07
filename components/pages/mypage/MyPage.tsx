@@ -134,7 +134,7 @@ const MoreMenuCard = () => {
       pageMove(moreMenuItem.url);
     } else if (moreMenuItem.title === '로그아웃') {
       logout();
-      pageRedirect('/main');
+      pageRedirect('/');
     }
   };
 

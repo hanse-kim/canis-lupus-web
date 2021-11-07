@@ -1,7 +1,6 @@
 import {ChakraProvider} from '@chakra-ui/react';
 import type {AppProps} from 'next/app';
 import {QueryClient, QueryClientProvider} from 'react-query';
-// import {ReactQueryDevtools} from 'react-query-devtools';
 import {RecoilRoot} from 'recoil';
 import Meta from 'components/layout/Meta';
 import 'public/global.css';
@@ -9,7 +8,7 @@ import 'public/slick-theme-custom.css';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import defaultChakraTheme from 'style/defaultChakraTheme';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useRouter} from 'next/dist/client/router';
 import {colors} from 'style';
 
@@ -31,7 +30,6 @@ const MyApp = ({Component, pageProps}: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(router.pathname.split('/')[1]);
     if (router.pathname.split('/')[1] === 'group') {
       document.body.style.backgroundColor = '#f8f9fa';
     } else {
@@ -46,7 +44,6 @@ const MyApp = ({Component, pageProps}: AppProps) => {
           <Meta />
           <Component {...pageProps} />
         </ChakraProvider>
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </RecoilRoot>
   );

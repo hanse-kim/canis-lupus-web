@@ -23,7 +23,7 @@ const LoginForm = () => {
   } = useForm();
   const {pageMove, pageMoveWithRedirect, getRedirect} = usePageMove();
   const {login, isLogining, loginError} = useLogin(() => {
-    pageMove('/main');
+    pageMove('/');
   });
   const {isLoggedIn} = useAuth();
   const [email, setEmail] = useState('');
@@ -34,7 +34,7 @@ const LoginForm = () => {
     if (redirect) {
       pageMove(redirect);
     } else {
-      pageMove('/main');
+      pageMove('/');
     }
   }
 

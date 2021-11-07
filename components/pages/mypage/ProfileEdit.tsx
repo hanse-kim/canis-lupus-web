@@ -19,7 +19,7 @@ const ResignModal = () => {
   const [checked, setChecked] = useState(false);
   const {pageMove} = usePageMove();
   const {resign, isResigning} = useResign(() => {
-    pageMove('/main');
+    pageMove('/');
   });
 
   return (

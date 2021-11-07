@@ -8,7 +8,7 @@ const Logo = (props: {width?: string; height?: string}) => {
       width='fit-content'
       marginY='auto'
     >
-      <Link className='logoButton' href='/main'>
+      <Link className='logoButton' href='/'>
         <Image src='/logo.svg' alt='logo' {...props} />
       </Link>
     </Box>

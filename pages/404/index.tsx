@@ -5,7 +5,7 @@ const Custom404 = () => {
   const {pageRedirect} = usePageMove();
 
   useEffect(() => {
-    pageRedirect('/main');
+    pageRedirect('/');
   });
 
   return null;

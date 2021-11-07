@@ -13,7 +13,7 @@ const RecommendGroups = () => {
   }, [fetchGroupList]);
 
   return (
-    <LabeledContainer label='추천모임' viewMoreUrl='/main'>
+    <LabeledContainer label='추천모임' viewMoreUrl='/'>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
