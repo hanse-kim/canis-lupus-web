@@ -1,12 +1,16 @@
 import {Image, ImageProps} from '@chakra-ui/image';
-import {Stack} from '@chakra-ui/layout';
+import {Box, Stack} from '@chakra-ui/layout';
 import {Tab, TabList, TabPanel, TabPanels, Tabs} from '@chakra-ui/tabs';
 import CardBox from 'components/common/CardBox';
+import LoadingSpinner from 'components/common/LoadingSpinner';
+import useUserInfo from 'hooks/api/useUserInfo';
 import {useState} from 'react';
 import {SpecificGroupInfo} from 'types/group';
+import isJoining from 'utils/isJoin';
 import GroupMemberContainer from './containers/GroupMemberContainer';
 import PostContainer from './containers/PostContainer';
 import HomeTab from './tabs/HomeTab';
+import NotMemberTab from './tabs/NotMeberTab';
 import PostTab from './tabs/PostTab';
 
 const tabs = [
@@ -18,18 +22,33 @@ const tabs = [
 
 const GroupImage = (props: ImageProps) => {
   return (
-    <Image
-      alt='groupImage'
-      width='full'
-      height='360px'
-      objectFit='cover'
-      {...props}
-    />
+    <Box height='360px' overflow='hidden'>
+      <Image
+        alt='groupImage'
+        width='full'
+        height='full'
+        objectFit='cover'
+        position='relative'
+        {...props}
+      />
+    </Box>
   );
 };
 
 const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
+  const {groupInfo} = props;
   const [tabIndex, setTabIndex] = useState(0);
+  const {userInfo, isLoading} = useUserInfo();
+
+  if (isLoading) {
+    return (
+      <Box className='groupPageContainer' marginTop='36px' marginBottom='80px'>
+        <CardBox borderRadius='8pt' overflow='hidden'>
+          <LoadingSpinner />
+        </CardBox>
+      </Box>
+    );
+  }
 
   return (
     <Stack
@@ -39,7 +58,7 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
       marginBottom='80px'
     >
       <CardBox borderRadius='8pt' overflow='hidden'>
-        {tabIndex === 0 && <GroupImage src={props.groupInfo.imageUrls[0]} />}
+        {tabIndex === 0 && <GroupImage src={groupInfo.imageUrls[0]} />}
         <Tabs isFitted onChange={(index) => setTabIndex(index)}>
           <TabList fontWeight='semibold' height='48px'>
             {tabs.map((item, index) => (
@@ -52,7 +71,13 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
             {tabs.map((item, index) =>
               item.tab ? (
                 <TabPanel key={index} padding='0'>
-                  <item.tab key={index} groupInfo={props.groupInfo} />
+                  {index !== 0 &&
+                  userInfo &&
+                  !isJoining(userInfo, groupInfo._id) ? (
+                    <NotMemberTab />
+                  ) : (
+                    <item.tab key={index} groupInfo={groupInfo} />
+                  )}
                 </TabPanel>
               ) : null
             )}
@@ -60,7 +85,9 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
         </Tabs>
       </CardBox>
       {tabIndex === 0 && <GroupMemberContainer groupInfo={props.groupInfo} />}
-      {tabIndex === 1 && <PostContainer groupInfo={props.groupInfo} />}
+      {tabIndex === 1 && userInfo && isJoining(userInfo, groupInfo._id) && (
+        <PostContainer groupInfo={props.groupInfo} />
+      )}
     </Stack>
   );
 };

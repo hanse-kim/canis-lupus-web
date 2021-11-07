@@ -28,7 +28,7 @@ const PostModal = (props: {groupId: string}) => {
     props.groupId,
     () => {
       onClose();
-    resetPostForm();
+      resetPostForm();
     }
   );
 
