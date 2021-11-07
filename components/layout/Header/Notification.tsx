@@ -6,7 +6,7 @@ import {
   PopoverBody,
 } from '@chakra-ui/popover';
 import {Image} from '@chakra-ui/image';
-import {Box, Flex, Stack, HStack, Link, CloseButton} from '@chakra-ui/react';
+import {Box, Flex, Stack, HStack, Link, CloseButton, Center} from '@chakra-ui/react';
 import React, {useState} from 'react';
 import {NotificationInfo} from 'types/notification';
 import {MainNavigationIconButton} from './MainNavigationBar';
@@ -68,12 +68,15 @@ const NotificationButton = () => {
         <PopoverArrow />
         <PopoverBody padding='0'>
           {isLoading && <LoadingSpinner />}
-          {!isLoading && (
+          {!isLoading && notificationList && notificationList.length !== 0 && (
             <Box>
               {notificationList?.map((item, index) => (
                 <Notification key={index} notificationInfo={item} />
               ))}
             </Box>
+          )}
+          {!isLoading && notificationList && notificationList.length === 0 && (
+            <Center height='48px'>새 알림이 없습니다!</Center>
           )}
         </PopoverBody>
       </PopoverContent>
