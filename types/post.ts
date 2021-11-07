@@ -1,3 +1,6 @@
+import {UserInfo} from './auth';
+import {GroupInfo} from './group';
+
 export interface PostData {
   meeting: string;
   author?: string;
@@ -7,8 +10,8 @@ export interface PostData {
 }
 
 export interface PostInfo {
-  meeting: string;
-  author: string;
+  meeting: GroupInfo;
+  author: UserInfo;
   title: string;
   contents: string;
   imageUrls: string[];
@@ -23,4 +26,15 @@ export interface PostInfo {
   id: string;
 }
 
-export interface CommentInfo {}
+export interface CommentInfo {
+  _id: string;
+  parent: PostInfo;
+  author: UserInfo;
+  contents: string;
+  comments: any[];
+  likes: string[];
+  commentsCount: number;
+  likesCount: number;
+  createdAt: string;
+  updatedAt: string;
+}

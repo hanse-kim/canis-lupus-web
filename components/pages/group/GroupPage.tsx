@@ -4,6 +4,7 @@ import {Tab, TabList, TabPanel, TabPanels, Tabs} from '@chakra-ui/tabs';
 import CardBox from 'components/common/CardBox';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import useUserInfo from 'hooks/api/useUserInfo';
+import {useRouter} from 'next/dist/client/router';
 import {useState} from 'react';
 import {SpecificGroupInfo} from 'types/group';
 import {isJoining} from 'utils/isJoining';
@@ -14,11 +15,11 @@ import HomeTab from './tabs/HomeTab';
 import NotMemberTab from './tabs/NotMeberTab';
 import PostTab from './tabs/PostTab';
 
-const tabs = [
-  {title: '홈', tab: HomeTab},
-  {title: '게시판', tab: PostTab},
-  {title: '퀘스트', tab: undefined},
-  {title: '채팅', tab: undefined},
+export const tabs = [
+  {title: '홈', tab: HomeTab, path: 'home'},
+  {title: '게시판', tab: PostTab, path: 'posts'},
+  {title: '퀘스트', tab: undefined, path: 'quest'},
+  {title: '채팅', tab: undefined, path: 'chatting'},
 ];
 
 const GroupImage = (props: ImageProps) => {
@@ -36,7 +37,7 @@ const GroupImage = (props: ImageProps) => {
   );
 };
 
-const GroupTitle = (props: {groupTitle: string}) => {
+export const GroupTitle = (props: {groupTitle: string}) => {
   const {groupTitle} = props;
 
   return (
@@ -46,10 +47,23 @@ const GroupTitle = (props: {groupTitle: string}) => {
   );
 };
 
+export const GroupTabs = () => {
+  return (
+    <TabList fontWeight='semibold' height='48px'>
+      {tabs.map((item, index) => (
+        <Tab key={index} borderBottomWidth='1px'>
+          {item.title}
+        </Tab>
+      ))}
+    </TabList>
+  );
+};
+
 const GroupPage = (props: {groupInfo: SpecificGroupInfo; tabIndex: number}) => {
   const {groupInfo} = props;
   const [tabIndex, setTabIndex] = useState(props.tabIndex);
   const {userInfo, isLoading} = useUserInfo();
+  const router = useRouter();
 
   if (isLoading) {
     return (
@@ -73,16 +87,17 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo; tabIndex: number}) => {
         {tabIndex !== 0 && <GroupTitle groupTitle={groupInfo.name} />}
         <Tabs
           isFitted
-          onChange={(index) => setTabIndex(index)}
-          tabIndex={tabIndex}
+          onChange={(index) => {
+            setTabIndex(index);
+            router.push(
+              `/group/${groupInfo._id}/${tabs[index].path}`,
+              undefined,
+              {shallow: true}
+            );
+          }}
+          defaultIndex={tabIndex}
         >
-          <TabList fontWeight='semibold' height='48px'>
-            {tabs.map((item, index) => (
-              <Tab key={index} borderBottomWidth='1px'>
-                {item.title}
-              </Tab>
-            ))}
-          </TabList>
+          <GroupTabs />
           <TabPanels>
             {tabs.map((item, index) =>
               item.tab ? (
