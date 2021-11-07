@@ -2,16 +2,11 @@ import {Image} from '@chakra-ui/image';
 import {Box, Center, Flex, Heading, Stack} from '@chakra-ui/layout';
 import {Button} from 'components/common/_basic';
 import usePageMove from 'hooks/usePageMove';
-import {isMobile} from 'react-device-detect';
 
 const storeUrl = 'https://play.google.com/';
 
 const Mobile = () => {
-  const {pageRedirect, pageMove} = usePageMove();
-
-  if (!isMobile) {
-    pageRedirect('/');
-  }
+  const {pageMove} = usePageMove();
 
   return (
     <Box
