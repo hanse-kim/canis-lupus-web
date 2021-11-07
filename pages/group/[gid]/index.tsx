@@ -16,7 +16,7 @@ const Group = () => {
   return (
     <Layout>
       <PageWrapper>
-        <GroupPage groupInfo={groupInfo} />
+        <GroupPage groupInfo={groupInfo} tabIndex={0} />
       </PageWrapper>
     </Layout>
   );

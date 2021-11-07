@@ -1,13 +1,14 @@
 import {Image, ImageProps} from '@chakra-ui/image';
-import {Box, Stack} from '@chakra-ui/layout';
+import {Box, Center, Stack} from '@chakra-ui/layout';
 import {Tab, TabList, TabPanel, TabPanels, Tabs} from '@chakra-ui/tabs';
 import CardBox from 'components/common/CardBox';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import useUserInfo from 'hooks/api/useUserInfo';
 import {useState} from 'react';
 import {SpecificGroupInfo} from 'types/group';
-import isJoining from 'utils/isJoin';
+import {isJoining} from 'utils/isJoining';
 import GroupMemberContainer from './containers/GroupMemberContainer';
+import GroupMemberWaitingContainer from './containers/GroupMemberWaitingContainer';
 import PostContainer from './containers/PostContainer';
 import HomeTab from './tabs/HomeTab';
 import NotMemberTab from './tabs/NotMeberTab';
@@ -35,9 +36,19 @@ const GroupImage = (props: ImageProps) => {
   );
 };
 
-const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
+const GroupTitle = (props: {groupTitle: string}) => {
+  const {groupTitle} = props;
+
+  return (
+    <Center paddingY='18px' fontSize='20px' fontWeight='bold'>
+      {groupTitle}
+    </Center>
+  );
+};
+
+const GroupPage = (props: {groupInfo: SpecificGroupInfo; tabIndex: number}) => {
   const {groupInfo} = props;
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(props.tabIndex);
   const {userInfo, isLoading} = useUserInfo();
 
   if (isLoading) {
@@ -59,7 +70,12 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
     >
       <CardBox borderRadius='8pt' overflow='hidden'>
         {tabIndex === 0 && <GroupImage src={groupInfo.imageUrls[0]} />}
-        <Tabs isFitted onChange={(index) => setTabIndex(index)}>
+        {tabIndex !== 0 && <GroupTitle groupTitle={groupInfo.name} />}
+        <Tabs
+          isFitted
+          onChange={(index) => setTabIndex(index)}
+          tabIndex={tabIndex}
+        >
           <TabList fontWeight='semibold' height='48px'>
             {tabs.map((item, index) => (
               <Tab key={index} borderBottomWidth='1px'>
@@ -74,7 +90,7 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
                   {index !== 0 &&
                   userInfo &&
                   !isJoining(userInfo, groupInfo._id) ? (
-                    <NotMemberTab />
+                    <NotMemberTab groupInfo={groupInfo} />
                   ) : (
                     <item.tab key={index} groupInfo={groupInfo} />
                   )}
@@ -85,6 +101,11 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo}) => {
         </Tabs>
       </CardBox>
       {tabIndex === 0 && <GroupMemberContainer groupInfo={props.groupInfo} />}
+      {tabIndex === 0 &&
+        userInfo &&
+        userInfo._id === groupInfo.persons.president._id && (
+          <GroupMemberWaitingContainer groupInfo={props.groupInfo} />
+        )}
       {tabIndex === 1 && userInfo && isJoining(userInfo, groupInfo._id) && (
         <PostContainer groupInfo={props.groupInfo} />
       )}

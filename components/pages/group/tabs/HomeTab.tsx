@@ -2,6 +2,7 @@ import {Box, Center, Heading} from '@chakra-ui/layout';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import {Button} from 'components/common/_basic';
 import useUserInfo from 'hooks/api/useUserInfo';
+import useGroupJoinForm from 'hooks/group/useGroupJoinForm';
 import React from 'react';
 import {colors} from 'style';
 import {SpecificGroupInfo} from 'types/group';
@@ -9,6 +10,9 @@ import {SpecificGroupInfo} from 'types/group';
 const HomeTab = (props: {groupInfo: SpecificGroupInfo}) => {
   const {groupInfo} = props;
   const {userInfo, isLoading} = useUserInfo();
+  const {onJoinClick, isLoading: isJoinLoading} = useGroupJoinForm(
+    props.groupInfo
+  );
 
   if (isLoading) {
     return (
@@ -33,7 +37,13 @@ const HomeTab = (props: {groupInfo: SpecificGroupInfo}) => {
         userInfo.meetings.joining.every(
           (group) => group._id !== groupInfo._id
         ) && (
-          <Button width='full' height='48px' marginTop='24px'>
+          <Button
+            onClick={onJoinClick}
+            isLoading={isJoinLoading}
+            width='full'
+            height='48px'
+            marginTop='24px'
+          >
             가입하기
           </Button>
         )}
