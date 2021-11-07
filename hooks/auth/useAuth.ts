@@ -39,7 +39,17 @@ const useAuth = () => {
     return JSON.parse(data!);
   }, [isLoggedIn]);
 
-  return {login, logout, isLoggedIn, userData};
+  const updateName = (name: string) => {
+    localStorage.setItem(
+      USER_DATA,
+      JSON.stringify({
+        ...userData,
+        name,
+      })
+    );
+  };
+
+  return {login, logout, isLoggedIn, userData, updateName};
 };
 
 export default useAuth;

@@ -38,6 +38,10 @@ const PostCardContentWithOutImage = (props: {postInfo: PostInfo}) => {
 const PostImage = (props: {postInfo: PostInfo}) => {
   const {postInfo} = props;
 
+  if (!postInfo.imageUrls[0]) {
+    return null;
+  }
+
   return (
     <Box width='100%' height='fit-content'>
       <Image

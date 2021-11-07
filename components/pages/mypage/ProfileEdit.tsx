@@ -13,6 +13,7 @@ import {CustomCheckbox} from 'components/form/formContent/sub/CustomCheckbox';
 import {Button} from 'components/common/_basic';
 import useResign from 'hooks/auth/useResign';
 import usePageMove from 'hooks/usePageMove';
+import useAuth from 'hooks/auth/useAuth';
 
 const ResignModal = () => {
   const [checked, setChecked] = useState(false);
@@ -55,6 +56,7 @@ const ResignModal = () => {
 };
 
 const ProfileEdit = () => {
+  const {updateName} = useAuth();
   const {categoryList, isLoading: isCategoryListLoading} = useCategoryList();
   const {pageMove} = usePageMove();
   const {
@@ -74,6 +76,7 @@ const ProfileEdit = () => {
     ['imageUrl', 'name', 'introduce', 'categories'],
     () => {
       pageMove('/mypage');
+      updateName(name);
     }
   );
   const {onOpen} = useModal();
