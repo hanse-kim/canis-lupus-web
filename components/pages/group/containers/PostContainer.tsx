@@ -108,7 +108,6 @@ export const PostCardHeader = (props: {
           </Box>
         </Stack>
       </HStack>
-      <PostMorePop userInfo={userInfo} postInfo={postInfo} />
     </Flex>
   );
 };
@@ -160,7 +159,12 @@ export const PostCardBox = (props: {postInfo: PostInfo}) => {
   const userInfo = postInfo.author;
 
   return (
-    <CardBox paddingX='16px' paddingY='24px' borderRadius='8px'>
+    <CardBox
+      paddingX='16px'
+      paddingY='24px'
+      borderRadius='8px'
+      position='relative'
+    >
       <Link href={`/post/${postInfo._id}`}>
         <Stack spacing='16px'>
           <PostCardHeader postInfo={postInfo} userInfo={userInfo} />
@@ -171,6 +175,9 @@ export const PostCardBox = (props: {postInfo: PostInfo}) => {
           </HStack>
         </Stack>
       </Link>
+      <Box position='absolute' top='16px' right='16px'>
+        <PostMorePop userInfo={userInfo} postInfo={postInfo} />
+      </Box>
     </CardBox>
   );
 };
