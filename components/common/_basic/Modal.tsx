@@ -11,8 +11,12 @@ import {
 import useModal from 'hooks/useModal';
 import React from 'react';
 
-const Modal = (props: {title: string; children?: React.ReactNode}) => {
-  const {isOpen, onClose} = useModal();
+const Modal = (props: {
+  title: string;
+  children?: React.ReactNode;
+  stateKey?: string;
+}) => {
+  const {isOpen, onClose} = useModal(props.stateKey);
 
   return (
     <ChakraModal isOpen={isOpen} onClose={onClose} isCentered>

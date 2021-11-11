@@ -6,6 +6,7 @@ import React from 'react';
 import Logo from './Logo';
 import SearchForm from './SearchForm';
 import NotificationButton from './Notification';
+import useAuth from 'hooks/auth/useAuth';
 
 const mainNavMenu = [
   {
@@ -13,7 +14,7 @@ const mainNavMenu = [
     title: '내 모임',
     url: '/mygroups',
   },
-  {icon: 'icon_notice', title: '알림', onClick: () => {}},
+  {icon: 'icon_notice', title: '알림', url: '/login'},
   {icon: 'icon_myPage', title: '마이페이지', url: '/mypage'},
 ];
 
@@ -42,6 +43,7 @@ const MainNavigationBar = (props: {
   onClose: () => void;
 }) => {
   const {pageMove} = usePageMove();
+  const {isLoggedIn} = useAuth();
 
   const onMainNavMenuClick = (mainNavMemuItem: {
     icon: string;
@@ -69,7 +71,16 @@ const MainNavigationBar = (props: {
               onMainNavMenuClick(mainNavMenu[0]);
             }}
           />
-          <NotificationButton />
+          {isLoggedIn && <NotificationButton />}
+          {!isLoggedIn && (
+            <MainNavigationIconButton
+              icon={mainNavMenu[1].icon}
+              title={mainNavMenu[1].title}
+              onClick={() => {
+                onMainNavMenuClick(mainNavMenu[1]);
+              }}
+            />
+          )}
           <MainNavigationIconButton
             icon={mainNavMenu[2].icon}
             title={mainNavMenu[2].title}

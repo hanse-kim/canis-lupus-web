@@ -9,6 +9,7 @@ import useModal from 'hooks/useModal';
 import React from 'react';
 import {colors} from 'style';
 import {SpecificGroupInfo} from 'types/group';
+import refresh from 'utils/refresh';
 
 const PostModal = (props: {groupId: string}) => {
   const {onClose} = useModal();
@@ -29,6 +30,7 @@ const PostModal = (props: {groupId: string}) => {
     () => {
       onClose();
       resetPostForm();
+      refresh();
     }
   );
 

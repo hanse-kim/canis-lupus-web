@@ -1,4 +1,4 @@
-import {Box, Divider, Flex, Heading, HStack, Stack} from '@chakra-ui/layout';
+import {Box, Divider, Heading, HStack, Stack} from '@chakra-ui/layout';
 import {Image} from '@chakra-ui/image';
 import {Tabs} from '@chakra-ui/react';
 import CardBox from 'components/common/CardBox';
@@ -15,7 +15,7 @@ const User = (props: {userInfo: UserInfo}) => {
 
   return (
     <Box>
-      <HStack spacing='12px' alignItems='center'>
+      <HStack spacing='12px' alignItems='center' paddingY='10px'>
         <Box
           className='profileImageFrame'
           width='60px'
@@ -46,7 +46,7 @@ const User = (props: {userInfo: UserInfo}) => {
 
 const UserContainer = (props: {users: UserInfo[]}) => {
   return (
-    <Box marginTop='16px'>
+    <Box marginTop='18px'>
       {props.users.map((item, index) => {
         return <User key={index} userInfo={item} />;
       })}
@@ -55,26 +55,33 @@ const UserContainer = (props: {users: UserInfo[]}) => {
 };
 
 const QuestCardHeader = (props: {questInfo: QuestInfo}) => {
-  return <Stack></Stack>;
+  const {questInfo} = props;
+  return (
+    <Stack spacing='8px'>
+      <Heading fontSize='24px'>{questInfo.title}</Heading>
+      <Box color='#666'>{questInfo.contents}</Box>
+    </Stack>
+  );
 };
 
 const QuestCardContent = (props: {questInfo: QuestInfo}) => {
   const {questInfo} = props;
 
   return (
-    <Flex className='contents' justifyContent='space-between'>
-      <Box>{questInfo.contents}</Box>
-      <Stack spacing='12px'>
+    <Stack spacing='48px'>
+      <Box>
         <Heading fontSize='16px'>
           도전중인 사람 {questInfo.users.ongoing.length}명
         </Heading>
         <UserContainer users={questInfo.users.ongoing} />
+      </Box>
+      <Box>
         <Heading fontSize='16px'>
           성공한 사람 {questInfo.users.completion.length}명
         </Heading>
         <UserContainer users={questInfo.users.completion} />
-      </Stack>
-    </Flex>
+      </Box>
+    </Stack>
   );
 };
 
@@ -83,7 +90,7 @@ const QuestPageTab = (props: {questInfo: QuestInfo}) => {
 
   return (
     <Box paddingX='16px' paddingY='24px'>
-      <Stack spacing='16px'>
+      <Stack spacing='20px'>
         <QuestCardHeader questInfo={questInfo} />
         <QuestCardContent questInfo={questInfo} />
       </Stack>
@@ -107,7 +114,7 @@ const QuestPage = (props: {questInfo: QuestInfo}) => {
         <GroupTitle groupTitle={groupInfo.name} />
         <Tabs
           isFitted
-          defaultIndex={1}
+          defaultIndex={2}
           onChange={(index) => {
             pageMove(`/group/${groupInfo._id}/${tabsPath[index]}`);
           }}

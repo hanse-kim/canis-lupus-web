@@ -14,11 +14,12 @@ import PostContainer from './containers/PostContainer';
 import HomeTab from './tabs/HomeTab';
 import NotMemberTab from './tabs/NotMeberTab';
 import PostTab from './tabs/PostTab';
+import QuestTab from './tabs/QuestTab';
 
 export const tabs = [
   {title: '홈', tab: HomeTab, path: 'home'},
   {title: '게시판', tab: PostTab, path: 'posts'},
-  {title: '퀘스트', tab: undefined, path: 'quest'},
+  {title: '퀘스트', tab: QuestTab, path: 'quest'},
   {title: '채팅', tab: undefined, path: 'chatting'},
 ];
 

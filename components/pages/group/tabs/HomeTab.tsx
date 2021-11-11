@@ -1,11 +1,11 @@
-import {Box, Center, Heading} from '@chakra-ui/layout';
-import LoadingSpinner from 'components/common/LoadingSpinner';
+import {Box, Heading} from '@chakra-ui/layout';
 import {Button} from 'components/common/_basic';
 import useUserInfo from 'hooks/api/useUserInfo';
 import useGroupJoinForm from 'hooks/group/useGroupJoinForm';
 import React from 'react';
 import {colors} from 'style';
 import {SpecificGroupInfo} from 'types/group';
+import LoadingTab from './LoadingTab';
 
 const HomeTab = (props: {groupInfo: SpecificGroupInfo}) => {
   const {groupInfo} = props;
@@ -15,11 +15,7 @@ const HomeTab = (props: {groupInfo: SpecificGroupInfo}) => {
   );
 
   if (isLoading) {
-    return (
-      <Center paddingY='24px'>
-        <LoadingSpinner />
-      </Center>
-    );
+    return <LoadingTab />;
   }
 
   return (
