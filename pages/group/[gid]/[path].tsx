@@ -5,7 +5,7 @@ import useGroupInfo from 'hooks/api/useGroupInfo';
 import {useRouter} from 'next/dist/client/router';
 
 const tabs: {[key: string]: number} = {
-  main: 0,
+  home: 0,
   posts: 1,
   quest: 2,
   chatting: 3,
@@ -27,7 +27,7 @@ const Group = () => {
   return (
     <Layout>
       <PageWrapper>
-        <GroupPage groupInfo={groupInfo} tabIndex={tabs[path ? path : 0]} />
+        <GroupPage groupInfo={groupInfo} tabIndex={path ? tabs[path] : 0} />
       </PageWrapper>
     </Layout>
   );

@@ -1,19 +1,78 @@
 import {Button as ChakraButton} from '@chakra-ui/button';
+import {Image} from '@chakra-ui/image';
 import {AddIcon} from '@chakra-ui/icons';
 import {Box, Center, Flex, Heading, Link, Stack} from '@chakra-ui/layout';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverBody,
+} from '@chakra-ui/react';
+import LoadingSpinner from 'components/common/LoadingSpinner';
 import {Button, Modal} from 'components/common/_basic';
 import InputForm from 'components/form/formContent/InputForm';
 import TextareaForm from 'components/form/formContent/TextareaForm';
 import useGroupQuestList from 'hooks/api/useGroupQuestList';
 import useAuth from 'hooks/auth/useAuth';
+import useDeletePost from 'hooks/post/useDeletePost';
 import useQuestForm from 'hooks/quest/useQuestForm';
 import useModal from 'hooks/useModal';
 import React from 'react';
 import {colors} from 'style';
+import {UserInfo} from 'types/auth';
 import {SpecificGroupInfo} from 'types/group';
+import {PostInfo} from 'types/post';
 import {QuestInfo} from 'types/quest';
 import refresh from 'utils/refresh';
 import LoadingTab from './LoadingTab';
+
+const PostMorePop = (props: {postInfo: PostInfo; userInfo?: UserInfo}) => {
+  const {postInfo, userInfo} = props;
+  const {deletePost, isDeleting} = useDeletePost();
+
+  if (!userInfo || userInfo._id !== postInfo.author._id) {
+    return null;
+  }
+
+  if (isDeleting) {
+    return <LoadingSpinner />;
+  }
+
+  return (
+    <Popover placement='bottom-end'>
+      <PopoverTrigger>
+        <Button
+          width='24px'
+          height='24px'
+          variant='ghost'
+          padding='0'
+          margin='0'
+        >
+          <Image src='/images/more_button.svg' alt='more' />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverBody padding='0'>
+          <Button
+            onClick={() => {
+              deletePost(postInfo);
+            }}
+            variant='ghost'
+            width='full'
+            padding='0'
+            margin='0'
+            height='48px'
+            color='#ff5847'
+          >
+            삭제하기
+          </Button>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  );
+};
 
 const AddQuestModal = (props: {groupId: string}) => {
   const {onClose} = useModal('addQuest');

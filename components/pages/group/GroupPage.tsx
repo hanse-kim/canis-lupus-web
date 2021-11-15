@@ -65,6 +65,7 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo; tabIndex: number}) => {
   const [tabIndex, setTabIndex] = useState(props.tabIndex);
   const {userInfo, isLoading} = useUserInfo();
   const router = useRouter();
+  console.log(tabIndex);
 
   if (isLoading) {
     return (
