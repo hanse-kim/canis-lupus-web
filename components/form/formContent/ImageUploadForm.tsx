@@ -67,7 +67,7 @@ const ImageUploadForm = (
                   {inputProps.placeholder}
                 </Text>
               </Center>
-              {imageUrl !== undefined && (
+              {imageUrl && (
                 <Box className='uploadImage' position='absolute'>
                   <Image
                     src={imageUrl}
