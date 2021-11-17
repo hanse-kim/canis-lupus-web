@@ -6,7 +6,15 @@ import {
   PopoverBody,
 } from '@chakra-ui/popover';
 import {Image} from '@chakra-ui/image';
-import {Box, Flex, Stack, HStack, Link, CloseButton, Center} from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Stack,
+  HStack,
+  Link,
+  CloseButton,
+  Center,
+} from '@chakra-ui/react';
 import React, {useState} from 'react';
 import {NotificationInfo} from 'types/notification';
 import {MainNavigationIconButton} from './MainNavigationBar';
@@ -29,22 +37,24 @@ const Notification = (props: {notificationInfo: NotificationInfo}) => {
 
   return (
     <Flex padding='20px' justifyContent='space-between' alignItems='center'>
-      <HStack spacing='8px'>
-        <Box width='36px' height='36px' borderRadius='full' overflow='hidden'>
-          <Image
-            src={notificationInfo.imageUrl}
-            alt='notificaitonImage'
-            width='full'
-            height='full'
-          />
-        </Box>
-        <Stack spacing='4px'>
-          <Box>{notificationInfo.contents}</Box>
-          <Box fontSize='10px' color={colors.minorTextGray}>
-            {dateToKorFormat(notificationInfo.createdAt)}
+      <Link href={`/group/${notificationInfo.meeting}`}>
+        <HStack spacing='8px'>
+          <Box width='36px' height='36px' borderRadius='full' overflow='hidden'>
+            <Image
+              src={notificationInfo.imageUrl}
+              alt='notificaitonImage'
+              width='full'
+              height='full'
+            />
           </Box>
-        </Stack>
-      </HStack>
+          <Stack spacing='4px'>
+            <Box>{notificationInfo.contents}</Box>
+            <Box fontSize='10px' color={colors.minorTextGray}>
+              {dateToKorFormat(notificationInfo.createdAt)}
+            </Box>
+          </Stack>
+        </HStack>
+      </Link>
       <CloseButton
         onClick={() => {
           deleteNotification(notificationInfo);
