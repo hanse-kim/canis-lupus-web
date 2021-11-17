@@ -1,5 +1,7 @@
 import {useToast} from '@chakra-ui/toast';
 import {Toast} from 'components/common/_basic';
+import useAuth from 'hooks/auth/useAuth';
+import usePageMove from 'hooks/usePageMove';
 import React from 'react';
 import {SpecificGroupInfo} from 'types/group';
 import useGroupJoin from './useGroupJoin';
@@ -10,13 +12,19 @@ const SuccesssToast = () => {
 
 const useGroupJoinForm = (groupInfo: SpecificGroupInfo) => {
   const toast = useToast();
+  const {userData} = useAuth();
+  const {pageMove} = usePageMove();
 
   const {joinGroup, isLoading} = useGroupJoin(() => {
     return toast({render: SuccesssToast});
   });
 
   const onJoinClick = () => {
-    joinGroup(groupInfo._id);
+    if (!userData || !userData.token) {
+      pageMove('/login');
+    } else {
+      joinGroup(groupInfo._id);
+    }
   };
 
   return {onJoinClick, isLoading};

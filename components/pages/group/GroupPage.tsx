@@ -26,14 +26,16 @@ export const tabs = [
 const GroupImage = (props: ImageProps) => {
   return (
     <Box height='360px' overflow='hidden'>
-      <Image
-        alt='groupImage'
-        width='full'
-        height='full'
-        objectFit='cover'
-        position='relative'
-        {...props}
-      />
+      {props.src && (
+        <Image
+          alt='groupImage'
+          width='full'
+          height='full'
+          objectFit='cover'
+          position='relative'
+          {...props}
+        />
+      )}
     </Box>
   );
 };
@@ -65,7 +67,6 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo; tabIndex: number}) => {
   const [tabIndex, setTabIndex] = useState(props.tabIndex);
   const {userInfo, isLoading} = useUserInfo();
   const router = useRouter();
-  console.log(tabIndex);
 
   if (isLoading) {
     return (
@@ -105,8 +106,8 @@ const GroupPage = (props: {groupInfo: SpecificGroupInfo; tabIndex: number}) => {
               item.tab ? (
                 <TabPanel key={index} padding='0'>
                   {index !== 0 &&
-                  userInfo &&
-                  !isJoining(userInfo, groupInfo._id) ? (
+                  (!userInfo ||
+                    (userInfo && !isJoining(userInfo, groupInfo._id))) ? (
                     <NotMemberTab groupInfo={groupInfo} />
                   ) : (
                     <item.tab key={index} groupInfo={groupInfo} />
