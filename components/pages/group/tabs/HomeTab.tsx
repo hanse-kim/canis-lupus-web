@@ -27,7 +27,9 @@ const HomeTab = (props: {groupInfo: SpecificGroupInfo}) => {
         {groupInfo.name}
       </Heading>
       <Box fontSize='16px' lineHeight='24px'>
-        {groupInfo.introduction}
+        {groupInfo.introduction.split('\n').map((item, index) => (
+          <Box key={index}>{item}</Box>
+        ))}
       </Box>
       {userInfo &&
         userInfo.meetings.joining.every(
