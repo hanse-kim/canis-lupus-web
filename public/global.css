@@ -1,5 +1,6 @@
-a:hover {
+a {
   text-decoration: none !important;
+  color: none;
 }
 
 :focus {
