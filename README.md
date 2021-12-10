@@ -55,6 +55,32 @@ SW마에스트로 제 12기 B2K팀의 모임 관리 서비스 '이건모임'의 
 
 <br>
 
+## Design (Zeplin, Outsourcing)
+
+![K-591](https://user-images.githubusercontent.com/55024033/145667862-c5aa5848-947c-4ecb-9604-b6d6ea3ed167.png)
+
+<br>
+
+## Overview (Web browser)
+
+- 로그인 및 회원가입 (일부)
+
+  ![1](https://user-images.githubusercontent.com/55024033/145667784-d5e114b6-904a-4d07-ac03-497be840fc2c.png)
+
+- 메인 화면, 알림
+
+  ![2](https://user-images.githubusercontent.com/55024033/145667785-b19ab316-2b93-4980-885f-6d49352fdf53.png)
+
+- 모임 개설
+
+  ![3](https://user-images.githubusercontent.com/55024033/145667787-08a26778-8602-45fc-b3ab-9f99b005ef60.png)
+
+- 모임 상세
+
+  ![4](https://user-images.githubusercontent.com/55024033/145667788-8e736c8a-0984-4a59-9dcf-52598907256e.png)
+
+<br>
+
 ## Todo
 
 - [x] 로그인
